@@ -1,0 +1,98 @@
+.user {
+  &__title {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    color: #000;
+    margin-bottom: 29px;
+  }
+
+  &__form {
+  }
+
+  &__item {
+    margin-bottom: 27px;
+  }
+
+  &__item-title {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 16px;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+  }
+
+  &__label {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    color: #a4a4a4;
+    margin-bottom: 7px;
+  }
+
+  &__input {
+    border: 1px solid #c7c7c7;
+    background: #fff5f5;
+    color: black;
+    padding: 11px 7px;
+
+    &::placeholder {
+      font-style: italic;
+      font-weight: 400;
+      font-size: 14px;
+      color: #a4a4a4;
+    }
+
+    &:hover {
+      border: 1px solid #747474;
+    }
+
+    &:focus {
+      border: 1px solid #000000;
+    }
+  }
+
+  &__radiobtns {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+  }
+
+  &__radio-btn-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__radio-btn-text {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    color: #a4a4a4;
+  }
+
+  &__button {
+    min-width: 427px;
+    background: #ff9e7b;
+    padding: 12px 0px;
+    text-align: center;
+
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+
+    &:hover {
+      background: #ff8052;
+    }
+
+    &:active {
+      background: #ff5517;
+    }
+  }
+}

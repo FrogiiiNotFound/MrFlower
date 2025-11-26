@@ -1,0 +1,144 @@
+.products {
+    padding: 50px 0px;
+  &__container {
+  }
+
+  &__slider-container {
+    margin-bottom: 50px;
+  }
+
+  &__slider-title {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 32px;
+    color: #171717;
+    margin-bottom: 33px;
+  }
+
+  &__slider {
+    position: relative;
+  }
+
+  &__slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+  }
+
+  &__slider-slide {
+  }
+
+  &__slider-img {
+    margin-bottom: 20px;
+  }
+
+  &__slider-img img {
+    width: 320px;
+    height: 320px;
+  }
+
+  &__slider-content {
+  }
+
+  &__slider-slide-title {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 26px;
+    color: #000;
+    margin-bottom: 7px;
+  }
+
+  &__slider-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 13px;
+  }
+
+  &__slider-star {
+    display: flex;
+    align-items: center;
+  }
+
+  &__slider-price-container {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  &__slider-value {
+    font-weight: 400;
+    font-size: 20px;
+    color: #010101;
+  }
+
+  &__slider-number {
+    font-weight: 400;
+    font-size: 16px;
+    color: #4b4b4b;
+  }
+
+  &__slider-desc {
+    max-width: 320px;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 37px;
+  }
+
+  &__slider-pricing {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 17px;
+  }
+
+  &__slider-price {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__slider-new-price {
+    font-weight: 400;
+    font-size: 26px;
+    color: #010101;
+  }
+
+  &__slider-old-price {
+    font-weight: 400;
+    font-size: 18px;
+    color: #a3a3a3;
+    text-decoration: line-through;
+  }
+
+  &__slider-btn {
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background: #fff;
+    padding: 12px 30px;
+    text-align: center;
+  }
+
+  &__slider-btn-text {
+    font-weight: 400;
+    font-size: 14px;
+    color: #010101;
+  }
+
+  &__slider-buttons {
+  }
+
+  &__slider-prev {
+    position: absolute;
+    top: 50%;
+    left: 0;
+  }
+
+  &__slider-next {
+    position: absolute;
+    top: 50%;
+    right: 0;
+  }
+}

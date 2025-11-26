@@ -1,0 +1,224 @@
+.home {
+    padding: 20px 0px;
+  &__container {
+  }
+
+  &__search-list {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 70px;
+  }
+
+  &__search-item {
+    padding: 11px 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  &__search-img {
+  }
+
+  &__search-text {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__main-slider {
+    position: relative;
+  }
+
+  &__main-slider-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__main-slider-slide {
+  }
+
+  &__main-slider-img {
+  }
+
+  &__main-slider-buttons {
+  }
+
+  &__main-slider-prev {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    rotate: -180deg;
+
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.46);
+    backdrop-filter: blur(1px);
+    padding: 10px 14px 10px 18px;
+  }
+
+  &__main-slider-next {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.46);
+    backdrop-filter: blur(1px);
+    padding: 10px 18px 10px 18px;
+  }
+
+  &__addition-slider {
+  }
+
+  &__addition-slider-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 50px;
+  }
+
+  &__addition-title {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 26px;
+    color: #000;
+  }
+
+  &__addition-slider-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__addition-slider-prev {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgba(244, 244, 244, 0.46);
+    padding: 10px 14px;
+    rotate: -180deg;
+  }
+
+  &__addition-slider-next {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgba(244, 244, 244, 0.46);
+    padding: 10px 14px;
+  }
+
+  &__addition-slider-wrapper {
+  }
+
+  &__addition-slider-slide {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+
+  &__addition-slider-img {
+  }
+
+  &__addition-slider-slide-content {
+  }
+
+  &__addition-slider-title {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 4px;
+  }
+
+  &__addition-slider-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 13px;
+  }
+
+  &__addition-slider-star {
+    display: flex;
+    align-items: center;
+  }
+
+  &__addition-slider-price-container {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  &__addition-slider-value {
+    font-weight: 400;
+    font-size: 16px;
+    color: #010101;
+  }
+
+  &__addition-slider-number {
+    font-weight: 400;
+    font-size: 12px;
+    color: #4b4b4b;
+  }
+
+  &__addition-slider-desc {
+    max-width: 236px;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 24px;
+  }
+
+  &__addition-slider-pricing {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 17px;
+  }
+
+  &__addition-slider-price {
+    display: flex;
+    gap: 5px;
+  }
+
+  &__addition-slider-new-price {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #010101;
+  }
+
+  &__addition-slider-old-price {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #a3a3a3;
+    text-decoration: line-through;
+  }
+
+  &__addition-slider-btn {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background: #fff;
+    padding: 8px 17px;
+    text-align: center;
+  }
+
+  &__addition-slider-btn-text {
+    font-weight: 400;
+    font-size: 12px;
+    color: #010101;
+  }
+}
