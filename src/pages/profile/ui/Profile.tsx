@@ -2,6 +2,8 @@ import React from 'react';
 import { Menu } from './Menu';
 import { UserSettings } from './UserSettings';
 import './Menu.scss';
+import { Route, Routes } from 'react-router-dom';
+import { Orders } from './Orders';
 
 export const Profile = () => {
   return (
@@ -12,7 +14,10 @@ export const Profile = () => {
           <div className="profile__content">
             <Menu />
             <div className="profile__info-wrapper">
-              <UserSettings />
+              <Routes>
+                <Route path="/profile/settings" element={<UserSettings />} />
+                <Route path="/profile/orders" element={<Orders />} />
+              </Routes>
             </div>
           </div>
         </div>
