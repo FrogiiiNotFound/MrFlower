@@ -1,0 +1,14 @@
+.favourites {
+  &__container {
+  }
+
+  &__title {
+  }
+
+  &__cards {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}

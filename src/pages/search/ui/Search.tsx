@@ -4,6 +4,7 @@ import checkmark from '@features/icons/checkmark.svg';
 import arrow from '@features/icons/arrow-filters.svg';
 import like from '@features/icons/like.svg';
 import './search.scss';
+import { Card } from '@shared/index';
 
 export const Search = () => {
   return (
@@ -83,126 +84,11 @@ export const Search = () => {
             </div>
           </div>
           <div className="search__cards">
-            <div className="search__card">
-              <div className="search__card-img">
-                <img src={template} alt="card-img" />
-              </div>
-              <div className="search__card-content">
-                <h3 className="search__card-title">Уилл Грема застрелят</h3>
-                <p className="search__card-text">
-                  Lorem ipsum dolor sit amet. consectetur adipisicing elit Sequi provident commodi.
-                  repudiandae veniam.
-                </p>
-                <div className="search__card-bottom">
-                  <div className="search__card-pricing">
-                    <p className="search__card-new-price">1 999 ₽</p>
-                    <p className="search__card-old-price">2598 ₽</p>
-                  </div>
-                  <div className="search__card-btn">
-                    <p className="search__card-btn-text">В корзину</p>
-                  </div>
-                </div>
-              </div>
-              <div className="search__card-like">
-                <img src={like} alt="like" />
-              </div>
-            </div>
-            <div className="search__card">
-              <div className="search__card-img">
-                <img src={template} alt="card-img" />
-              </div>
-              <div className="search__card-content">
-                <h3 className="search__card-title">Уилл Грема застрелят</h3>
-                <p className="search__card-text">
-                  Lorem ipsum dolor sit amet. consectetur adipisicing elit Sequi provident commodi.
-                  repudiandae veniam.
-                </p>
-                <div className="search__card-bottom">
-                  <div className="search__card-pricing">
-                    <p className="search__card-new-price">1 999 ₽</p>
-                    <p className="search__card-old-price">2598 ₽</p>
-                  </div>
-                  <div className="search__card-btn">
-                    <p className="search__card-btn-text">В корзину</p>
-                  </div>
-                </div>
-              </div>
-              <div className="search__card-like">
-                <img src={like} alt="like" />
-              </div>
-            </div>
-            <div className="search__card">
-              <div className="search__card-img">
-                <img src={template} alt="card-img" />
-              </div>
-              <div className="search__card-content">
-                <h3 className="search__card-title">Уилл Грема застрелят</h3>
-                <p className="search__card-text">
-                  Lorem ipsum dolor sit amet. consectetur adipisicing elit Sequi provident commodi.
-                  repudiandae veniam.
-                </p>
-                <div className="search__card-bottom">
-                  <div className="search__card-pricing">
-                    <p className="search__card-new-price">1 999 ₽</p>
-                    <p className="search__card-old-price">2598 ₽</p>
-                  </div>
-                  <div className="search__card-btn">
-                    <p className="search__card-btn-text">В корзину</p>
-                  </div>
-                </div>
-              </div>
-              <div className="search__card-like">
-                <img src={like} alt="like" />
-              </div>
-            </div>
-            <div className="search__card">
-              <div className="search__card-img">
-                <img src={template} alt="card-img" />
-              </div>
-              <div className="search__card-content">
-                <h3 className="search__card-title">Уилл Грема застрелят</h3>
-                <p className="search__card-text">
-                  Lorem ipsum dolor sit amet. consectetur adipisicing elit Sequi provident commodi.
-                  repudiandae veniam.
-                </p>
-                <div className="search__card-bottom">
-                  <div className="search__card-pricing">
-                    <p className="search__card-new-price">1 999 ₽</p>
-                    <p className="search__card-old-price">2598 ₽</p>
-                  </div>
-                  <div className="search__card-btn">
-                    <p className="search__card-btn-text">В корзину</p>
-                  </div>
-                </div>
-              </div>
-              <div className="search__card-like">
-                <img src={like} alt="like" />
-              </div>
-            </div>
-            <div className="search__card">
-              <div className="search__card-img">
-                <img src={template} alt="card-img" />
-              </div>
-              <div className="search__card-content">
-                <h3 className="search__card-title">Уилл Грема застрелят</h3>
-                <p className="search__card-text">
-                  Lorem ipsum dolor sit amet. consectetur adipisicing elit Sequi provident commodi.
-                  repudiandae veniam.
-                </p>
-                <div className="search__card-bottom">
-                  <div className="search__card-pricing">
-                    <p className="search__card-new-price">1 999 ₽</p>
-                    <p className="search__card-old-price">2598 ₽</p>
-                  </div>
-                  <div className="search__card-btn">
-                    <p className="search__card-btn-text">В корзину</p>
-                  </div>
-                </div>
-              </div>
-              <div className="search__card-like">
-                <img src={like} alt="like" />
-              </div>
-            </div>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
           </div>
         </div>
       </div>

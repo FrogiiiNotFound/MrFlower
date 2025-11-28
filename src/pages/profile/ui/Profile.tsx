@@ -1,9 +1,9 @@
-import React from 'react';
-import { Menu } from './Menu';
-import { UserSettings } from './UserSettings';
-import './Menu.scss';
+import { Menu } from '@widgets/menu/ui/Menu';
 import { Route, Routes } from 'react-router-dom';
 import { Orders } from './Orders';
+import { UserSettings } from './UserSettings';
+import { Notifications } from './Notifications';
+import { Favourites } from './Favourites';
 
 export const Profile = () => {
   return (
@@ -17,6 +17,8 @@ export const Profile = () => {
               <Routes>
                 <Route path="/profile/settings" element={<UserSettings />} />
                 <Route path="/profile/orders" element={<Orders />} />
+                <Route path="/profile/notifications" element={<Notifications />} />
+                <Route path="/profile/favourites" element={<Favourites />} />
               </Routes>
             </div>
           </div>

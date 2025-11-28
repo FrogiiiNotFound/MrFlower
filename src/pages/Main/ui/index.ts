@@ -1,2 +1,2 @@
-import { Main } from './Main';
-import { MainSlider } from './MainSlider';
+export { Main } from './Main';
+export { MainSlider } from './MainSlider';
