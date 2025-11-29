@@ -2,11 +2,20 @@ import search from '@features/main/search.svg';
 import star from '@features/icons/star.svg';
 import template from '@features/template/template-img.png';
 import arrow from '@features/icons/arrow-slider.svg';
-import slideAd from '@features/main/slideAd1.png';
+import slideAd1 from '@features/main/strawberryinchocolate.png';
+import slideAd2 from '@features/main/bentocake.png';
 import './Home.scss';
 import './Products.scss';
+import React, { useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export const Main = () => {
+  const swiperRef = useRef(null);
   return (
     <div>
       <section className="home">
@@ -63,18 +72,44 @@ export const Main = () => {
           </ul>
           <div className="home__content">
             <div className="home__main-slider">
-              <div className="home__main-slider-wrapper">
-                <div className="home__main-slider-slide">
+              <Swiper
+                className="home__main-slider-wrapper"
+                ref={swiperRef}
+                modules={[Navigation, Autoplay]}
+                spaceBetween={20}
+                slidesPerView={1}
+                navigation={false}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                loop={true}
+                speed={600}>
+                <SwiperSlide className="home__main-slider-slide">
                   <div className="home__main-slider-img">
-                    <img src={slideAd} alt="slide-img" />
+                    <img src={slideAd1} alt="slide-img" />
                   </div>
-                </div>
-              </div>
+                  <p className="home__main-slider-info">
+                    <h3 className="home__main-slider-info-title">Клубника в шоколаде</h3>
+                    <p className="home__main-slider-info-text">Сладкие моменты для вас!</p>
+                  </p>
+                </SwiperSlide>
+                <SwiperSlide className="home__main-slider-slide">
+                  <div className="home__main-slider-img">
+                    <img src={slideAd2} alt="slide-img" />
+                  </div>
+                  <p className="home__main-slider-info">
+                    <h3 className="home__main-slider-info-title">Клубника в шоколаде</h3>
+                    <p className="home__main-slider-info-text">Сладкие моменты для вас!</p>
+                  </p>
+                </SwiperSlide>
+              </Swiper>
               <div className="home__main-slider-buttons">
-                <div className="home__main-slider-prev">
+                <div
+                  onClick={() => swiperRef.current?.swiper.slidePrev()}
+                  className="home__main-slider-prev">
                   <img src={arrow} alt="arrow" />
                 </div>
-                <div className="home__main-slider-next">
+                <div
+                  onClick={() => swiperRef.current?.swiper.slideNext()}
+                  className="home__main-slider-next">
                   <img src={arrow} alt="arrow" />
                 </div>
               </div>
