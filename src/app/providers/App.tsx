@@ -2,7 +2,7 @@ import { Cart } from '@pages/cart';
 import { Main } from '@pages/Main/ui/Main';
 import { Profile } from '@pages/profile';
 import { Search } from '@pages/search';
-import MainLayout from '@shared/globals/layouts/MainLayout/MainLayout';
+import { MainLayout } from '@shared/globals';
 import '@shared/globals/main.scss';
 import { Route, Routes } from 'react-router-dom';
 

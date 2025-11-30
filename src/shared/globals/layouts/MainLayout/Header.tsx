@@ -1,7 +1,8 @@
-import  './Header.scss'
-import searchIcon from '@features/header-icon/search.svg'
-import cartIcon from '@features/header-icon/shopping-cart.svg'
-import profileIcon from '@features/header-icon/user.svg'
+import searchIcon from '@features/header-icon/search.svg';
+import cartIcon from '@features/header-icon/shopping-cart.svg';
+import profileIcon from '@features/header-icon/user.svg';
+
+import './header.scss';
 
 export const Header = () => {
   return (
@@ -25,8 +26,8 @@ export const Header = () => {
         </nav>
         <h2 className="header__logo">MrFlower</h2>
         <div className="header__content">
-          <div className='header__search-wrapper'>
-            <input type="text" className="header__search-input" placeholder='Поиск' />
+          <div className="header__search-wrapper">
+            <input type="text" className="header__search-input" placeholder="Поиск" />
             <div className="header__search-icon">
               <img src={searchIcon} alt="search" />
             </div>
@@ -42,7 +43,7 @@ export const Header = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

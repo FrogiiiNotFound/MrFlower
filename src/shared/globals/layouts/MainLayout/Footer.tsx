@@ -2,7 +2,7 @@ import mail from '@features/icons/mail.svg';
 import telegram from '@features/icons/telegram.svg';
 import whatsapp from '@features/icons/whatsapp.svg';
 
-import './Footer.scss';
+import './footer.scss';
 
 export const Footer = () => {
   return (

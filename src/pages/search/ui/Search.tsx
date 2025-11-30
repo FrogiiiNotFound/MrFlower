@@ -1,10 +1,7 @@
-import template from '@features/template/template-img.png';
-import filter from '@features/template/filter.png';
-import checkmark from '@features/icons/checkmark.svg';
 import arrow from '@features/icons/arrow-filters.svg';
-import like from '@features/icons/like.svg';
-import './search.scss';
+import filter from '@features/template/filter.png';
 import { Card } from '@shared/index';
+import './search.scss';
 
 export const Search = () => {
   return (
@@ -54,30 +51,26 @@ export const Search = () => {
                 </div>
                 <div className="search__addition-filter-body">
                   <div className="search__body-buttons">
-                    <div className="search__body-btn">
-                      <div className="search__body-checkmark">
-                        <img src={checkmark} alt="checkmark" />
-                      </div>
-                      <p className="search__body-btn-text">Розы</p>
-                    </div>
-                    <div className="search__body-btn">
-                      <div className="search__body-checkmark">
-                        <img src={checkmark} alt="checkmark" />
-                      </div>
-                      <p className="search__body-btn-text">Пионы</p>
-                    </div>
-                    <div className="search__body-btn">
-                      <div className="search__body-checkmark">
-                        <img src={checkmark} alt="checkmark" />
-                      </div>
-                      <p className="search__body-btn-text">Герберы</p>
-                    </div>
-                    <div className="search__body-btn">
-                      <div className="search__body-checkmark">
-                        <img src={checkmark} alt="checkmark" />
-                      </div>
-                      <p className="search__body-btn-text">Хризантемы</p>
-                    </div>
+                    <label htmlFor="roses" className="search__input-wrapper">
+                      <input type="checkbox" className="search__input" id="roses" />
+                      <span className="search__checkmark"></span>
+                      Розы
+                    </label>
+                    <label htmlFor="pions" className="search__input-wrapper">
+                      <input type="checkbox" className="search__input" id="pions" />
+                      <span className="search__checkmark"></span>
+                      Пионы
+                    </label>
+                    <label htmlFor="gerberas" className="search__input-wrapper">
+                      <input type="checkbox" className="search__input" id="gerberas" />
+                      <span className="search__checkmark"></span>
+                      Герберы
+                    </label>
+                    <label htmlFor="chrysanthemums" className="search__input-wrapper">
+                      <input type="checkbox" className="search__input" id="chrysanthemums" />
+                      <span className="search__checkmark"></span>
+                      Хризантемы
+                    </label>
                   </div>
                 </div>
               </div>

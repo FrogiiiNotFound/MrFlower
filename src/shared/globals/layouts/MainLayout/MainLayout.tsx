@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 
-const MainLayout: React.FC = () => {
+export const MainLayout: React.FC = () => {
   return (
     <div className="wrapper">
       <Header />
@@ -13,5 +13,3 @@ const MainLayout: React.FC = () => {
     </div>
   );
 };
-
-export default MainLayout
