@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-export const Main: React.FC = () => {
+export const Home: React.FC = () => {
   return (
     <div>
       <section className="home">

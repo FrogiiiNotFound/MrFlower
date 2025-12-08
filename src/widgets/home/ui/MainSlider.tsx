@@ -24,19 +24,19 @@ export const MainSlider = () => {
           <div className="home__main-slider-img">
             <img src={slideAd1} alt="slide-img" />
           </div>
-          <p className="home__main-slider-info">
+          <div className="home__main-slider-info">
             <h3 className="home__main-slider-info-title">Клубника в шоколаде</h3>
             <p className="home__main-slider-info-text">Сладкие моменты для вас!</p>
-          </p>
+          </div>
         </SwiperSlide>
         <SwiperSlide className="home__main-slider-slide">
           <div className="home__main-slider-img">
             <img src={slideAd2} alt="slide-img" />
           </div>
-          <p className="home__main-slider-info">
+          <div className="home__main-slider-info">
             <h3 className="home__main-slider-info-title">Бенто-торты</h3>
             <p className="home__main-slider-info-text">Милый тренд для особых моментов</p>
-          </p>
+          </div>
         </SwiperSlide>
       </Swiper>
       <div className="home__main-slider-buttons">

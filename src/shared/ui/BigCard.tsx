@@ -1,7 +1,8 @@
 import star from '@features/icons/star.svg';
 import template from '@features/template/template-img.png';
+import type { Product } from '@shared/types/products/product';
 
-export const BigCard = () => {
+export const BigCard = (product: Product) => {
   return (
     <div className="products__big-card">
       <div className="products__slider-img">

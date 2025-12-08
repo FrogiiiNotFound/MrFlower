@@ -1,8 +1,8 @@
+import arrow from '@features/icons/arrow-slider.svg';
 import { BigCard } from '@shared/index';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide, type SwiperRef } from 'swiper/react';
-import arrow from '@features/icons/arrow-slider.svg';
 
 export const Slider = () => {
   const swiperRef = useRef<SwiperRef>(null);

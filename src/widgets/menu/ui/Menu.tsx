@@ -1,4 +1,3 @@
-import React from 'react';
 import template from '@features/template/template-icon.svg';
 import './Menu.scss';
 

@@ -1,9 +1,8 @@
 import { Menu } from '@widgets/menu/ui/Menu';
 import { Route, Routes } from 'react-router-dom';
-import { Orders } from './Orders';
-import { UserSettings } from './UserSettings';
-import { Notifications } from './Notifications';
-import { Favourites } from './Favourites';
+import { Orders } from '../../Orders/ui/Orders';
+import { Notifications } from '../../notifications/ui/Notifications';
+import { Favourites } from '../../Favourites/ui/Favourites';
 
 export const Profile = () => {
   return (
@@ -15,7 +14,6 @@ export const Profile = () => {
             <Menu />
             <div className="profile__info-wrapper">
               <Routes>
-                <Route path="/profile/settings" element={<UserSettings />} />
                 <Route path="/profile/orders" element={<Orders />} />
                 <Route path="/profile/notifications" element={<Notifications />} />
                 <Route path="/profile/favourites" element={<Favourites />} />

@@ -1,6 +1,4 @@
 .profile {
-  &__container {
-  }
 
   &__title {
     font-style: italic;
@@ -14,15 +12,6 @@
     display: flex;
     gap: 90px;
     margin-bottom: 42px;
-  }
-
-  &__info-wrapper {
-  }
-
-  &__menu {
-  }
-
-  &__list {
   }
 
   &__item {
@@ -54,12 +43,6 @@
     padding: 10px;
 
     border: 1px solid #c7c7c7;
-  }
-
-  &__bonus-img {
-  }
-
-  &__bonus-texts {
   }
 
   &__bonus-title {
