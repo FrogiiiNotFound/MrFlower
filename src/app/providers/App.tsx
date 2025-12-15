@@ -5,9 +5,9 @@ import { Notifications } from '@pages/notifications';
 import { Orders } from '@pages/orders';
 import { Search } from '@pages/search';
 import { Settings } from '@pages/settings';
-import { MainLayout } from '../layouts/main-layout/ui/MainLayout';
 import '@shared/globals/main.scss';
 import { Route, Routes } from 'react-router-dom';
+import { MainLayout } from '../layouts/main-layout/ui/MainLayout';
 
 function App() {
   return (

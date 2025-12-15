@@ -1,11 +1,7 @@
 import React from 'react';
 import './modal.scss';
 
-type ModelProps = {
-  children: React.ReactNode;
-};
-
-const Modal = ({ children }: ModelProps) => {
+export const Modal = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="layout">
       <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -14,5 +10,3 @@ const Modal = ({ children }: ModelProps) => {
     </div>
   );
 };
-
-export default Modal;

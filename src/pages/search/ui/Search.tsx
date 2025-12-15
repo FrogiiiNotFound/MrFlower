@@ -3,6 +3,7 @@ import filter from '@shared/template/filter.png';
 
 import { Card } from '@shared/index';
 import './search.scss';
+import { Checkbox } from '@/shared/ui/checkbox';
 
 export const Search = () => {
   return (
@@ -52,26 +53,10 @@ export const Search = () => {
                 </div>
                 <div className="search__addition-filter-body">
                   <div className="search__body-buttons">
-                    <label htmlFor="roses" className="search__input-wrapper">
-                      <input type="checkbox" className="search__input" id="roses" />
-                      <span className="search__checkmark"></span>
-                      Розы
-                    </label>
-                    <label htmlFor="pions" className="search__input-wrapper">
-                      <input type="checkbox" className="search__input" id="pions" />
-                      <span className="search__checkmark"></span>
-                      Пионы
-                    </label>
-                    <label htmlFor="gerberas" className="search__input-wrapper">
-                      <input type="checkbox" className="search__input" id="gerberas" />
-                      <span className="search__checkmark"></span>
-                      Герберы
-                    </label>
-                    <label htmlFor="chrysanthemums" className="search__input-wrapper">
-                      <input type="checkbox" className="search__input" id="chrysanthemums" />
-                      <span className="search__checkmark"></span>
-                      Хризантемы
-                    </label>
+                    <Checkbox text="Розы" />
+                    <Checkbox text="Пионы" />
+                    <Checkbox text="Герберы" />
+                    <Checkbox text="Хризантемы" />
                   </div>
                 </div>
               </div>

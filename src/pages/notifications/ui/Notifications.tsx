@@ -1,5 +1,6 @@
 import { Menu } from '@widgets/menu';
 import './notifications.scss';
+import { Checkbox } from '@shared/ui/checkbox';
 
 export const Notifications = () => {
   return (
@@ -15,32 +16,16 @@ export const Notifications = () => {
                 <fieldset className="notifications__inputs">
                   <legend className="notifications__notification-title">Способ получения</legend>
 
-                  <label className="notifications__input-wrapper">
-                    <input type="checkbox" className="notifications__input" />
-                    <span className="notifications__checkmark"></span>
-                    SMS сообщения
-                  </label>
-                  <label className="notifications__input-wrapper">
-                    <input type="checkbox" className="notifications__input" />
-                    <span className="notifications__checkmark"></span>
-                    SMS сообщения
-                  </label>
+                  <Checkbox text="SMS сообщения" />
+                  <Checkbox text="E-mail" />
                 </fieldset>
                 <fieldset className="notifications__inputs">
                   <legend className="notifications__notification-title">
                     Подписаться на уведомления
                   </legend>
                   
-                  <label htmlFor="discounts" className="notifications__input-wrapper">
-                    <input type="checkbox" className="notifications__input" id="discounts" />
-                    <span className="notifications__checkmark"></span>
-                    Акции и скидки
-                  </label>
-                  <label htmlFor="news" className="notifications__input-wrapper">
-                    <input type="checkbox" className="notifications__input" id="news" />
-                    <span className="notifications__checkmark"></span>
-                    Новости
-                  </label>
+                  <Checkbox text="Акции и скидки" />
+                  <Checkbox text="Новости" />
                 </fieldset>
                 <button className="notifications__btn">Сохранить изменения</button>
               </form>

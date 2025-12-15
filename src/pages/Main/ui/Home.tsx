@@ -6,6 +6,8 @@ import { MainSlider, PromoSlider, Slider } from '@widgets/home';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { RegisterForm } from '@/widgets/register/ui/RegisterForm';
+import { LoginForm } from '@/widgets/register/ui/LoginForm';
 
 export const Home: React.FC = () => {
   return (
@@ -85,6 +87,7 @@ export const Home: React.FC = () => {
           </div>
         </div>
       </section>
+      <LoginForm />
     </div>
   );
 };
