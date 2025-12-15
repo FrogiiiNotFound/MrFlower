@@ -1,4 +1,4 @@
-import template from '@features/template/template-icon.svg';
+import template from '@shared/template/template-icon.svg';
 import './Menu.scss';
 
 export const Menu = () => {

@@ -1,3 +1,3 @@
-export { Header } from './layouts/MainLayout/Header';
-export { Footer } from './layouts/MainLayout/Footer';
+export { Header } from '../../widgets/header/ui/Header';
+export { Footer } from '../../widgets/footer/ui/Footer';
 export { MainLayout } from './layouts/MainLayout/MainLayout';

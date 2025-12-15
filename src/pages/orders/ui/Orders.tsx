@@ -1,4 +1,4 @@
-import template from '@features/template/template-img.png';
+import template from '@shared/template/template-img.png';
 import { Menu } from '@widgets/menu';
 import './orders.scss';
 

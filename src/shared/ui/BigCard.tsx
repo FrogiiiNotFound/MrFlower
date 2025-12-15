@@ -1,5 +1,5 @@
-import star from '@features/icons/star.svg';
-import template from '@features/template/template-img.png';
+import star from '@shared/assets/images/star.svg';
+import template from '@shared/template/template-img.png';
 import type { Product } from '@shared/types/products/product';
 
 export const BigCard = (product: Product) => {

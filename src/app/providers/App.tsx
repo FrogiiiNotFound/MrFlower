@@ -5,18 +5,11 @@ import { Notifications } from '@pages/notifications';
 import { Orders } from '@pages/orders';
 import { Search } from '@pages/search';
 import { Settings } from '@pages/settings';
-import { productsApi } from '@shared/api/products';
-import { MainLayout } from '@shared/globals';
+import { MainLayout } from '../layouts/main-layout/ui/MainLayout';
 import '@shared/globals/main.scss';
-import { useQuery } from '@tanstack/react-query';
 import { Route, Routes } from 'react-router-dom';
 
 function App() {
-  const { data } = useQuery({
-    queryKey: ['products'],
-    queryFn: () => productsApi.getAllProducts(),
-  });
-
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>

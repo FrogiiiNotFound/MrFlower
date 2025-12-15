@@ -1,5 +1,6 @@
-import arrow from '@features/icons/arrow-filters.svg';
-import filter from '@features/template/filter.png';
+import arrow from '@shared/assets/images/arrow-filters.svg';
+import filter from '@shared/template/filter.png';
+
 import { Card } from '@shared/index';
 import './search.scss';
 

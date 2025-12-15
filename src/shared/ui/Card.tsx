@@ -1,5 +1,5 @@
-import like from '@features/icons/like.svg';
-import template from '@features/template/template-img.png';
+import like from '@shared//assets/images/like.svg';
+import template from '@shared/template/template-img.png';
 import './card.scss';
 
 export const Card = () => {

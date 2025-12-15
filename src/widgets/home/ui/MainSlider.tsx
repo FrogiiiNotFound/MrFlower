@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import arrow from '@shared/assets/images/arrow-slider.svg';
+import { useRef } from 'react';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide, type SwiperRef } from 'swiper/react';
-import slideAd1 from '@features/main/strawberryinchocolate.png';
-import slideAd2 from '@features/main/bentocake.png';
-import arrow from '@features/icons/arrow-slider.svg';
+import slideAd1 from '../assets/bento-cake.png';
+import slideAd2 from '../assets/strawberry-in-chocolate.png';
 
 export const MainSlider = () => {
   const swiperRef = useRef<SwiperRef>(null);

@@ -1,4 +1,4 @@
-import arrow from '@features/icons/arrow-slider.svg';
+import arrow from '@shared/assets/images/arrow-slider.svg';
 import { BigCard } from '@shared/index';
 import { useRef } from 'react';
 import { Navigation } from 'swiper/modules';

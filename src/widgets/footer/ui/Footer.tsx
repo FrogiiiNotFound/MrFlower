@@ -1,6 +1,6 @@
-import mail from '@features/icons/mail.svg';
-import telegram from '@features/icons/telegram.svg';
-import whatsapp from '@features/icons/whatsapp.svg';
+import mail from '@shared/assets/images/mail.svg';
+import telegram from '@shared/assets/images/telegram.svg';
+import whatsapp from '@shared/assets/images/whatsapp.svg';
 
 import './footer.scss';
 

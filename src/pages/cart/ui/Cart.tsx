@@ -1,7 +1,7 @@
-import minus from '@features/icons/minus.svg';
-import plus from '@features/icons/plus.svg';
-import bin from '@features/icons/bin.svg';
-import template from '@features/template/template-img.png';
+import minus from '@shared/assets/images/minus.svg';
+import plus from '@shared/assets/images/plus.svg';
+import bin from '@shared/assets/images/bin.svg';
+import template from '@shared/template/template-img.png';
 import './Cart.scss';
 
 export const Cart = () => {

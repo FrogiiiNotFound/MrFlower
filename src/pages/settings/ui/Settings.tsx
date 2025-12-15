@@ -5,14 +5,15 @@ export const Settings = () => {
   return (
     <div className="user">
       <div className="user__container _container">
-        <h2 className="user__main-title">Профиль</h2>
+        <h2 className="user__title title">Профиль</h2>
         <div className="user__content main-content">
           <Menu />
           <div className="user__info-wrapper">
             <h3 className="user__title">Личные данные пользователя</h3>
             <form className="user__form">
-              <div className="user__item">
-                <h4 className="user__item-title">Личная информация</h4>
+              <fieldset className="user__item">
+                <legend className="user__item-title">Личная информация</legend>
+
                 <div className="user__input-wrapper">
                   <label htmlFor="" className="user__label">
                     Имя*
@@ -51,9 +52,9 @@ export const Settings = () => {
                     </label>
                   </div>
                 </div>
-              </div>
-              <div className="user__item">
-                <h4 className="user__item-title">Контактная информация</h4>
+              </fieldset>
+              <fieldset className="user__item">
+                <legend className="user__item-title">Контактная информация</legend>
                 <div className="user__input-wrapper">
                   <label htmlFor="" className="user__label">
                     Номер телефона*
@@ -72,7 +73,7 @@ export const Settings = () => {
                   </label>
                   <input type="text" className="user__input" />
                 </div>
-              </div>
+              </fieldset>
               <button className="user__button">Сохранить изменения</button>
             </form>
           </div>

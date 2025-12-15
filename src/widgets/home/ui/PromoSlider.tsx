@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { Swiper, SwiperSlide, type SwiperRef } from 'swiper/react';
-import arrow from '@features/icons/arrow-slider.svg';
+import arrow from '@shared/assets/images/arrow-slider.svg';
 import { Navigation } from 'swiper/modules';
-import template from '@features/template/template-img.png';
-import star from '@features/icons/star.svg';
+import template from '@shared/template/template-img.png';
+import star from '@shared/assets/images/star.svg';
 
 export const PromoSlider = () => {
   const SwiperRef = useRef<SwiperRef>(null);

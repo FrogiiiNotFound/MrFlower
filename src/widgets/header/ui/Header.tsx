@@ -1,8 +1,9 @@
-import searchIcon from '@features/header-icon/search.svg';
-import cartIcon from '@features/header-icon/shopping-cart.svg';
-import profileIcon from '@features/header-icon/user.svg';
+import searchIcon from '../assets/search.svg';
+import cartIcon from '../assets/shopping-cart.svg';
+import profileIcon from '../assets/user.svg';
 
 import './header.scss';
+import { Link } from 'react-router-dom';
 
 export const Header = () => {
   return (
@@ -24,7 +25,9 @@ export const Header = () => {
             </li>
           </ul>
         </nav>
-        <h2 className="header__logo">MrFlower</h2>
+        <Link to="/">
+          <h2 className="header__logo">MrFlower</h2>
+        </Link>
         <div className="header__content">
           <div className="header__search-wrapper">
             <input type="text" className="header__search-input" placeholder="Поиск" />
@@ -33,12 +36,16 @@ export const Header = () => {
             </div>
           </div>
           <div className="header__icons">
-            <div className="header__cart">
-              <img src={cartIcon} alt="cart" />
-            </div>
-            <div className="header__profile">
-              <img src={profileIcon} alt="profile" />
-            </div>
+            <Link to="/cart">
+              <div className="header__cart">
+                <img src={cartIcon} alt="cart" />
+              </div>
+            </Link>
+            <Link to="/settings">
+              <div className="header__profile">
+                <img src={profileIcon} alt="profile" />
+              </div>
+            </Link>
           </div>
         </div>
       </div>

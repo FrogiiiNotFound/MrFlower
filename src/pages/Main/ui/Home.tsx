@@ -1,4 +1,4 @@
-import search from '@features/main/search.svg';
+import search from '@shared/assets/images/search.svg';
 import './Home.scss';
 import './Products.scss';
 
