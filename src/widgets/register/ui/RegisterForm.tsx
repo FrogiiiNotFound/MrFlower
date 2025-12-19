@@ -3,15 +3,20 @@ import close from '@shared/assets/images/close.svg';
 import './register-form.scss';
 import { Modal } from '@shared/ui/modal';
 import { FormButton } from '@/shared/ui/form-button';
+import { useRegisterStore } from '../model/registerStore';
 
 export const RegisterForm = () => {
+  const { isRegisterOpen, toggleRegister } = useRegisterStore();
+
+  if (!isRegisterOpen) return null;
+
   return (
     <Modal>
       <div className="register">
         <div className="register__container _container">
           <div className="register__upper-content">
             <h2 className="register__title">Регистрация</h2>
-            <div className="register__close">
+            <div className="register__close" onClick={() => toggleRegister()}>
               <img src={close} alt="close-button" />
             </div>
           </div>

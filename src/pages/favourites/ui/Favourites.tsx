@@ -1,4 +1,4 @@
-import { Card } from '@shared/index';
+import { SmallCard } from '@/entities/product';
 import './favourites.scss';
 import { Menu } from '@widgets/menu';
 
@@ -12,11 +12,11 @@ export const Favourites = () => {
           <div className="favourites__info-wrapper">
             <h2 className="favourites__title title">Избранное</h2>
             <div className="favourites__cards">
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              <SmallCard />
+              <SmallCard />
+              <SmallCard />
+              <SmallCard />
+              <SmallCard />
             </div>
           </div>
         </div>

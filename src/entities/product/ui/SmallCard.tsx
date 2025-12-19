@@ -1,8 +1,8 @@
 import like from '@shared//assets/images/like.svg';
 import template from '@shared/template/template-img.png';
-import './card.scss';
+import './small-card.scss';
 
-export const Card = () => {
+export const SmallCard = () => {
   return (
     <div className="card">
       <div className="card__img">

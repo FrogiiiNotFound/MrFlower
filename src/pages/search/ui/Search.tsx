@@ -1,9 +1,9 @@
 import arrow from '@shared/assets/images/arrow-filters.svg';
 import filter from '@shared/template/filter.png';
 
-import { Card } from '@shared/index';
 import './search.scss';
 import { Checkbox } from '@/shared/ui/checkbox';
+import { SmallCard } from '@/entities/product';
 
 export const Search = () => {
   return (
@@ -63,11 +63,11 @@ export const Search = () => {
             </div>
           </div>
           <div className="search__cards">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            <SmallCard />
+            <SmallCard />
+            <SmallCard />
+            <SmallCard />
+            <SmallCard />
           </div>
         </div>
       </div>

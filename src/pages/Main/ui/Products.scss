@@ -40,7 +40,7 @@
   &__slider-slide-title {
     font-style: italic;
     font-weight: 400;
-    font-size: 26px;
+    font-size: 21px;
     color: #000;
     margin-bottom: 7px;
   }
@@ -79,9 +79,8 @@
     max-width: 320px;
     font-style: italic;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     color: #000;
-    margin-bottom: 37px;
   }
 
   &__slider-pricing {
@@ -149,5 +148,19 @@
     border-radius: 10px;
     backdrop-filter: blur(5px);
     padding: 10px;
+  }
+
+  &__big-card {
+    min-height: 609px;
+  }
+
+  &__slider-content {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+  }
+
+  &__slider-info {
+    margin-bottom: 30px;
   }
 }

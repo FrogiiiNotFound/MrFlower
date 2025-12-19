@@ -1,16 +1,22 @@
+import { localStoragePersister } from '@/shared/api/persister';
+import { queryClient } from '@shared/index';
+import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './/providers/App';
 import { BrowserRouter } from 'react-router-dom';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from '@shared/index';
+import App from './/providers/App';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{
+        persister: localStoragePersister,
+        maxAge: 1000 * 60 * 60 * 24,
+      }}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </QueryClientProvider>
-  </StrictMode>,
+    </PersistQueryClientProvider>
+  </StrictMode>
 );
