@@ -2,15 +2,15 @@ import search from '@shared/assets/images/search.svg';
 import './Home.scss';
 import './Products.scss';
 
-import { LoginForm } from '@/widgets/register/ui/LoginForm';
+import { LoginForm } from '@/widgets/login/ui/LoginForm';
 import { MainSlider, PromoSlider, Slider } from '@widgets/home';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import axios from 'axios';
 
-const response = axios.get('')
-console.log(response)
+const response = axios.get('');
+console.log(response);
 
 export const Home = () => {
   return (
@@ -78,15 +78,15 @@ export const Home = () => {
           <div className="products__title">Доставка цветов по всей России💐</div>
           <div className="products__slider-container">
             <h3 className="products__slider-title">В тренде🔥</h3>
-            <Slider filter='в тренде'/>
+            <Slider filter="в тренде" />
           </div>
           <div className="products__slider-container">
             <h3 className="products__slider-title">Выгодно</h3>
-            <Slider filter='выгодно'/>
+            <Slider filter="выгодно" />
           </div>
           <div className="products__slider-container">
             <h3 className="products__slider-title">В тренде</h3>
-            <Slider filter='новинки'/>
+            <Slider filter="новинки" />
           </div>
         </div>
       </section>

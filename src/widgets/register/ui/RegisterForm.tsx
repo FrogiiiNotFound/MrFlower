@@ -1,6 +1,6 @@
 import { Checkbox } from '@shared/ui/checkbox';
 import close from '@shared/assets/images/close.svg';
-import './register-form.scss';
+import './registerForm.scss';
 import { Modal } from '@shared/ui/modal';
 import { FormButton } from '@/shared/ui/form-button';
 import { useRegisterStore } from '../model/registerStore';

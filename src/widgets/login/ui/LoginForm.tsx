@@ -2,11 +2,11 @@ import { FormButton } from '@/shared/ui/form-button';
 import { Modal } from '@/shared/ui/modal';
 import close from '@shared/assets/images/close.svg';
 
-import './login-form.scss';
-import { useRegisterStore } from '../model/registerStore';
+import { useLoginStore } from '../model/loginStore';
+import './LoginForm.scss';
 
 export const LoginForm = () => {
-  const { isLoginOpen, toggleLogin } = useRegisterStore();
+  const { isLoginOpen, toggleLogin } = useLoginStore();
 
   if (!isLoginOpen) return null;
 

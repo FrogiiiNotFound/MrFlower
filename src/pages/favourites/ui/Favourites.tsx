@@ -1,5 +1,5 @@
 import { SmallCard } from '@/entities/product';
-import './favourites.scss';
+import './Favourites.scss';
 import { Menu } from '@widgets/menu';
 
 export const Favourites = () => {

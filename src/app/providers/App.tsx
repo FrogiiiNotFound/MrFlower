@@ -8,6 +8,7 @@ import { Settings } from '@pages/settings';
 import '@shared/globals/main.scss';
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout } from '../layouts/main-layout/ui/MainLayout';
+import { Product } from '@/pages/product/ui/Product';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/favourites" element={<Favourites />} />
+        <Route path="/product/:id" element={<Product />} />
       </Route>
     </Routes>
   );

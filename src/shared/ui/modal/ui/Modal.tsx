@@ -1,5 +1,5 @@
 import React from 'react';
-import './modal.scss';
+import './Modal.scss';
 import { createPortal } from 'react-dom';
 
 const modalRoot = document.getElementById('modal-root');

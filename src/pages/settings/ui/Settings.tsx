@@ -1,5 +1,5 @@
 import { Menu } from '@widgets/menu';
-import './settings.scss';
+import './Settings.scss';
 
 export const Settings = () => {
   return (

@@ -1,5 +1,7 @@
 import star from '@shared/assets/images/star.svg';
 import type { Product } from '@shared/types/products/product';
+import './Card.scss';
+import { Link } from 'react-router-dom';
 
 type CardProps = {
   product: Product;
@@ -9,34 +11,36 @@ export const Card: React.FC<CardProps> = ({ product }) => {
   const oldPrice = product?.price + Math.round((product?.discount / 100) * product?.price);
 
   return (
-    <div className="products__big-card">
-      <div className="products__slider-img">
-        <img src={product?.image} alt="slider-img" />
-      </div>
-      <div className="products__slider-content">
-        <div className='products__slider-info'>
-          <h3 className="products__slider-slide-title">{product?.name}</h3>
-          <div className="products__slider-rating">
-            <div className="products__slider-star">
-              <img src={star} alt="star" />
-            </div>
-            <div className="products__slider-price-container">
-              <div className="products__slider-value">{product?.rating}</div>
-              <div className="products__slider-number">({product?.reviewsCount})</div>
-            </div>
-          </div>
-          <p className="products__slider-desc">{product?.description}</p>
+    <Link to={`/product/${product?.id}`} className="card-link">
+      <div className="card">
+        <div className="card__img">
+          <img src={product?.image} alt="card-img" />
         </div>
-        <div className="products__slider-pricing">
-          <div className="products__slider-price">
-            <p className="products__slider-new-price">{product?.price} ₽</p>
-            <p className="products__slider-old-price">{oldPrice} ₽</p>
+        <div className="card__content">
+          <div className="card__info">
+            <h3 className="card__slide-title">{product?.name}</h3>
+            <div className="card__rating">
+              <div className="card__star">
+                <img src={star} alt="star" />
+              </div>
+              <div className="card__price-container">
+                <div className="card__value">{product?.rating}</div>
+                <div className="card__number">({product?.reviewsCount})</div>
+              </div>
+            </div>
+            <p className="card__desc">{product?.description}</p>
           </div>
-          <div className="products__slider-btn">
-            <p className="products__slider-btn-text">В корзину</p>
+          <div className="card__pricing">
+            <div className="card__price">
+              <p className="card__new-price">{product?.price} ₽</p>
+              <p className="card__old-price">{oldPrice} ₽</p>
+            </div>
+            <div className="card__btn">
+              <p className="card__btn-text">В корзину</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
