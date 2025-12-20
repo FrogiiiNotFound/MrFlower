@@ -25,7 +25,7 @@ export const Card: React.FC<CardProps> = ({ product }) => {
               </div>
               <div className="card__price-container">
                 <div className="card__value">{product?.rating}</div>
-                <div className="card__number">({product?.reviewsCount})</div>
+                <div className="card__number">({product?.reviews})</div>
               </div>
             </div>
             <p className="card__desc">{product?.description}</p>

@@ -81,11 +81,11 @@ export const Home = () => {
             <Slider filter="в тренде" />
           </div>
           <div className="products__slider-container">
-            <h3 className="products__slider-title">Выгодно</h3>
+            <h3 className="products__slider-title">Выгодно💯</h3>
             <Slider filter="выгодно" />
           </div>
           <div className="products__slider-container">
-            <h3 className="products__slider-title">В тренде</h3>
+            <h3 className="products__slider-title">Новинки🏆</h3>
             <Slider filter="новинки" />
           </div>
         </div>

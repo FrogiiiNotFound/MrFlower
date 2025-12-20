@@ -19,14 +19,11 @@ export const Slider = ({ filter }: { filter: string }) => {
     console.error(error);
     return <div>Ошибка загрузки</div>;
   }
-
   if (!data) return null;
 
   const list: Product[] = Array.isArray(data) ? data : data.products;
-
   const products = list.filter((item: Product) => item.tags.includes(filter));
 
-  console.log('products', products);
   return (
     <div className="products__slider">
       <Swiper
@@ -36,8 +33,7 @@ export const Slider = ({ filter }: { filter: string }) => {
         spaceBetween={27}
         slidesPerView={4}
         navigation={false}
-        speed={400}
-      >
+        speed={400}>
         {products.map((product: Product) => (
           <SwiperSlide key={product.id}>
             <Card product={product} />

@@ -1,5 +1,5 @@
 .product {
-  padding: 30px 0px 120px 0px;
+  padding: 30px 0px 30px 0px;
 
   &__upper-content {
     margin-bottom: 30px;
@@ -86,6 +86,7 @@
   &__content {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 60px;
   }
 
   &__img img {
@@ -138,7 +139,7 @@
   &__in-stock {
     font-weight: 400;
     font-size: 16px;
-    color: #383838;
+    color: #2ccd6a;
     margin-bottom: 30px;
   }
 
@@ -199,5 +200,19 @@
     font-size: 20px;
     color: #010101;
     margin-bottom: 16px;
+  }
+
+  &__btn-back {
+    max-width: 250px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #000;
+    border: 1px solid #b1b1b1;
+    padding: 13px 60px;
+    margin: 0px auto;
+
+    &:hover {
+      border-color: #000;
+    }
   }
 }

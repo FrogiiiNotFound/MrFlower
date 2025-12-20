@@ -4,7 +4,7 @@ import like from '@shared/assets/images/like.svg';
 import share from '@shared/assets/images/share.svg';
 import star from '@shared/assets/images/star.svg';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Product.scss';
 
 export const Product = () => {
@@ -58,7 +58,7 @@ export const Product = () => {
             </div>
             <div className="product__review-info">
               <div className="product__review-value">{product?.rating}</div>
-              <div className="product__review-amount">{product?.reviewsCount} отзывов</div>
+              <div className="product__review-amount">{product?.reviews} отзывов</div>
             </div>
           </div>
         </div>
@@ -85,8 +85,8 @@ export const Product = () => {
               <h3 className="product__comp-title">Состав</h3>
               <div className="product__comp-list">
                 {product?.flowersCount.map((flower: any) => (
-                  <div className="product__comp-item">
-                    {flower.title} - {flower.value} шт
+                  <div key={product.id} className="product__comp-item">
+                    {flower.title} - {flower.value}
                   </div>
                 ))}
               </div>
@@ -94,6 +94,9 @@ export const Product = () => {
             <div className="product__btn">Добавить в корзину</div>
           </div>
         </div>
+        <Link to={'/'}>
+          <div className="product__btn-back">Вернутся назад</div>
+        </Link>
       </div>
     </div>
   );

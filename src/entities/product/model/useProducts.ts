@@ -9,5 +9,5 @@ type ProductsResponse = {
 export const useProducts = () =>
   useQuery<ProductsResponse>({
     queryKey: ['products'],
-    queryFn: productsApi.getProducts,
+    queryFn: productsApi.getProducts
   });
