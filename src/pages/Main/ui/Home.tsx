@@ -7,10 +7,6 @@ import { MainSlider, PromoSlider, Slider } from '@widgets/home';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import axios from 'axios';
-
-const response = axios.get('');
-console.log(response);
 
 export const Home = () => {
   return (
@@ -58,13 +54,19 @@ export const Home = () => {
               <div className="home__search-img">
                 <img src={search} alt="search" />
               </div>
-              <p className="home__search-text">14 февраля</p>
+              <p className="home__search-text">Новинки</p>
             </li>
             <li className="home__search-item">
               <div className="home__search-img">
                 <img src={search} alt="search" />
               </div>
-              <p className="home__search-text">14 февраля</p>
+              <p className="home__search-text">Акции</p>
+            </li>
+            <li className="home__search-item">
+              <div className="home__search-img">
+                <img src={search} alt="search" />
+              </div>
+              <p className="home__search-text">Коллеге</p>
             </li>
           </ul>
           <div className="home__content">

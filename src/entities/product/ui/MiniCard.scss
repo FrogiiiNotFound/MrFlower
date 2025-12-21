@@ -7,14 +7,13 @@
   margin-bottom: 40px;
 
   &__img img {
-    width: 230px;
-    height: 230px;
+    width: 220px;
+    height: 220px;
   }
 
   &__title {
     max-width: 236px;
-    font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 20px;
     color: #000;
     margin-bottom: 4px;
@@ -52,7 +51,6 @@
 
   &__desc {
     max-width: 236px;
-    font-style: italic;
     font-weight: 400;
     font-size: 16px;
     color: #000;
@@ -72,14 +70,12 @@
   }
 
   &__new-price {
-    font-family: 'IBM Plex Sans Condensed', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 20px;
     color: #010101;
   }
 
   &__old-price {
-    font-family: 'IBM Plex Sans Condensed', sans-serif;
     font-weight: 400;
     font-size: 14px;
     color: #a3a3a3;
@@ -88,7 +84,6 @@
 
   &__btn {
     cursor: pointer;
-    font-family: 'IBM Plex Sans Condensed', sans-serif;
     border: 1px solid #000;
     border-radius: 10px;
     background: #fff;
@@ -98,7 +93,7 @@
 
   &__btn-text {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 11px;
     color: #010101;
   }
 

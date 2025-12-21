@@ -1,73 +1,37 @@
-import arrow from '@shared/assets/images/arrow-filters.svg';
 import filter from '@shared/template/filter.png';
 
-import './search.scss';
-import { Checkbox } from '@/shared/ui/checkbox';
 import { SmallCard } from '@/entities/product';
+import { useProducts } from '@/entities/product/model/useProducts';
+import type { Product } from '@/shared/types';
+import './search.scss';
+import { Filters } from './Filters';
 
 export const Search = () => {
+  const { data, isLoading, error }: any = useProducts();
+
+  if (isLoading) {
+    console.log('Загрузка...');
+    return <div>Загрузка...</div>;
+  }
+  if (error) {
+    console.error(error);
+    return <div>Ошибка загрузки</div>;
+  }
+  if (!data) return null;
+
+  const list: Product[] = Array.isArray(data) ? data : data.products;
+  const products = list.filter((item: Product) => item.tags.includes(filter));
+
   return (
     <div className="search">
       <div className="search__container">
         <h2 className="search__title title">Фильтры</h2>
         <div className="search__content">
-          <div className="search__filters">
-            <div className="search__filter">
-              <h3 className="search__filter-title">Категории</h3>
-              <div className="search__filter-buttons">
-                <div className="search__filter-button active">
-                  <div className="search__fliter-button-text">Все</div>
-                </div>
-                <div className="search__filter-button">
-                  <div className="search__fliter-button-text">Цветы</div>
-                </div>
-                <div className="search__filter-button">
-                  <div className="search__fliter-button-text">Подарки</div>
-                </div>
-                <div className="search__filter-button">
-                  <div className="search__fliter-button-text">Сладкое</div>
-                </div>
-                <div className="search__filter-button">
-                  <div className="search__fliter-button-text">Украшения</div>
-                </div>
-              </div>
-            </div>
-            <div className="search__filter">
-              <h3 className="search__filter-title">Параметры</h3>
-              <h4 className="search__filter-subtitle">Цена</h4>
-              <div className="search__filter-inputs">
-                <input type="text" className="search__filter-input" placeholder="0" />
-                <input type="text" className="search__filter-input" placeholder="20000+" />
-              </div>
-              <div className="search__filter-mini-slider">
-                <img src={filter} alt="" />
-              </div>
-            </div>
-            <div className="search__addition-filters">
-              <div className="search__addition-filter">
-                <div className="search__addition-filter-header">
-                  <h3 className="search__addition-filter-title">Цветы в составе</h3>
-                  <div className="search__addition-filter-icon">
-                    <img src={arrow} alt="arrow" />
-                  </div>
-                </div>
-                <div className="search__addition-filter-body">
-                  <div className="search__body-buttons">
-                    <Checkbox text="Розы" />
-                    <Checkbox text="Пионы" />
-                    <Checkbox text="Герберы" />
-                    <Checkbox text="Хризантемы" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Filters />
           <div className="search__cards">
-            <SmallCard />
-            <SmallCard />
-            <SmallCard />
-            <SmallCard />
-            <SmallCard />
+            {products.map((product: Product) => {
+              return <SmallCard key={product.id} product={product} />;
+            })}
           </div>
         </div>
       </div>

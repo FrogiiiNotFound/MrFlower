@@ -5,6 +5,7 @@ import arrow from '@shared/assets/images/arrow-slider.svg';
 import { useRef } from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide, type SwiperRef } from 'swiper/react';
+import './PromoSlider.scss';
 
 export const PromoSlider = () => {
   const SwiperRef = useRef<SwiperRef>(null);
@@ -23,26 +24,26 @@ export const PromoSlider = () => {
 
   const list: Product[] = Array.isArray(data) ? data : data.products;
   const products = list.filter((item: Product) => item.tags.includes('акции дня'));
-  
+
   return (
-    <div className="home__addition-slider">
-      <div className="home__addition-slider-content">
-        <h2 className="home__addition-title">Товары и акции дня</h2>
-        <div className="home__addition-slider-buttons">
+    <div className="promo-slider">
+      <div className="promo-slider__content">
+        <h2 className="promo-slider__title">Товары и акции дня</h2>
+        <div className="promo-slider__buttons">
           <div
             onClick={() => SwiperRef.current?.swiper.slidePrev()}
-            className="home__addition-slider-prev">
+            className="promo-slider__prev">
             <img src={arrow} alt="arrow" />
           </div>
           <div
             onClick={() => SwiperRef.current?.swiper.slideNext()}
-            className="home__addition-slider-next">
+            className="promo-slider__next">
             <img src={arrow} alt="arrow" />
           </div>
         </div>
       </div>
       <Swiper
-        className="home__addition-slider-wrapper"
+        className="promo-slider__wrapper"
         ref={SwiperRef}
         modules={[Navigation]}
         spaceBetween={20}

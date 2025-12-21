@@ -1,0 +1,38 @@
+.promo-slider {
+  max-width: 460px;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 50px;
+  }
+
+  &__title {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 26px;
+    color: #000;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__prev {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgba(244, 244, 244, 0.46);
+    padding: 10px 14px;
+    rotate: -180deg;
+  }
+
+  &__next {
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: rgba(244, 244, 244, 0.46);
+    padding: 10px 14px;
+  }
+}

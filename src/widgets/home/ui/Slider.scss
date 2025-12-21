@@ -1,0 +1,36 @@
+.slider {
+  position: relative;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+  }
+
+  &__prev {
+    cursor: pointer;
+    z-index: 100;
+
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    rotate: -180deg;
+
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    padding: 10px;
+  }
+
+  &__next {
+    cursor: pointer;
+    z-index: 100;
+
+    position: absolute;
+    top: 50%;
+    right: 10px;
+
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    padding: 10px;
+  }
+}

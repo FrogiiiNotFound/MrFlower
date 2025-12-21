@@ -5,6 +5,7 @@ import arrow from '@shared/assets/images/arrow-slider.svg';
 import { useRef } from 'react';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide, type SwiperRef } from 'swiper/react';
+import './Slider.scss';
 
 export const Slider = ({ filter }: { filter: string }) => {
   const swiperRef = useRef<SwiperRef>(null);
@@ -25,9 +26,9 @@ export const Slider = ({ filter }: { filter: string }) => {
   const products = list.filter((item: Product) => item.tags.includes(filter));
 
   return (
-    <div className="products__slider">
+    <div className="slider">
       <Swiper
-        className="products__slider-wrapper"
+        className="slider__wrapper"
         ref={swiperRef}
         modules={[Navigation]}
         spaceBetween={27}
@@ -40,15 +41,11 @@ export const Slider = ({ filter }: { filter: string }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="products__slider-buttons">
-        <div
-          onClick={() => swiperRef.current?.swiper.slidePrev()}
-          className="products__slider-prev">
+      <div className="slider__buttons">
+        <div onClick={() => swiperRef.current?.swiper.slidePrev()} className="slider__prev">
           <img src={arrow} alt="arrow" />
         </div>
-        <div
-          onClick={() => swiperRef.current?.swiper.slideNext()}
-          className="products__slider-next">
+        <div onClick={() => swiperRef.current?.swiper.slideNext()} className="slider__next">
           <img src={arrow} alt="arrow" />
         </div>
       </div>

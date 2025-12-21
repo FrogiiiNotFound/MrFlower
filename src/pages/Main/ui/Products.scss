@@ -2,6 +2,7 @@
   padding: 50px 0px;
 
   &__title {
+    font-weight: 500;
     font-size: 40px;
     margin-bottom: 60px;
   }
@@ -16,42 +17,5 @@
     font-size: 32px;
     color: #171717;
     margin-bottom: 33px;
-  }
-
-  &__slider {
-    position: relative;
-  }
-
-  &__slider-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 27px;
-  }
-
-  &__slider-prev {
-    cursor: pointer;
-    z-index: 100;
-
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    rotate: -180deg;
-
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-    padding: 10px;
-  }
-
-  &__slider-next {
-    cursor: pointer;
-    z-index: 100;
-
-    position: absolute;
-    top: 50%;
-    right: 10px;
-
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-    padding: 10px;
   }
 }
