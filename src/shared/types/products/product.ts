@@ -12,6 +12,7 @@ export const productSchema = z.object({
   tags: z.array(z.string()),
   image: z.string(),
   inStock: z.boolean(),
+  category: z.string()
 });
 
 export type Product = z.infer<typeof productSchema>;

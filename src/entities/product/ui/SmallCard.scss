@@ -1,4 +1,6 @@
 .small-card {
+  cursor: pointer;
+  max-width: 224px;
   position: relative;
 
   &__like {
@@ -18,8 +20,7 @@
   }
 
   &__title {
-    font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 20px;
     color: #000;
     margin-bottom: 13px;
@@ -27,7 +28,6 @@
 
   &__text {
     max-width: 223px;
-    font-style: italic;
     font-weight: 400;
     font-size: 17px;
     color: #000;
@@ -47,7 +47,7 @@
   }
 
   &__new-price {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 22px;
     color: #010101;
   }

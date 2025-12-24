@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 12px;
   }
 
   &__filter-button {
@@ -76,7 +76,7 @@
     }
   }
 
-  &__addition-filter {
+  &__addition-filters {
     max-width: 251px;
   }
 
@@ -186,5 +186,20 @@
 
   &__input-wrapper:hover &__checkmark {
     border-color: #ff9e7b;
+  }
+
+  &__addition-filter-body {
+    transition: display 0.3s ease;
+    opacity: 1;
+  }
+
+  &__addition-filter-body.active {
+    display: none;
+    opacity: 0;
+  }
+
+  &__addition-filter-icon.active {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
   }
 }
