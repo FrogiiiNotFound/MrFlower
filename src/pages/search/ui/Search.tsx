@@ -7,17 +7,7 @@ import { Filters } from "./Filters";
 import "./search.scss";
 
 export const Search = () => {
-    const {
-        category,
-        tags,
-        flowers,
-        price,
-        setCategory,
-        setTags,
-        setPrice,
-        setFlowers,
-        deleteFlowers,
-    } = useFilters();
+    const { category, tags, flowers, price } = useFilters();
     const { data, isLoading, error }: any = useProducts();
 
     const list: Product[] = Array.isArray(data) ? data : data?.products;
@@ -34,6 +24,10 @@ export const Search = () => {
                         flowers.some((f) =>
                             flower.title.toLowerCase().includes(f)
                         )
+                    )) &&
+                (tags.length === 0 ||
+                    item.tags?.some((tag) =>
+                        tags.some((t) => tag.toLowerCase().includes(t))
                     ))
         );
     }, [list, category, tags, price, flowers]);

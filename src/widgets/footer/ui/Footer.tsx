@@ -96,27 +96,27 @@ export const Footer = () => {
             <h3 className="footer__info-title">Контакты</h3>
             <ul className="footer__links">
               <li className="footer__link">
-                <a href="">+7 (987) 175 29-73</a>
+                <a href="https://t.me/frogiiinotfound">+7 (987) 175 29-73</a>
               </li>
               <li className="footer__link">
-                <a href="">Москва, улица Лорем Апсум, 15А</a>
+                <a href="https://t.me/frogiiinotfound">Москва, улица Лорем Апсум, 15А</a>
               </li>
               <li className="footer__link">
-                <a href="">Телеграм</a>
+                <a href="https://t.me/frogiiinotfound">Телеграм</a>
               </li>
               <li className="footer__link">
-                <a href="">Почта</a>
+                <a href="https://t.me/frogiiinotfound">Почта</a>
               </li>
               <li className="footer__link">
-                <a href="">Создание сайтов - RumpStudio</a>
+                <a href="https://t.me/frogiiinotfound">Создание сайтов - RumpStudio</a>
               </li>
             </ul>
           </div>
         </div>
         <div className="footer__addition">
-          <p className="footer__addition-text">
+          <a href='https://t.me/frogiiinotfound' className="footer__addition-text">
             Дизайн и верстку для проекта в портфолио подготовил: <span>FrogiiiNotFound</span>
-          </p>
+          </a>
         </div>
       </div>
     </footer>

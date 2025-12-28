@@ -6,6 +6,7 @@ import { Slider } from "@/shared/ui/slider";
 import { useState } from "react";
 import { useFilters } from "../model/useFiltersStore";
 import { tags } from "../constants/tags";
+import { flowersName } from "../constants/flowersName";
 
 export const Filters = () => {
     const {
@@ -132,54 +133,18 @@ export const Filters = () => {
                         }`}
                     >
                         <div className="body-buttons">
-                            <div>
+                            {flowersName.map((flower) => (
                                 <Checkbox
                                     onChange={() => {
-                                        if (flowers.includes("роз")) {
-                                            deleteFlowers("роз");
+                                        if (flowers.includes(flower.value)) {
+                                            deleteFlowers(flower.value);
                                         } else {
-                                            setFlowers("роз");
+                                            setFlowers(flower.value);
                                         }
                                     }}
-                                    text="Розы"
+                                    text={flower.label}
                                 />
-                            </div>
-                            <div>
-                                <Checkbox
-                                    onChange={() => {
-                                        if (flowers.includes("пион")) {
-                                            deleteFlowers("пион");
-                                        } else {
-                                            setFlowers("пион");
-                                        }
-                                    }}
-                                    text="Пионы"
-                                />
-                            </div>
-                            <div>
-                                <Checkbox
-                                    onChange={() => {
-                                        if (flowers.includes("гербер")) {
-                                            deleteFlowers("гербер");
-                                        } else {
-                                            setFlowers("гербер");
-                                        }
-                                    }}
-                                    text="Герберы"
-                                />
-                            </div>
-                            <div>
-                                <Checkbox
-                                    onChange={() => {
-                                        if (flowers.includes("хризантем")) {
-                                            deleteFlowers("хризантем");
-                                        } else {
-                                            setFlowers("хризантем");
-                                        }
-                                    }}
-                                    text="Хризантемы"
-                                />
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>

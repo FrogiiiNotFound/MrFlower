@@ -5,7 +5,7 @@ type LoginState = {
   toggleLogin: () => void;
 };
 
-export const useLoginStore = create<LoginState>((set, get) => ({
+export const useLogin = create<LoginState>((set, get) => ({
   isLoginOpen: false,
   toggleLogin: () => set({ isLoginOpen: !get().isLoginOpen }),
 }));

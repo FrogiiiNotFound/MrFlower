@@ -5,7 +5,7 @@ type RegisterState = {
   toggleRegister: () => void;
 };
 
-export const useRegisterStore = create<RegisterState>((set, get) => ({
+export const useRegister = create<RegisterState>((set, get) => ({
   isRegisterOpen: false,
   toggleRegister: () => set({ isRegisterOpen: !get().isRegisterOpen }),
 }));
