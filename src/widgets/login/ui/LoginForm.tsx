@@ -6,9 +6,11 @@ import "./LoginForm.scss";
 import { useLogin } from "../model/useLoginStore";
 import { useForm } from "react-hook-form";
 import type { LoginFormValue } from "../model/types";
+import { useRegister } from "@/widgets/register/model/useRegisterStore";
 
 export const LoginForm = () => {
     const { isLoginOpen, toggleLogin } = useLogin();
+    const { toggleRegister } = useRegister();
     const {
         register,
         handleSubmit,
@@ -69,7 +71,15 @@ export const LoginForm = () => {
                                 Забыли пароль?
                             </div>
                             <FormButton text="Войти в кабинет" />
-                            <div className="login__sign-in">Войти</div>
+                            <div
+                                onClick={() => {
+                                    toggleLogin();
+                                    toggleRegister();
+                                }}
+                                className="login__sign-in"
+                            >
+                                Войти
+                            </div>
                         </div>
                     </form>
                 </div>

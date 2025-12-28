@@ -1,1 +1,3 @@
-export const API_BASE_URL = 'https://mrflower.free.beeceptor.com/';
+export const API_BASE_URL = "https://mrflower.free.beeceptor.com/";
+export const MOCK_API_BASE_URL =
+    "https://6913091152a60f10c823c1a7.mockapi.io/api/v2/";

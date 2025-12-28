@@ -2,7 +2,7 @@ import { Checkbox } from "@/shared/ui/checkbox";
 import arrow from "@shared/assets/images/arrow-filters.svg";
 import "./Filters.scss";
 
-import { Slider } from "@/shared/ui/slider";
+import { Slider } from "@/shared/components/ui/slider";
 import { useState } from "react";
 import { useFilters } from "../model/useFiltersStore";
 import { tags } from "../constants/tags";

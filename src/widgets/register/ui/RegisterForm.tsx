@@ -1,24 +1,51 @@
-import { Checkbox } from "@shared/ui/checkbox";
-import close from "@shared/assets/images/close.svg";
-import "./registerForm.scss";
-import { Modal } from "@shared/ui/modal";
+import { useRegisterUser } from "@/entities/user/model/useRegisterUser";
 import { FormButton } from "@/shared/ui/form-button";
-import { useRegister } from "../model/useRegisterStore";
+import { useLogin } from "@/widgets/login/model/useLoginStore";
+import close from "@shared/assets/images/close.svg";
+import { Checkbox } from "@shared/ui/checkbox";
+import { Modal } from "@shared/ui/modal";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import type { RegisterFormValue } from "../model/types";
+import { useRegister } from "../model/useRegisterStore";
+import "./registerForm.scss";
 
 export const RegisterForm = () => {
     const { isRegisterOpen, toggleRegister } = useRegister();
+    const { toggleLogin } = useLogin();
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<RegisterFormValue>();
+    const { mutate, isError } = useRegisterUser();
 
     if (!isRegisterOpen) return null;
 
     const onSubmit = (data: RegisterFormValue) => {
         console.log(data);
+
+        mutate({
+            name: data.name,
+            surname: "",
+            password: data.password,
+            gender: "",
+            contacts: {
+                phone: data.phone,
+                email: data.email,
+            },
+            favourites: [],
+            cart: [],
+            orders: [],
+            notifications: {
+                phone: false,
+                mail: false,
+                ad: false,
+                news: false,
+            },
+            bonuses: 0,
+        });
+        toast("Регистрация прошла успешно!");
     };
 
     return (
@@ -101,7 +128,15 @@ export const RegisterForm = () => {
                             />
                         </div>
                         <FormButton text="Зарегистрироваться" />
-                        <div className="register__sign-in">Войти</div>
+                        <div
+                            onClick={() => {
+                                toggleRegister();
+                                toggleLogin();
+                            }}
+                            className="register__sign-in"
+                        >
+                            Войти
+                        </div>
                     </form>
                 </div>
             </div>
