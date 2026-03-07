@@ -1,0 +1,35 @@
+.home {
+  padding: 20px 0px;
+
+  &__search-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 70px;
+  }
+
+  &__search-item {
+    cursor: pointer;
+    padding: 11px 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  &__search-text {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16px;
+    color: #000;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

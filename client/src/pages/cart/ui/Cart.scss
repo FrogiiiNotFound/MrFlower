@@ -1,0 +1,150 @@
+.cart {
+    padding: 50px 0px;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__price {
+        border-radius: 30px;
+        background: #fff;
+        padding: 27px 20px;
+    }
+
+    &__price-title {
+        font-style: italic;
+        font-weight: 400;
+        font-size: 27px;
+        color: #000;
+        margin-bottom: 23px;
+    }
+
+    &__cost {
+        min-width: 470px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    &__cost-title {
+        font-weight: 400;
+        font-size: 18px;
+        color: #363636;
+    }
+
+    &__cost-value {
+        font-weight: 400;
+        font-size: 18px;
+        color: #363636;
+    }
+
+    &__delivery {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 32px;
+
+        border-bottom: 1px solid #ff9e7b;
+        margin-bottom: 90px;
+    }
+
+    &__delivery-title {
+        font-weight: 400;
+        font-size: 18px;
+        color: #363636;
+    }
+
+    &__delivery-value {
+        font-weight: 400;
+        font-size: 18px;
+        color: #363636;
+    }
+
+    &__discount {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+    }
+
+    &__discount-title {
+        font-weight: 400;
+        font-size: 20px;
+        color: #363636;
+    }
+
+    &__dicount-value {
+        font-weight: 400;
+        font-size: 20px;
+        color: #363636;
+    }
+
+    &__final-price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    &__final-price-title {
+        font-weight: 400;
+        font-size: 24px;
+        color: #000;
+    }
+
+    &__final-price-value {
+        font-weight: 400;
+        font-size: 24px;
+        color: #000;
+    }
+
+    &__bonus {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    &__bonus-title {
+        font-weight: 400;
+        font-size: 16px;
+        color: #868686;
+    }
+
+    &__bonus-value {
+        font-weight: 400;
+        font-size: 16px;
+        color: #ff9e7b;
+    }
+
+    &__btn {
+        cursor: pointer;
+        background: #ff9e7b;
+        padding: 19px 64px;
+        text-align: center;
+
+        &:hover {
+            background: #ff8052;
+        }
+
+        &:active {
+            background: #ff5517;
+        }
+    }
+
+    &__btn-text {
+        font-weight: 600;
+        font-size: 18px;
+        color: #fff;
+    }
+
+    &__empty {
+        color: #363636;
+        font-size: 20px;
+        text-align: center;
+        margin: 200px 0px;
+    }
+}

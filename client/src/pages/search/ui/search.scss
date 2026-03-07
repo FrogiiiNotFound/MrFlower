@@ -1,0 +1,14 @@
+.search {
+  padding: 50px 0px;
+
+  &__content {
+    display: flex;
+    gap: 140px;
+  }
+  
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}

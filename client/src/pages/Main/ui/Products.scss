@@ -1,0 +1,21 @@
+.products {
+  padding: 50px 0px;
+
+  &__title {
+    font-weight: 500;
+    font-size: 40px;
+    margin-bottom: 60px;
+  }
+
+  &__slider-container {
+    margin-bottom: 50px;
+  }
+
+  &__slider-title {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 32px;
+    color: #171717;
+    margin-bottom: 33px;
+  }
+}
