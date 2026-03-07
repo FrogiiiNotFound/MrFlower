@@ -37,7 +37,7 @@ export const CartItem = ({ item }: { item: TCardItem }) => {
                     </div>
                 </div>
             </div>
-            <div className="remove">
+            <div className="remove" onClick={() => removeFromCart(item)}>
                 <img src={bin} alt="remove" />
             </div>
         </div>

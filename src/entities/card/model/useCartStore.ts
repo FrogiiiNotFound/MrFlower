@@ -3,13 +3,13 @@ import type { CartItem } from "./types";
 
 type CartState = {
     cart: CartItem[];
-    addToCart: (item: CartItem) => void;
-    removeFromCart: (item: CartItem) => void;
+    addToCart: (product: CartItem) => void;
+    removeFromCart: (product: CartItem) => void;
 };
 
-export const useCartStore = create<CartState>((set, get) => ({
+export const useCart = create<CartState>((set, get) => ({
     cart: [],
     addToCart: (item) => set({ cart: [...get().cart, item] }),
-    removeFromCart: (item: CartItem) =>
+    removeFromCart: (item) =>
         set({ cart: get().cart.filter((i) => i !== item) }),
 }));

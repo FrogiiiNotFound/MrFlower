@@ -6,4 +6,8 @@ export const userApi = {
         const { data } = await $mockApi.post("users", user);
         return data;
     },
+    getAllUsers: async () => {
+        const { data } = await $mockApi.get("users");
+        return data;
+    },
 };
