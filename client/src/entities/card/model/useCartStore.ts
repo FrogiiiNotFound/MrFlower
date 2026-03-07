@@ -7,7 +7,7 @@ type CartState = {
     removeFromCart: (product: CartItem) => void;
 };
 
-export const useCart = create<CartState>((set, get) => ({
+export const useCartStore = create<CartState>((set, get) => ({
     cart: [],
     addToCart: (item) => set({ cart: [...get().cart, item] }),
     removeFromCart: (item) =>

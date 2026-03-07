@@ -1,4 +1,5 @@
-import { useCartStore, type CartItem as TCartItem } from "@/entities/card";
+import { useCartStore } from "@/entities/card/model/useCartStore";
+import { type CartItem as TCartItem } from "@/entities/card/model/types";
 import "./Cart.scss";
 import { CartItem } from "./CartItem";
 

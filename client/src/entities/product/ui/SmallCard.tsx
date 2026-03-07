@@ -1,4 +1,4 @@
-import { useCart } from "@/entities/card";
+import { useCartStore } from "@/entities/card";
 import type { Product } from "@/shared/types";
 import like from "@shared/assets/images/like.svg";
 import "./SmallCard.scss";
@@ -6,7 +6,7 @@ import { useFavourites } from "@/entities/favourites";
 
 export const SmallCard = ({ product }: { product: Product }) => {
     const { addFavourite } = useFavourites();
-    const { addToCart } = useCart();
+    const { addToCart } = useCartStore();
 
     const oldPrice =
         product?.price + Math.round((product?.discount / 100) * product?.price);

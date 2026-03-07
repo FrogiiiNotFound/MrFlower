@@ -1,11 +1,11 @@
-import { useCart } from "@/entities/card";
+import { useCartStore } from "@/entities/card";
 import star from "@shared/assets/images/star.svg";
 import { Link } from "react-router-dom";
 import "./Card.scss";
 import type { CardProps } from "./types";
 
 export const Card: React.FC<CardProps> = ({ product }) => {
-    const { addToCart } = useCart();
+    const { addToCart } = useCartStore();
 
     const oldPrice =
         product?.price + Math.round((product?.discount / 100) * product?.price);

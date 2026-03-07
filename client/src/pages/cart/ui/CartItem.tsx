@@ -5,7 +5,7 @@ import template from "@shared/template/template-img.png";
 
 import "./CartItem.scss";
 import type { CartItem as TCardItem } from "@/entities/card/model/types";
-import { useCartStore } from "@/entities/card";
+import { useCartStore } from "@/entities/card/model/useCartStore";
 
 export const CartItem = ({ item }: { item: TCardItem }) => {
     const { removeFromCart } = useCartStore();

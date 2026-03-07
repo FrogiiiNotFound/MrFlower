@@ -1,0 +1,56 @@
+import TokenService from "./TokenService";
+import bcrypt from "bcrypt";
+import { UserModel } from "../models/UserModel";
+import ApiError from "../utils/exeptions/ApiError";
+import UserDto from "../utils/dtos/UserDto";
+
+class AuthService {
+  async register(name: string, phone: string, password: string) {
+    const candidate = await UserModel.findOne({ phone });
+    if (candidate) {
+      throw ApiError.BadRequest("Пользователь с таким номером уже существует");
+    }
+
+    const hashedPassword = bcrypt.hashSync(password, 10);
+
+    const user = UserModel.create({
+      name,
+      phone,
+      password: hashedPassword,
+    });
+
+    const data = this.updateUser(user);
+
+    return data;
+  }
+
+  async login(phone: string, password: string) {
+    const user = await UserModel.findOne({ phone });
+    if (!user) throw ApiError.NotFound("Пользователь не найден");
+
+    const isPasswordMatch = bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) throw ApiError.BadRequest("Неправильный пароль");
+
+    const data = this.updateUser(user);
+
+    return data;
+  }
+
+  async refresh(refreshToken: string) {
+    
+  }
+
+  private async updateUser(user: any) {
+    const userDto = new UserDto(user);
+    const tokens = TokenService.generateTokens(userDto);
+
+    await TokenService.saveToken(userDto.user_id, tokens.refreshToken);
+
+    return {
+      user: userDto,
+      tokens,
+    };
+  }
+}
+
+export default new AuthService();
