@@ -20,39 +20,53 @@ export const Header = () => {
     return (
         <header className="header">
             <div className="header__container _container">
-                <nav className="header__nav">
-                    <ul className="header__nav-list">
-                        <Link onClick={() => setTags("новинки")} to={"/search"}>
-                            <li className="header__nav-item">
-                                <p className="header__nav-text">Новинки</p>
-                            </li>
-                        </Link>
-                        <Link
-                            onClick={() => setCategory("flowers")}
-                            to={"/search"}
-                        >
-                            <li className="header__nav-item">
-                                <p className="header__nav-text">Цветы</p>
-                            </li>
-                        </Link>
-                        <Link
-                            onClick={() => setCategory("presents")}
-                            to={"/search"}
-                        >
-                            <li className="header__nav-item">
-                                <p className="header__nav-text">Подарки</p>
-                            </li>
-                        </Link>
-                        <Link onClick={() => setCategory("all")} to={"/search"}>
-                            <li className="header__nav-item">
-                                <p className="header__nav-text">В тренде</p>
-                            </li>
-                        </Link>
-                    </ul>
-                </nav>
+                <div className="header__menu menu">
+                    <div className="menu__icon icon-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav className="header__nav nav-header menu__body">
+                        <ul className="header__nav-list nav-header__list menu__list">
+                            <Link
+                                onClick={() => setTags("новинки")}
+                                to={"/search"}
+                            >
+                                <li className="header__nav-item">
+                                    <p className="header__nav-text">Новинки</p>
+                                </li>
+                            </Link>
+                            <Link
+                                onClick={() => setCategory("flowers")}
+                                to={"/search"}
+                            >
+                                <li className="header__nav-item">
+                                    <p className="header__nav-text">Цветы</p>
+                                </li>
+                            </Link>
+                            <Link
+                                onClick={() => setCategory("presents")}
+                                to={"/search"}
+                            >
+                                <li className="header__nav-item">
+                                    <p className="header__nav-text">Подарки</p>
+                                </li>
+                            </Link>
+                            <Link
+                                onClick={() => setCategory("all")}
+                                to={"/search"}
+                            >
+                                <li className="header__nav-item">
+                                    <p className="header__nav-text">В тренде</p>
+                                </li>
+                            </Link>
+                        </ul>
+                    </nav>
+                </div>
                 <Link to="/">
                     <h2 className="header__logo">MrFlower</h2>
                 </Link>
+
                 <div className="header__content">
                     <div className="header__search-wrapper">
                         <input
