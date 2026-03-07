@@ -95,4 +95,21 @@
             color: #727272;
         }
     }
+
+    &__link {
+        position: relative;
+    }
+
+    &__cart-value {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        background-color: red;
+        padding: 3px;
+        border-radius: 50%;
+
+        font-size: 10px;
+        color: white;
+    }
 }

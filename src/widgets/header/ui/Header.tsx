@@ -8,12 +8,14 @@ import { Link } from "react-router-dom";
 import { useUser } from "@/entities/user";
 import { useLogin } from "@/widgets/login/model/useLoginStore";
 import { useRegister } from "@/widgets/register/model/useRegisterStore";
+import { useCartStore } from "@/entities/card";
 
 export const Header = () => {
     const { toggleLogin } = useLogin();
     const { toggleRegister } = useRegister();
     const { isAuth } = useUser();
     const { setCategory, setTags } = useFilters();
+    const { cart } = useCartStore();
 
     return (
         <header className="header">
@@ -64,9 +66,12 @@ export const Header = () => {
                     </div>
                     {isAuth ? (
                         <div className="header__icons">
-                            <Link to="/cart">
+                            <Link className="header__link" to="/cart">
                                 <div className="header__cart">
                                     <img src={cartIcon} alt="cart" />
+                                </div>
+                                <div className="header__cart-value">
+                                    {cart.length}
                                 </div>
                             </Link>
                             <Link to="/settings">
