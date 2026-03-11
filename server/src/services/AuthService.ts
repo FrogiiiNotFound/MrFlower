@@ -40,8 +40,8 @@ class AuthService {
     }
 
     async logout(refreshToken: string) {
-      const deletedToken = TokenService.deleteToken(refreshToken)
-      return deletedToken
+        const deletedToken = TokenService.deleteToken(refreshToken);
+        return deletedToken;
     }
 
     async refresh(refreshToken: string) {

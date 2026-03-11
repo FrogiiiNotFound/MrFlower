@@ -8,7 +8,7 @@ export const userController = {
 
             const user = await UsersService.getUser(userId);
 
-            return user;
+            return res.status(200).json(user);
         } catch (e) {
             next(e);
         }
@@ -20,7 +20,7 @@ export const userController = {
 
             const userData = UsersService.changeNickname(nickname, userId);
 
-            return userData;
+            return res.status(200).json(userData);
         } catch (e) {
             next(e);
         }
