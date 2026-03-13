@@ -1,15 +1,45 @@
 import type { NextFunction, Request, Response } from "express";
 import ProductsService from "../services/ProductsService";
+import type { FilterQuery } from "../types/productFilters";
 
 export const productsController = {
-    getProducts: async (req: Request, res: Response, next: NextFunction) => {
+    getProducts: async (
+        req: Request<{}, {}, {}, FilterQuery>,
+        res: Response,
+        next: NextFunction,
+    ) => {
         try {
+            const filters = {
+                category: req.query.category,
+                priceFrom: req.query.priceFrom,
+                priceTo: req.query.priceTo,
+                composition: req.query.composition,
+                tags: req.query.tags,
+            };
             const page = Number(req.query.page) | 1;
             const limit = 40;
             const offset = (page - 1) * limit;
-            const products = ProductsService.getProducts(limit, offset);
+            const products = ProductsService.getProducts(
+                limit,
+                offset,
+                filters,
+            );
 
             return res.status(200).json({ page, data: products });
+        } catch (e) {
+            next(e);
+        }
+    },
+    getProductbyId: async (
+        req: Request<{ productId: string }>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        try {
+            const { productId } = req.params;
+            const product = ProductsService.getProductById(productId);
+
+            return res.status(200).json({ data: product });
         } catch (e) {
             next(e);
         }
