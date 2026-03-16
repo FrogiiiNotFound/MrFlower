@@ -7,6 +7,8 @@ import { useLogin } from "../model/useLoginStore";
 import { useForm } from "react-hook-form";
 import type { LoginFormValue } from "../model/types";
 import { useRegister } from "@/widgets/register/model/useRegisterStore";
+import { useLoginUser } from "@/entities/user/model/useLoginUser";
+import { toast } from "sonner";
 
 export const LoginForm = () => {
     const { isLoginOpen, toggleLogin } = useLogin();
@@ -17,10 +19,22 @@ export const LoginForm = () => {
         formState: { errors },
     } = useForm<LoginFormValue>();
 
+    const { mutateAsync } = useLoginUser();
+
     if (!isLoginOpen) return null;
 
-    const onSubmit = (data: LoginFormValue) => {
-        console.log(data);
+    const onSubmit = async (data: LoginFormValue) => {
+        try {
+            await mutateAsync(data);
+            toast("Успешный вход в аккаунт!");
+            toggleLogin();
+        } catch (e: any) {
+            const message =
+                e?.response?.data?.message ||
+                e?.message ||
+                "Ошибка входа. Проверьте почту и пароль.";
+            toast(message);
+        }
     };
 
     return (
@@ -44,14 +58,14 @@ export const LoginForm = () => {
                             <input
                                 type="text"
                                 className="login__input"
-                                placeholder="Ваша почта или телефон"
-                                {...register("login", {
-                                    required: "Почта или телефон обязательны",
+                                placeholder="Ваша почта"
+                                {...register("email", {
+                                    required: "Почта обязательна",
                                 })}
                             />
-                            {errors?.login && (
+                            {errors?.email && (
                                 <div className="errors-message">
-                                    {errors?.login.message}
+                                    {errors?.email.message}
                                 </div>
                             )}
                             <input

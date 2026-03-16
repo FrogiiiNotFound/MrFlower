@@ -14,6 +14,9 @@ createRoot(document.getElementById('root')!).render(
       persistOptions={{
         persister: localStoragePersister,
         maxAge: 1000 * 60 * 60 * 24,
+        // If the persisted cache is from an older app version (different response shapes),
+        // drop it to avoid runtime crashes.
+        buster: 'products-api-shape-v2',
       }}>
       <BrowserRouter>
         <App />

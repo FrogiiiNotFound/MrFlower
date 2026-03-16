@@ -16,10 +16,10 @@ export const productsController = {
                 composition: req.query.composition,
                 tags: req.query.tags,
             };
-            const page = Number(req.query.page) | 1;
+            const page = Number(req.query.page) || 1;
             const limit = 40;
             const offset = (page - 1) * limit;
-            const products = ProductsService.getProducts(
+            const products = await ProductsService.getProducts(
                 limit,
                 offset,
                 filters,
@@ -31,13 +31,13 @@ export const productsController = {
         }
     },
     getProductbyId: async (
-        req: Request<{ productId: string }>,
+        req: Request<{ id: string }>,
         res: Response,
         next: NextFunction,
     ) => {
         try {
-            const { productId } = req.params;
-            const product = ProductsService.getProductById(productId);
+            const { id } = req.params;
+            const product = await ProductsService.getProductById(id);
 
             return res.status(200).json({ data: product });
         } catch (e) {

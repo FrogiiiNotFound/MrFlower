@@ -24,7 +24,7 @@ export const Search = () => {
 
     const filteredProducts = useMemo(() => {
         console.log(flowers);
-        return list?.filter(
+        return (list ?? []).filter(
             (item: Product) =>
                 (category === "all" || item.category === category) &&
                 item.price >= price[0] &&
@@ -53,11 +53,16 @@ export const Search = () => {
     }
 
     if (!data) return null;
+    
+    const pageSize = 20;
+    const totalPages = Math.max(1, Math.ceil(filteredProducts.length / pageSize));
+    const currentPageRaw = Number(params.page) || 1;
+    const currentPage = Math.min(Math.max(currentPageRaw, 1), totalPages);
 
-    const totalPages = 10;
-    const currentPage = Number(params.page) || 1;
-
-    const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+    const pagedProducts = filteredProducts.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize,
+    );
 
     const getPages = () => {
         const pages: number[] = [];
@@ -87,7 +92,7 @@ export const Search = () => {
                     <Filters />
                     <div className="search__main-content">
                         <div className="search__cards">
-                            {filteredProducts.map((product: Product) => {
+                            {pagedProducts.map((product: Product) => {
                                 return (
                                     <SmallCard
                                         key={product.id}

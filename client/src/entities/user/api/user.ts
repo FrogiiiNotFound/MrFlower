@@ -11,4 +11,8 @@ export const userApi = {
         });
         return data;
     },
+    loginUser: async (credentials: { email: string; password: string }) => {
+        const { data } = await $api.post("login", credentials);
+        return data;
+    },
 };

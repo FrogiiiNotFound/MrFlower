@@ -30,7 +30,7 @@ export const Header = () => {
                         <ul className="header__nav-list nav-header__list menu__list">
                             <Link
                                 onClick={() => setTags("новинки")}
-                                to={"/search"}
+                                to={"/search/1"}
                             >
                                 <li className="header__nav-item">
                                     <p className="header__nav-text">Новинки</p>
@@ -38,7 +38,7 @@ export const Header = () => {
                             </Link>
                             <Link
                                 onClick={() => setCategory("flowers")}
-                                to={"/search"}
+                                to={"/search/1"}
                             >
                                 <li className="header__nav-item">
                                     <p className="header__nav-text">Цветы</p>
@@ -46,7 +46,7 @@ export const Header = () => {
                             </Link>
                             <Link
                                 onClick={() => setCategory("presents")}
-                                to={"/search"}
+                                to={"/search/1"}
                             >
                                 <li className="header__nav-item">
                                     <p className="header__nav-text">Подарки</p>
@@ -54,7 +54,7 @@ export const Header = () => {
                             </Link>
                             <Link
                                 onClick={() => setCategory("all")}
-                                to={"/search"}
+                                to={"/search/1"}
                             >
                                 <li className="header__nav-item">
                                     <p className="header__nav-text">В тренде</p>

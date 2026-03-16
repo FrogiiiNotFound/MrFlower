@@ -34,13 +34,13 @@ export class TokenService {
     }
 
     static async findToken(refreshToken: string) {
-        const token = TokenModel.findOne({ refreshToken });
+        const token = await TokenModel.findOne({ refresh_token: refreshToken });
 
         return token;
     }
 
     static async deleteToken(refreshToken: string) {
-        const deletedToken = TokenModel.deleteOne({
+        const deletedToken = await TokenModel.deleteOne({
             refresh_token: refreshToken,
         });
 
@@ -48,15 +48,19 @@ export class TokenService {
     }
 
     static async validateRefreshToken(token: string) {
-        const userData = jwt.verify(token, JWT_REFRESH_SECRET);
-
-        return userData;
+        try {
+            return jwt.verify(token, JWT_REFRESH_SECRET);
+        } catch {
+            return null;
+        }
     }
 
     static async validateAccessToken(token: string) {
-        const userData = jwt.verify(token, JWT_ACCESS_SECRET);
-
-        return userData;
+        try {
+            return jwt.verify(token, JWT_ACCESS_SECRET);
+        } catch {
+            return null;
+        }
     }
 }
 

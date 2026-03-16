@@ -4,6 +4,7 @@ import type { Product } from '@shared/types/products/product';
 
 type ProductsResponse = {
   products: Product[];
+  page?: number;
 };
 
 export const useProducts = () =>

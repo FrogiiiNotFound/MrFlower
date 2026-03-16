@@ -35,9 +35,12 @@ export const RegisterForm = () => {
             },
         });
         console.log(response);
-        if (isError) console.log(error);
-
-        toast("Регистрация прошла успешно!");
+        
+        if (isError) {
+            console.log(error);
+        } else {
+            toast("Регистрация прошла успешно!");
+        }
     };
 
     return (

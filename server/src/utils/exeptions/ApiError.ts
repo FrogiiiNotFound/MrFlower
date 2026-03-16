@@ -21,7 +21,7 @@ class ApiError extends Error {
   }
 
   static NotFound(message: string) {
-    throw new ApiError(message, 400, null);
+    throw new ApiError(message, 404, null);
   }
 }
 

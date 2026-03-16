@@ -12,7 +12,18 @@ app.use(
   cors({
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    origin: CLIENT_URL,
+    origin: (origin, callback) => {
+      // allow non-browser clients (Postman/curl) and same-origin requests
+      if (!origin) return callback(null, true);
+
+      const allowedOrigins = (CLIENT_URL || "")
+        .split(",")
+        .map((o) => o.trim())
+        .filter(Boolean);
+
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(new Error(`CORS blocked origin: ${origin}`));
+    },
   }),
 );
 app.use(cookieParser());

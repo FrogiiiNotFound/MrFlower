@@ -1,5 +1,4 @@
 import { useProducts } from '@/entities/product/model/useProducts';
-import type { Product as ProductModel } from '@/shared/types';
 import like from '@shared/assets/images/like.svg';
 import share from '@shared/assets/images/share.svg';
 import star from '@shared/assets/images/star.svg';
@@ -26,7 +25,7 @@ export const Product = () => {
     );
   }
 
-  const product = data?.products.find((item: ProductModel) => item.id.toString() === id);
+  const product = data?.products.find((item: any) => item?.id?.toString() === id);
 
   const oldPrice = product?.price + Math.round((product?.discount / 100) * product?.price);
 
@@ -85,7 +84,7 @@ export const Product = () => {
               <h3 className="product__comp-title">Состав</h3>
               <div className="product__comp-list">
                 {product?.flowersCount.map((flower: any) => (
-                  <div key={product.id} className="product__comp-item">
+                  <div key={`${product?._id ?? product?.id}-${flower?.title ?? ''}`} className="product__comp-item">
                     {flower.title} - {flower.value}
                   </div>
                 ))}

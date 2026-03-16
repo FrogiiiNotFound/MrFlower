@@ -17,20 +17,20 @@ class AuthService {
 
         const hashedPassword = bcrypt.hashSync(password, 10);
 
-        const user = UserModel.create({
+        const user = await UserModel.create({
             name,
             phone,
             email,
             password: hashedPassword,
         });
 
-        const data = this.updateUser(user);
+        const data = await this.updateUser(user);
 
         return data;
     }
 
-    async login(phone: string, password: string) {
-        const user = await UserModel.findOne({ phone });
+    async login(email: string, password: string) {
+        const user = await UserModel.findOne({ email });
         if (!user) throw ApiError.NotFound("Пользователь не найден");
 
         const isPasswordMatch = await bcrypt.compare(password, user.password);
@@ -56,9 +56,9 @@ class AuthService {
 
         if (!userToken || !userData) throw ApiError.UnAuthorized();
 
-        const user = UserModel.findOne({ _id: userData.id });
+        const user = await UserModel.findOne({ _id: userData.id });
 
-        const data = this.updateUser(user);
+        const data = await this.updateUser(user);
 
         return data;
     }

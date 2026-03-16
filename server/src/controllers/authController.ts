@@ -8,7 +8,7 @@ export const authController = {
 
             const data = await AuthService.register(name, phone, password, email);
 
-            res.cookie("refreshToken", data.tokens.accessToken, {
+            res.cookie("refreshToken", data.tokens.refreshToken, {
                 maxAge: 1000 * 60 * 60 * 24 * 30,
                 httpOnly: true,
             });
@@ -23,9 +23,9 @@ export const authController = {
     },
     login: async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const { phone, password } = req.body;
+            const { email, password } = req.body;
 
-            const data = await AuthService.login(phone, password);
+            const data = await AuthService.login(email, password);
 
             res.cookie("refreshToken", data.tokens.refreshToken, {
                 maxAge: 1000 * 60 * 60 * 24 * 30,

@@ -3,16 +3,23 @@ import type { FilterParams } from "../types/productFilters";
 import ApiError from "../utils/exeptions/ApiError";
 
 export class ProductsService {
-    static async getProducts(limit: number, offset: number, filters?: FilterParams) {
+    static async getProducts(
+        limit: number,
+        offset: number,
+        filters?: FilterParams,
+    ) {
         const query: any = {};
 
         if (filters?.category) {
             query.category = filters.category;
         }
         if (filters?.priceFrom || filters?.priceTo) {
+            query.price = {};
+
             if (filters.priceFrom) {
                 query.price.$gte = Number(filters.priceFrom);
             }
+
             if (filters.priceTo) {
                 query.price.$lte = Number(filters.priceTo);
             }
@@ -28,11 +35,12 @@ export class ProductsService {
             };
         }
 
-        const products = await ProductModel.find(query)
-            .sort({ createdAt: -1 })
-            .skip(offset)
-            .limit(limit)
-            .lean();
+        const products = await ProductModel.find()
+        console.log(products);
+            // .sort({ createdAt: -1 })
+            // .skip(offset)
+            // .limit(limit)
+            // .lean();
 
         return products;
     }

@@ -11,6 +11,7 @@ export const PromoSlider = () => {
     const SwiperRef = useRef<SwiperRef>(null);
 
     const { data, isLoading, error }: any = useProducts();
+    console.log(data);
 
     if (isLoading) {
         console.log("Загрузка...");
@@ -24,7 +25,7 @@ export const PromoSlider = () => {
 
     const list: Product[] = Array.isArray(data) ? data : data.products;
     const products = list.filter((item: Product) =>
-        item.tags.includes("акции дня")
+        item.tags.includes("акции дня"),
     );
 
     return (
@@ -60,7 +61,7 @@ export const PromoSlider = () => {
                     if (index % 2 !== 0) return null;
 
                     return (
-                        <SwiperSlide key={product.id}>
+                        <SwiperSlide key={product?.id ?? product?.id ?? index}>
                             <MiniCard product={products[index]} />
                             {products[index + 1] && (
                                 <MiniCard product={products[index + 1]} />

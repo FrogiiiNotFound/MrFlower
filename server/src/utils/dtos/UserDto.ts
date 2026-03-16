@@ -4,7 +4,8 @@ class UserDto {
   public email: string;
 
   constructor(model: any) {
-    this.user_id = model.user_id;
+    // Mongoose stores the primary key as `_id`
+    this.user_id = (model?._id ?? model?.id ?? model?.user_id)?.toString();
     this.name = model.name;
     this.email = model.email;
   }

@@ -35,8 +35,8 @@ export const Slider = ({ filter }: { filter: string }) => {
         slidesPerView={4}
         navigation={false}
         speed={400}>
-        {products.map((product: Product) => (
-          <SwiperSlide key={product.id}>
+        {products.map((product: any) => (
+          <SwiperSlide key={product?._id ?? product?.id}>
             <Card product={product} />
           </SwiperSlide>
         ))}
