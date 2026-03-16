@@ -3,6 +3,8 @@ import { UserModel } from "../models/UserModel";
 import UserResponseDto from "../utils/dtos/UserResponseData";
 import ApiError from "../utils/exeptions/ApiError";
 import { OrderModel } from "../models/OrderModel";
+import { OrderItemModel } from "../models/OrderItemModel";
+import { Types } from "mongoose";
 
 class UserService {
     async getUser(userId: string) {
@@ -16,17 +18,52 @@ class UserService {
         const user = await UserModel.findOne({ user_id: userId });
         if (!user) throw ApiError.NotFound("Пользователь не найден");
 
-        const orders = await OrderModel.find({ user_id: userId })
-            .sort({ createdAt: -1 })
-            .skip(offset)
-            .limit(limit);
+        const orders = await OrderModel.aggregate([
+            {
+                $match: { user_id: userId },
+            },
+            {
+                $lookup: {
+                    from: OrderItemModel.collection.name,
+                    localField: "_id",
+                    foreignField: "order_id",
+                    as: "items",
+                },
+            },
+            {
+                $sort: { createdAt: -1 },
+            },
+            {
+                $skip: offset,
+            },
+            {
+                $limit: limit,
+            },
+        ]);
         if (!orders) throw ApiError.NotFound("История заказов пуста");
 
         return orders;
     }
-    
+
     async getUserOrder(orderId: string, userId: string) {
-        const order = OrderModel.findOne({ _id: orderId, user_id: userId });
+        const order = (
+            await OrderModel.aggregate([
+                {
+                    $match: {
+                        _id: new Types.ObjectId(orderId),
+                        user_id: new Types.ObjectId(userId),
+                    },
+                },
+                {
+                    $lookup: {
+                        from: "order_items",
+                        localField: "_id",
+                        foreignField: "order_id",
+                        as: "items",
+                    },
+                },
+            ])
+        )[0];
         if (!order) throw ApiError.NotFound("Заказ не найден");
 
         return order;

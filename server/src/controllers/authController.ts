@@ -4,9 +4,9 @@ import AuthService from "../services/AuthService";
 export const authController = {
     register: async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const { name, phone, password } = req.body;
+            const { name, phone, password, email } = req.body;
 
-            const data = await AuthService.register(name, phone, password);
+            const data = await AuthService.register(name, phone, password, email);
 
             res.cookie("refreshToken", data.tokens.accessToken, {
                 maxAge: 1000 * 60 * 60 * 24 * 30,
@@ -14,7 +14,7 @@ export const authController = {
             });
 
             return res.status(201).json({
-                user: data.user,
+                data: data.user,
                 accessToken: data.tokens.accessToken,
             });
         } catch (e) {

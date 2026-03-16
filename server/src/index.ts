@@ -21,7 +21,7 @@ app.use(errorHandler);
 
 const startServer = () => {
   try {
-    mongoose.connect(DB_URL).then(() => console.log("Connected to database"));
+    mongoose.connect(DB_URL as string).then(() => console.log("Connected to database"));
 
     app.listen(PORT, () => {
       console.log(`Server started at PORT ${PORT}`);

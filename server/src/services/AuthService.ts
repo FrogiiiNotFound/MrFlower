@@ -4,9 +4,10 @@ import { UserModel } from "../models/UserModel";
 import ApiError from "../utils/exeptions/ApiError";
 import UserDto from "../utils/dtos/UserDto";
 import type { JwtPayload } from "jsonwebtoken";
+import mongoose from "mongoose";
 
 class AuthService {
-    async register(name: string, phone: string, password: string) {
+    async register(name: string, phone: string, password: string, email: string) {
         const candidate = await UserModel.findOne({ phone });
         if (candidate) {
             throw ApiError.BadRequest(
@@ -19,6 +20,7 @@ class AuthService {
         const user = UserModel.create({
             name,
             phone,
+            email,
             password: hashedPassword,
         });
 
@@ -31,10 +33,10 @@ class AuthService {
         const user = await UserModel.findOne({ phone });
         if (!user) throw ApiError.NotFound("Пользователь не найден");
 
-        const isPasswordMatch = bcrypt.compare(password, user.password);
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
         if (!isPasswordMatch) throw ApiError.BadRequest("Неправильный пароль");
 
-        const data = this.updateUser(user);
+        const data = await this.updateUser(user);
 
         return data;
     }
@@ -63,9 +65,11 @@ class AuthService {
 
     private async updateUser(user: any) {
         const userDto = new UserDto(user);
-        const tokens = TokenService.generateTokens(userDto);
+        const tokens = TokenService.generateTokens({ ...userDto });
 
-        await TokenService.saveToken(userDto.user_id, tokens.refreshToken);
+        const userId = new mongoose.Types.ObjectId(userDto.user_id);
+
+        await TokenService.saveToken(userId, tokens.refreshToken);
 
         return {
             user: userDto,

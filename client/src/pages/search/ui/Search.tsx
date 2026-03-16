@@ -1,12 +1,22 @@
 import { SmallCard } from "@/entities/product";
 import { useProducts } from "@/entities/product/model/useProducts";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious
+} from "@/shared/components/ui/pagination";
 import type { Product } from "@/shared/types";
 import { useMemo } from "react";
+import { useParams } from "react-router-dom";
 import { useFilters } from "../model/useFiltersStore";
 import { Filters } from "./Filters";
 import "./search.scss";
 
 export const Search = () => {
+    const params = useParams();
     const { category, tags, flowers, price } = useFilters();
     const { data, isLoading, error }: any = useProducts();
 
@@ -22,13 +32,13 @@ export const Search = () => {
                 (flowers.length === 0 ||
                     item.flowersCount?.some((flower) =>
                         flowers.some((f) =>
-                            flower.title.toLowerCase().includes(f)
-                        )
+                            flower.title.toLowerCase().includes(f),
+                        ),
                     )) &&
                 (tags.length === 0 ||
                     item.tags?.some((tag) =>
-                        tags.some((t) => tag.toLowerCase().includes(t))
-                    ))
+                        tags.some((t) => tag.toLowerCase().includes(t)),
+                    )),
         );
     }, [list, category, tags, price, flowers]);
 
@@ -44,18 +54,92 @@ export const Search = () => {
 
     if (!data) return null;
 
+    const totalPages = 10;
+    const currentPage = Number(params.page) || 1;
+
+    const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+    const getPages = () => {
+        const pages: number[] = [];
+
+        for (let i = 1; i <= totalPages; i++) {
+            if (
+                i === 1 ||
+                i === totalPages ||
+                (i >= currentPage - 1 && i <= currentPage + 1) ||
+                (currentPage === 1 && i <= 3) ||
+                (currentPage === 2 && i <= 3) ||
+                (currentPage === totalPages && i >= totalPages - 2) ||
+                (currentPage === totalPages - 1 && i >= totalPages - 2)
+            ) {
+                pages.push(i);
+            }
+        }
+
+        return pages;
+    };
+
     return (
         <div className="search">
             <div className="search__container">
                 <h2 className="search__title title">Фильтры</h2>
                 <div className="search__content">
                     <Filters />
-                    <div className="search__cards">
-                        {filteredProducts.map((product: Product) => {
-                            return (
-                                <SmallCard key={product.id} product={product} />
-                            );
-                        })}
+                    <div className="search__main-content">
+                        <div className="search__cards">
+                            {filteredProducts.map((product: Product) => {
+                                return (
+                                    <SmallCard
+                                        key={product.id}
+                                        product={product}
+                                    />
+                                );
+                            })}
+                        </div>
+                        <Pagination>
+                            <PaginationContent>
+                                <PaginationItem>
+                                    <PaginationPrevious
+                                        className={
+                                            currentPage <= 1
+                                                ? "search__pagination-btn--disabled"
+                                                : ""
+                                        }
+                                        href={
+                                            currentPage > 1
+                                                ? `/search/${currentPage - 1}`
+                                                : "#"
+                                        }
+                                    />
+                                </PaginationItem>
+
+                                {getPages().map((page) => (
+                                    <PaginationItem key={page}>
+                                        <PaginationLink
+                                            href={`/search/${page}`}
+                                            isActive={page === currentPage}
+                                        >
+                                            {page}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                ))}
+
+                                <PaginationItem>
+                                    <PaginationNext
+                                        className={
+                                            currentPage >= totalPages
+                                                ? "search__pagination-btn--disabled"
+                                                : ""
+                                        }
+                                        href={
+                                            currentPage < totalPages
+                                                ? `/search/${currentPage + 1}`
+                                                : "#"
+                                        }
+                                    />
+                                </PaginationItem>
+                            </PaginationContent>
+                        </Pagination>
                     </div>
                 </div>
             </div>

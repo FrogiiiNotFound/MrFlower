@@ -18,14 +18,13 @@ export const RegisterForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<RegisterFormValue>();
-    const { mutate, isError } = useRegisterUser();
+    const { mutate, isError, error } = useRegisterUser();
 
     if (!isRegisterOpen) return null;
 
-    const onSubmit = (data: RegisterFormValue) => {
+    const onSubmit = async (data: RegisterFormValue) => {
         console.log(data);
-
-        mutate({
+        const response = await mutate({
             name: data.name,
             surname: "",
             password: data.password,
@@ -34,17 +33,10 @@ export const RegisterForm = () => {
                 phone: data.phone,
                 email: data.email,
             },
-            favourites: [],
-            cart: [],
-            orders: [],
-            notifications: {
-                phone: false,
-                mail: false,
-                ad: false,
-                news: false,
-            },
-            bonuses: 0,
         });
+        console.log(response);
+        if (isError) console.log(error);
+
         toast("Регистрация прошла успешно!");
     };
 
@@ -124,7 +116,7 @@ export const RegisterForm = () => {
                             />
                             <Checkbox
                                 onChange={() => {}}
-                                text="Согласен получать рассылку об акциях и скидках *"
+                                text="Согласен получать рассылку об акциях и скидках"
                             />
                         </div>
                         <FormButton text="Зарегистрироваться" />

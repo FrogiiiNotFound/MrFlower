@@ -135,6 +135,7 @@ export const Filters = () => {
                         <div className="body-buttons">
                             {flowersName.map((flower) => (
                                 <Checkbox
+                                    key={flower.value}
                                     onChange={() => {
                                         if (flowers.includes(flower.value)) {
                                             deleteFlowers(flower.value);

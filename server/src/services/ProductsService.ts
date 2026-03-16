@@ -3,11 +3,7 @@ import type { FilterParams } from "../types/productFilters";
 import ApiError from "../utils/exeptions/ApiError";
 
 export class ProductsService {
-    static async getProducts(
-        limit: number,
-        offset: number,
-        filters?: FilterParams,
-    ) {
+    static async getProducts(limit: number, offset: number, filters?: FilterParams) {
         const query: any = {};
 
         if (filters?.category) {
@@ -32,26 +28,11 @@ export class ProductsService {
             };
         }
 
-        const products = await ProductModel.aggregate([
-            { $match: query },
-            {
-                $lookup: {
-                    from: "order_items",
-                    localField: "_id",
-                    foreignField: "order_id",
-                    as: "items",
-                },
-            },
-            {
-                $sort: { createdAt: -1 },
-            },
-            {
-                $skip: offset,
-            },
-            {
-                $limit: limit,
-            },
-        ]);
+        const products = await ProductModel.find(query)
+            .sort({ createdAt: -1 })
+            .skip(offset)
+            .limit(limit)
+            .lean();
 
         return products;
     }

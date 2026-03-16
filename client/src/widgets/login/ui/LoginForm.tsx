@@ -78,7 +78,7 @@ export const LoginForm = () => {
                                 }}
                                 className="login__sign-in"
                             >
-                                Войти
+                                Регистрация
                             </div>
                         </div>
                     </form>

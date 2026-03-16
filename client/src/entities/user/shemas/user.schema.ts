@@ -8,17 +8,7 @@ export const UserSchema = z.object({
     contacts: z.object({
         phone: z.string(),
         email: z.string(),
-    }),
-    favourites: z.array(z.number()),
-    cart: z.array(z.number()),
-    orders: z.array(z.number()),
-    notifications: z.object({
-        phone: z.boolean(),
-        mail: z.boolean(),
-        ad: z.boolean(),
-        news: z.boolean(),
-    }),
-    bonuses: z.number(),
+    })
 });
 
 export type User = z.infer<typeof UserSchema>;

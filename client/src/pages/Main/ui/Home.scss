@@ -11,12 +11,19 @@
 
     &__search-item {
         cursor: pointer;
-        padding: 11px 14px;
+        padding: 9px 12px;
         display: flex;
         align-items: center;
         gap: 14px;
         background-color: #fff;
         border-radius: 10px;
+        color: #000;
+        transition: 0.3s all ease-out;
+        border: 2px solid #fff;
+
+        &:hover {
+            border: 2px solid #ff9e7b;
+        }
     }
 
     &__search-text {
@@ -24,7 +31,6 @@
         font-style: italic;
         font-weight: 500;
         font-size: 16px;
-        color: #000;
     }
 
     &__content {

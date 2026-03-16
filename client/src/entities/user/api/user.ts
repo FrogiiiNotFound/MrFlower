@@ -1,13 +1,14 @@
-import { $mockApi } from "@/shared";
+import { $api } from "@shared/index";
 import type { User } from "../shemas/user.schema";
 
 export const userApi = {
     registerUser: async (user: User) => {
-        const { data } = await $mockApi.post("users", user);
-        return data;
-    },
-    getAllUsers: async () => {
-        const { data } = await $mockApi.get("users");
+        const { data } = await $api.post("register", {
+            name: user.name,
+            phone: user.contacts.phone,
+            password: user.password,
+            email: user.contacts.email,
+        });
         return data;
     },
 };

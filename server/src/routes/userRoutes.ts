@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { userController } from "../controllers/userController";
+import { authMiddleware } from "../middlewares/authMiddleware";
 
 const userRouter = Router();
+
+userRouter.use(authMiddleware);
 
 userRouter.get("/user", userController.getUser);
 userRouter.get("/user/orders", userController.getUserOrders);

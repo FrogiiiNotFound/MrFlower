@@ -51,25 +51,25 @@ export const Footer = () => {
               <h3 className="footer__info-title">Полезные ссылки</h3>
               <ul className="footer__links">
                 <li className="footer__link">
-                  <a href="">Отзывы</a>
+                  <a href="/reviews">Отзывы</a>
                 </li>
                 <li className="footer__link">
-                  <a href="">Инструкции по уходу за букетом</a>
+                  <a href="/bouquet-care-instructions">Инструкции по уходу за букетом</a>
                 </li>
                 <li className="footer__link">
-                  <a href="">Как оформить заказ</a>
+                  <a href="/how-to-place-an-order">Как оформить заказ</a>
                 </li>
                 <li className="footer__link">
-                  <a href="">Помощь</a>
+                  <a href="/help">Помощь</a>
                 </li>
                 <li className="footer__link">
-                  <a href="">Сервисы</a>
+                  <a href="/services">Сервисы</a>
                 </li>
                 <li className="footer__link">
-                  <a href="">Вакансии</a>
+                  <a href="/job">Вакансии</a>
                 </li>
                 <li className="footer__link">
-                  <a href="">Франшиза</a>
+                  <a href="/franchise">Франшиза</a>
                 </li>
               </ul>
             </div>
@@ -77,19 +77,19 @@ export const Footer = () => {
               <h3 className="footer__info-title">Дополнительно</h3>
               <ul className="footer__links">
                 <li className="footer__link">
-                  <a href="">Политика конфиденциальности</a>
+                  <a href="/privacy-policy">Политика конфиденциальности</a>
                 </li>
                 <li className="footer__link">
-                  <a href="">Условия пользования</a>
+                  <a href="/terms-of-use">Условия пользования</a>
                 </li>
                 <li className="footer__link">
-                  <a href="">Правила</a>
+                  <a href="/rules">Правила</a>
                 </li>
                 <li className="footer__link">
-                  <a href="">Скидка с первого заказа</a>
+                  <a href="/discount">Скидка с первого заказа</a>
                 </li>
                 <li className="footer__link">
-                  <a href="">Правила отмены заказа</a>
+                  <a href="/cancellation-policy">Правила отмены заказа</a>
                 </li>
               </ul>
             </div>

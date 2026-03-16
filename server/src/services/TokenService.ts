@@ -1,3 +1,4 @@
+import type mongoose from "mongoose";
 import { TokenModel } from "../models/TokenModel";
 import { JWT_ACCESS_SECRET, JWT_REFRESH_SECRET } from "./../config/constants";
 import jwt from "jsonwebtoken";
@@ -14,7 +15,10 @@ export class TokenService {
         return { accessToken, refreshToken };
     }
 
-    static async saveToken(userId: string, refreshToken: string) {
+    static async saveToken(
+        userId: mongoose.Types.ObjectId,
+        refreshToken: string,
+    ) {
         const tokenData = await TokenModel.findOne({ user_id: userId });
         if (tokenData) {
             tokenData.refresh_token = refreshToken;
@@ -45,6 +49,12 @@ export class TokenService {
 
     static async validateRefreshToken(token: string) {
         const userData = jwt.verify(token, JWT_REFRESH_SECRET);
+
+        return userData;
+    }
+
+    static async validateAccessToken(token: string) {
+        const userData = jwt.verify(token, JWT_ACCESS_SECRET);
 
         return userData;
     }
