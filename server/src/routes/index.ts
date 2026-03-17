@@ -4,8 +4,9 @@ import userRouter from "./userRoutes";
 import productRouter from "./productsRoutes";
 
 const router = Router();
-router.use(authRouter);
+
 router.use(productRouter);
+router.use(authRouter);
 router.use(userRouter);
 
 export default router;

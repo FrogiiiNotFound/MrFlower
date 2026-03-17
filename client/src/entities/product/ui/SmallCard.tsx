@@ -1,4 +1,4 @@
-import { useCartStore } from "@/entities/card";
+import { useCartStore } from "@/entities/cart";
 import type { Product } from "@/shared/types";
 import like from "@shared/assets/images/like.svg";
 import "./SmallCard.scss";
@@ -22,10 +22,12 @@ export const SmallCard = ({ product }: { product: Product }) => {
     };
 
     const item = {
+        id: product.id,
         name: product.name,
         description: product.description,
         image: product.image,
         price: product.price,
+        discount: product.discount,
         oldPrice: oldPrice,
         amount: 1,
     };
@@ -37,7 +39,9 @@ export const SmallCard = ({ product }: { product: Product }) => {
                     <img src={product?.image} alt="card-img" />
                 </div>
                 <div className="small-card__content">
-                    <h3 className="small-card__title">{lengthLimit(product?.name, 30)}</h3>
+                    <h3 className="small-card__title">
+                        {lengthLimit(product?.name, 30)}
+                    </h3>
                     <p className="small-card__text">
                         {lengthLimit(product?.description)}
                     </p>

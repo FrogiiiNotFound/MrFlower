@@ -25,6 +25,7 @@
         position: absolute;
         top: 20px;
         right: 20px;
+        z-index: 10000000;
     }
 
     &__remove img {
@@ -98,6 +99,5 @@
         font-weight: 400;
         font-size: 14px;
         color: #a3a3a3;
-        text-decoration: line-through;
     }
 }

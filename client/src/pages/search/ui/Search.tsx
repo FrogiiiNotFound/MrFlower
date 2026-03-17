@@ -4,85 +4,39 @@ import {
     Pagination,
     PaginationContent,
     PaginationItem,
-    PaginationLink,
     PaginationNext,
     PaginationPrevious
 } from "@/shared/components/ui/pagination";
 import type { Product } from "@/shared/types";
-import { useMemo } from "react";
-import { useParams } from "react-router-dom";
-import { useFilters } from "../model/useFiltersStore";
+import { useSearchParams } from "react-router-dom";
 import { Filters } from "./Filters";
 import "./search.scss";
 
 export const Search = () => {
-    const params = useParams();
-    const { category, tags, flowers, price } = useFilters();
-    const { data, isLoading, error }: any = useProducts();
+    const [searchParams] = useSearchParams();
 
-    const list: Product[] = Array.isArray(data) ? data : data?.products;
+    const category = searchParams.get("category");
+    const priceFrom = searchParams.get("priceFrom");
+    const priceTo = searchParams.get("priceTo");
+    const composition = searchParams.get("composition");
+    const tags = searchParams.get("tags");
+    const page = searchParams.get("page");
 
-    const filteredProducts = useMemo(() => {
-        console.log(flowers);
-        return (list ?? []).filter(
-            (item: Product) =>
-                (category === "all" || item.category === category) &&
-                item.price >= price[0] &&
-                item.price <= price[1] &&
-                (flowers.length === 0 ||
-                    item.flowersCount?.some((flower) =>
-                        flowers.some((f) =>
-                            flower.title.toLowerCase().includes(f),
-                        ),
-                    )) &&
-                (tags.length === 0 ||
-                    item.tags?.some((tag) =>
-                        tags.some((t) => tag.toLowerCase().includes(t)),
-                    )),
-        );
-    }, [list, category, tags, price, flowers]);
+    const { data, isLoading, error }: any = useProducts({
+        category,
+        priceFrom,
+        priceTo,
+        composition,
+        tags,
+        page,
+    });
 
-    if (isLoading) {
-        console.log("Загрузка...");
-        return <div>Загрузка...</div>;
-    }
-
-    if (error) {
-        console.error(error);
-        return <div>Ошибка загрузки</div>;
-    }
-
+    if (isLoading) return <div>Загрузка...</div>;
+    if (error) return <div>Ошибка загрузки</div>;
     if (!data) return null;
-    
-    const pageSize = 20;
-    const totalPages = Math.max(1, Math.ceil(filteredProducts.length / pageSize));
-    const currentPageRaw = Number(params.page) || 1;
-    const currentPage = Math.min(Math.max(currentPageRaw, 1), totalPages);
 
-    const pagedProducts = filteredProducts.slice(
-        (currentPage - 1) * pageSize,
-        currentPage * pageSize,
-    );
-
-    const getPages = () => {
-        const pages: number[] = [];
-
-        for (let i = 1; i <= totalPages; i++) {
-            if (
-                i === 1 ||
-                i === totalPages ||
-                (i >= currentPage - 1 && i <= currentPage + 1) ||
-                (currentPage === 1 && i <= 3) ||
-                (currentPage === 2 && i <= 3) ||
-                (currentPage === totalPages && i >= totalPages - 2) ||
-                (currentPage === totalPages - 1 && i >= totalPages - 2)
-            ) {
-                pages.push(i);
-            }
-        }
-
-        return pages;
-    };
+    const currentPage = Number(page) || 1;
+    const totalPages = Math.ceil(data.data.totalCount / data.data.limit);
 
     return (
         <div className="search">
@@ -92,14 +46,20 @@ export const Search = () => {
                     <Filters />
                     <div className="search__main-content">
                         <div className="search__cards">
-                            {pagedProducts.map((product: Product) => {
-                                return (
-                                    <SmallCard
-                                        key={product.id}
-                                        product={product}
-                                    />
-                                );
-                            })}
+                            {data.data.products.length !== 0 ? (
+                                data.data.products.map((product: Product) => {
+                                    return (
+                                        <SmallCard
+                                            key={product.id}
+                                            product={product}
+                                        />
+                                    );
+                                })
+                            ) : (
+                                <div className="search__not-found">
+                                    Товаров не найдено
+                                </div>
+                            )}
                         </div>
                         <Pagination>
                             <PaginationContent>
@@ -112,13 +72,13 @@ export const Search = () => {
                                         }
                                         href={
                                             currentPage > 1
-                                                ? `/search/${currentPage - 1}`
+                                                ? `?${new URLSearchParams({ ...Object.fromEntries(searchParams), page: String(currentPage - 1) })}`
                                                 : "#"
                                         }
                                     />
                                 </PaginationItem>
 
-                                {getPages().map((page) => (
+                                {/* {getPages().map((page) => (
                                     <PaginationItem key={page}>
                                         <PaginationLink
                                             href={`/search/${page}`}
@@ -127,7 +87,7 @@ export const Search = () => {
                                             {page}
                                         </PaginationLink>
                                     </PaginationItem>
-                                ))}
+                                ))} */}
 
                                 <PaginationItem>
                                     <PaginationNext
@@ -138,7 +98,7 @@ export const Search = () => {
                                         }
                                         href={
                                             currentPage < totalPages
-                                                ? `/search/${currentPage + 1}`
+                                                ? `?${new URLSearchParams({ ...Object.fromEntries(searchParams), page: String(currentPage + 1) })}`
                                                 : "#"
                                         }
                                     />

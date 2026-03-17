@@ -4,8 +4,6 @@ import { authMiddleware } from "../middlewares/authMiddleware";
 
 const userRouter = Router();
 
-userRouter.use(authMiddleware);
-
 userRouter.get("/user", userController.getUser);
 userRouter.get("/user/orders", userController.getUserOrders);
 userRouter.get("/user/orders/:orderId", userController.getUserOrder);

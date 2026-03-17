@@ -10,23 +10,23 @@ import "./PromoSlider.scss";
 export const PromoSlider = () => {
     const SwiperRef = useRef<SwiperRef>(null);
 
-    const { data, isLoading, error }: any = useProducts();
-    console.log(data);
+    // const { data, isLoading, error }: any = useProducts();
+    // console.log(data);
 
-    if (isLoading) {
-        console.log("Загрузка...");
-        return <div>Загрузка...</div>;
-    }
-    if (error) {
-        console.error(error);
-        return <div>Ошибка загрузки</div>;
-    }
-    if (!data) return null;
+    // if (isLoading) {
+    //     console.log("Загрузка...");
+    //     return <div>Загрузка...</div>;
+    // }
+    // if (error) {
+    //     console.error(error);
+    //     return <div>Ошибка загрузки</div>;
+    // }
+    // if (!data) return null;
 
-    const list: Product[] = Array.isArray(data) ? data : data.products;
-    const products = list.filter((item: Product) =>
-        item.tags.includes("акции дня"),
-    );
+    // const list: Product[] = Array.isArray(data) ? data : data.products;
+    // const products = list.filter((item: Product) =>
+    //     item.tags.includes("акции дня"),
+    // );
 
     return (
         <div className="promo-slider">
@@ -57,7 +57,7 @@ export const PromoSlider = () => {
                 speed={400}
                 navigation={false}
             >
-                {products.map((product, index) => {
+                {/* {products.map((product, index) => {
                     if (index % 2 !== 0) return null;
 
                     return (
@@ -68,7 +68,7 @@ export const PromoSlider = () => {
                             )}
                         </SwiperSlide>
                     );
-                })}
+                })} */}
             </Swiper>
         </div>
     );

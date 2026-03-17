@@ -1,6 +1,10 @@
 .cart {
     padding: 50px 0px;
 
+    &__cart-title {
+        text-align: center !important;
+    }
+
     &__content {
         display: flex;
         align-items: center;
@@ -67,19 +71,19 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 16px;
+        margin-bottom: 10px;
     }
 
     &__discount-title {
         font-weight: 400;
-        font-size: 20px;
+        font-size: 18px;
         color: #363636;
     }
 
     &__dicount-value {
         font-weight: 400;
         font-size: 20px;
-        color: #363636;
+        color: #ff9e7b;
     }
 
     &__final-price {
@@ -98,7 +102,7 @@
     &__final-price-value {
         font-weight: 400;
         font-size: 24px;
-        color: #000;
+        color: #000000;
     }
 
     &__bonus {
@@ -117,7 +121,7 @@
     &__bonus-value {
         font-weight: 400;
         font-size: 16px;
-        color: #ff9e7b;
+        color: #868686;
     }
 
     &__btn {

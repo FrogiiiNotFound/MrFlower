@@ -15,4 +15,8 @@ export const userApi = {
         const { data } = await $api.post("login", credentials);
         return data;
     },
+    logout: async () => {
+        const { data } = await $api.post("logout");
+        return data;
+    },
 };

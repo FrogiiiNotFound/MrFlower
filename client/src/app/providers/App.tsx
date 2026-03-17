@@ -10,14 +10,27 @@ import { Route, Routes } from "react-router-dom";
 import { MainLayout } from "../layouts/main-layout/ui/MainLayout";
 import { Product } from "@/pages/product/ui/Product";
 import NotFound from "@/pages/notFound/ui/NotFound";
+import { useEffect } from "react";
+import { useUser } from "@/entities/user";
 
 function App() {
+    const { setAccessToken, setIsAuth } = useUser();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+
+        if (token) {
+            setAccessToken(token);
+            setIsAuth(true);
+        }
+    }, []);
+
     return (
         <Routes>
             <Route path="/" element={<MainLayout />}>
                 <Route index element={<Home />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/search/:page" element={<Search />} />
+                <Route path="/search" element={<Search />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/orders" element={<Orders />} />

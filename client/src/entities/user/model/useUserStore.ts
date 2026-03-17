@@ -4,12 +4,12 @@ type UserState = {
     accessToken: string;
     isAuth: boolean;
     setAccessToken: (token: string) => void;
-    setIsAuth: () => void;
+    setIsAuth: (boolean: boolean) => void;
 };
 
 export const useUser = create<UserState>((set, get) => ({
     accessToken: "",
     isAuth: false,
-    setIsAuth: () => set({ isAuth: !get().isAuth }),
+    setIsAuth: (boolean) => set({ isAuth: boolean }),
     setAccessToken: (token) => set({ accessToken: token }),
 }));

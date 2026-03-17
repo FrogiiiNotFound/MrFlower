@@ -8,7 +8,7 @@ const authRouter = Router();
 
 authRouter.post("/register", validate(RegisterSchema), authController.register);
 authRouter.post("/login", validate(LoginSchema), authController.login);
-authRouter.delete("/logout", authController.logout);
+authRouter.post("/logout", authController.logout);
 authRouter.get("/refresh", authController.refresh);
 authRouter.get("/activate/:activateLink", authController.activate);
 

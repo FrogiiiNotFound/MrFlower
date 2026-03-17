@@ -13,7 +13,6 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     origin: (origin, callback) => {
-      // allow non-browser clients (Postman/curl) and same-origin requests
       if (!origin) return callback(null, true);
 
       const allowedOrigins = (CLIENT_URL || "")

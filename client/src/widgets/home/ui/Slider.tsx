@@ -10,20 +10,20 @@ import './Slider.scss';
 export const Slider = ({ filter }: { filter: string }) => {
   const swiperRef = useRef<SwiperRef>(null);
 
-  const { data, isLoading, error }: any = useProducts();
+  // const { data, isLoading, error }: any = useProducts();
 
-  if (isLoading) {
-    console.log('Загрузка...');
-    return <div>Загрузка...</div>;
-  }
-  if (error) {
-    console.error(error);
-    return <div>Ошибка загрузки</div>;
-  }
-  if (!data) return null;
+  // if (isLoading) {
+  //   console.log('Загрузка...');
+  //   return <div>Загрузка...</div>;
+  // }
+  // if (error) {
+  //   console.error(error);
+  //   return <div>Ошибка загрузки</div>;
+  // }
+  // if (!data) return null;
 
-  const list: Product[] = Array.isArray(data) ? data : data.products;
-  const products = list.filter((item: Product) => item.tags.includes(filter));
+  // const list: Product[] = Array.isArray(data) ? data : data.products;
+  // const products = list.filter((item: Product) => item.tags.includes(filter));
 
   return (
     <div className="slider">
@@ -35,11 +35,11 @@ export const Slider = ({ filter }: { filter: string }) => {
         slidesPerView={4}
         navigation={false}
         speed={400}>
-        {products.map((product: any) => (
+        {/* {products.map((product: any) => (
           <SwiperSlide key={product?._id ?? product?.id}>
             <Card product={product} />
           </SwiperSlide>
-        ))}
+        ))} */}
       </Swiper>
       <div className="slider__buttons">
         <div onClick={() => swiperRef.current?.swiper.slidePrev()} className="slider__prev">

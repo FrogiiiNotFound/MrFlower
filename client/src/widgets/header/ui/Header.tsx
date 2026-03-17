@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useUser } from "@/entities/user";
 import { useLogin } from "@/widgets/login/model/useLoginStore";
 import { useRegister } from "@/widgets/register/model/useRegisterStore";
-import { useCartStore } from "@/entities/card";
+import { useCartStore } from "@/entities/cart";
 
 export const Header = () => {
     const { toggleLogin } = useLogin();

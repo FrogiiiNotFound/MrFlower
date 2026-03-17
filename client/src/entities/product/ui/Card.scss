@@ -88,6 +88,7 @@
         text-align: center;
         color: #010101;
         transition: 0.2s all ease-in-out;
+
         &:hover {
             border: 2px solid #ff9e7b;
             color: white;
@@ -140,5 +141,35 @@
 
     &__info {
         margin-bottom: 30px;
+    }
+
+    &__amount {
+        border-radius: 5px;
+        background: #f3f3f3;
+        padding: 10px 12px;
+
+        display: flex;
+        align-items: center;
+        gap: 13px;
+    }
+
+    &__amount-decrease {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 10px 5px;
+    }
+
+    &__amount-value {
+        font-weight: 400;
+        font-size: 18px;
+        color: #363636;
+    }
+
+    &__amount-increase {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 10px 5px;
     }
 }

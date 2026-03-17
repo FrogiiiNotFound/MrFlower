@@ -1,4 +1,4 @@
-export const tags = [
+export const tagsList = [
     { label: "День рождения", value: "день рождения" },
     { label: "Для девушки", value: "для девушки" },
     { label: "Для мамы", value: "для мамы" },

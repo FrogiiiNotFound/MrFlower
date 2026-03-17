@@ -64,7 +64,7 @@ export const LoginForm = () => {
                                 })}
                             />
                             {errors?.email && (
-                                <div className="errors-message">
+                                <div className="error-message">
                                     {errors?.email.message}
                                 </div>
                             )}
@@ -77,7 +77,7 @@ export const LoginForm = () => {
                                 })}
                             />
                             {errors?.password && (
-                                <div className="errors-message">
+                                <div className="error-message">
                                     {errors?.password.message}
                                 </div>
                             )}

@@ -10,39 +10,40 @@ export class ProductsService {
     ) {
         const query: any = {};
 
-        if (filters?.category) {
+        if (filters?.category && filters.category !== "all") {
             query.category = filters.category;
         }
+
         if (filters?.priceFrom || filters?.priceTo) {
             query.price = {};
-
-            if (filters.priceFrom) {
-                query.price.$gte = Number(filters.priceFrom);
-            }
-
-            if (filters.priceTo) {
-                query.price.$lte = Number(filters.priceTo);
-            }
+            if (filters.priceFrom) query.price.$gte = Number(filters.priceFrom);
+            if (filters.priceTo) query.price.$lte = Number(filters.priceTo);
         }
+
         if (filters?.composition) {
-            query.composition = {
-                $in: filters.composition.split(","),
-            };
+            query.$and = filters.composition.split(",").map((val) => ({
+                $or: [
+                    { name: { $regex: val, $options: "i" } },
+                    { description: { $regex: val, $options: "i" } },
+                ],
+            }));
         }
+
         if (filters?.tags) {
-            query.tags = {
-                $in: filters.tags.split(","),
-            };
+            query.tags = { $in: filters.tags.split(",").map((t) => new RegExp(t, "i")) };
         }
 
-        const products = await ProductModel.find()
-        console.log(products);
-            // .sort({ createdAt: -1 })
-            // .skip(offset)
-            // .limit(limit)
-            // .lean();
+        const totalCount = await ProductModel.countDocuments(query);
 
-        return products;
+        const products = await ProductModel.find(query)
+            .sort({ createdAt: -1 })
+            .skip(offset)
+            .limit(limit);
+
+        return {
+            totalCount,
+            products,
+        };
     }
     static async getProductById(productId: string) {
         const product = await ProductModel.findOne({ _id: productId });
