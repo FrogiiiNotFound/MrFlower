@@ -1,13 +1,17 @@
 import { useCartStore } from "@/entities/cart";
+import { useAddUserFavourites } from "@/entities/user/model/useAddUserFavourites";
 import type { Product } from "@/shared/types";
 import like from "@shared/assets/images/like.svg";
-import "./SmallCard.scss";
-import { useFavourites } from "@/entities/favourites";
 import { Link } from "react-router-dom";
+import "./SmallCard.scss";
+import { useGetUserFavourites } from "@/entities/user/model/useGetUserFavourites";
 
 export const SmallCard = ({ product }: { product: Product }) => {
-    const { addFavourite } = useFavourites();
     const { addToCart } = useCartStore();
+    const { data } = useGetUserFavourites();
+    console.log(data);
+
+    const { mutate: addUserFavourite } = useAddUserFavourites();
 
     const oldPrice =
         product?.price + Math.round((product?.discount / 100) * product?.price);
@@ -22,7 +26,7 @@ export const SmallCard = ({ product }: { product: Product }) => {
     };
 
     const item = {
-        id: product.id,
+        id: product._id as string,
         name: product.name,
         description: product.description,
         image: product.image,
@@ -30,6 +34,13 @@ export const SmallCard = ({ product }: { product: Product }) => {
         discount: product.discount,
         oldPrice: oldPrice,
         amount: 1,
+    };
+
+    const isLiked = data?.data?.some((fav: any) => fav.id === item.id);
+
+    const onLikeClick = (item: any) => {
+        addUserFavourite(item);
+        console.log(item);
     };
 
     return (
@@ -66,10 +77,21 @@ export const SmallCard = ({ product }: { product: Product }) => {
                     </div>
                 </div>
                 <div
-                    onClick={() => addFavourite(item)}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        onLikeClick(item);
+                    }}
                     className="small-card__like"
                 >
-                    <img src={like} alt="like" />
+                    <img
+                        src={like}
+                        alt="like"
+                        style={{
+                            filter: isLiked
+                                ? "invert(74%) sepia(24%) saturate(631%) hue-rotate(326deg) brightness(105%) contrast(101%)"
+                                : "none",
+                        }}
+                    />
                 </div>
             </div>
         </Link>

@@ -90,7 +90,7 @@ class UserService {
 
     async getUserFavourites(userId: string) {
         const user = await UserModel.findOne(
-            { user_id: userId },
+            { _id: userId },
             { favourites: 1, _id: 0 },
         );
         if (!user) throw ApiError.NotFound("Пользователь не найден");
@@ -100,15 +100,13 @@ class UserService {
 
     async addFavourite(item: any, userId: string) {
         const changedUser = await UserModel.findOneAndUpdate(
-            { user_id: userId },
-            { $addToSet: { favourite: item } },
-            { new: true },
+            { _id: userId },
+            { $addToSet: { favourites: item } },
+            { returnDocument: "after" },
         );
         if (!changedUser) throw ApiError.NotFound("Пользователь не найден");
 
-        const userData = new UserResponseDto(changedUser);
-
-        return userData;
+        return changedUser.favourites;
     }
 
     async changeNickname(nickname: string, userId: string) {

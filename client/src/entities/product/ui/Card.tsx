@@ -1,10 +1,10 @@
 import { useCartStore } from "@/entities/cart";
+import minus from "@shared/assets/images/minus.svg";
+import plus from "@shared/assets/images/plus.svg";
 import star from "@shared/assets/images/star.svg";
 import { Link } from "react-router-dom";
 import "./Card.scss";
 import type { CardProps } from "./types";
-import minus from "@shared/assets/images/minus.svg";
-import plus from "@shared/assets/images/plus.svg";
 
 export const Card: React.FC<CardProps> = ({ product }) => {
     const { cart, decreaseAmount, increaseAmount, removeFromCart, addToCart } =

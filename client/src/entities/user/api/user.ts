@@ -27,6 +27,10 @@ export const userApi = {
         const addresses = await $api.get("/user/addresses");
         return addresses;
     },
+    getFavourites: async () => {
+        const favourites = await $api.get("/user/favourites");
+        return favourites;
+    },
     changeUserInfo: async (data: any) => {
         const updatedUser = await $api.patch("/user", data);
         return updatedUser;
@@ -38,7 +42,14 @@ export const userApi = {
 
         return addresses;
     },
-    deleteAddress: async (index : number) => {
+    addFavourite: async (item: any) => {
+        const favourites = await $api.post("/user/favourites", {
+            item,
+        });
+
+        return favourites;
+    },
+    deleteAddress: async (index: number) => {
         const addresses = await $api.delete(`/user/addresses/${index}`);
 
         return addresses;
