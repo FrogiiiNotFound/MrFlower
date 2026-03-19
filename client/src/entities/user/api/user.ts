@@ -19,4 +19,28 @@ export const userApi = {
         const { data } = await $api.post("logout");
         return data;
     },
+    getUser: async () => {
+        const user = await $api.get("/user");
+        return user;
+    },
+    getAddresses: async () => {
+        const addresses = await $api.get("/user/addresses");
+        return addresses;
+    },
+    changeUserInfo: async (data: any) => {
+        const updatedUser = await $api.patch("/user", data);
+        return updatedUser;
+    },
+    addAddress: async (address: string) => {
+        const addresses = await $api.post("/user/addresses", {
+            address,
+        });
+
+        return addresses;
+    },
+    deleteAddress: async (index : number) => {
+        const addresses = await $api.delete(`/user/addresses/${index}`);
+
+        return addresses;
+    },
 };

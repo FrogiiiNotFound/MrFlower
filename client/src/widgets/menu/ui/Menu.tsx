@@ -8,14 +8,13 @@ import { userApi } from "@/entities/user/api/user";
 export const Menu = () => {
     const location = useLocation();
     const { setIsAuth } = useUser();
-    console.log(location);
 
     const logoutUser = () => {
         userApi
             .logout()
             .then(() => {
+                localStorage.removeItem("token");
                 setIsAuth(false);
-                console.log("User logged out");
                 toast("Вы вышли из аккаунта");
             })
             .catch((err: any) => {

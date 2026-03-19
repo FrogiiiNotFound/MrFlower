@@ -1,34 +1,27 @@
-import { useProducts } from "@/entities/product/model/useProducts";
+import { productsApi } from "@/entities/product/api/products";
 import like from "@shared/assets/images/like.svg";
 import share from "@shared/assets/images/share.svg";
 import star from "@shared/assets/images/star.svg";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import "./Product.scss";
 
 export const Product = () => {
-    const { data, isLoading, error }: any = useProducts();
     const { id } = useParams();
+    if (!id) return <Navigate to={"/404"} replace />;
+    const [product, setProduct] = useState<any>(null);
 
-    if (isLoading) {
-        return (
-            <div>
-                <p>Загрузка товара...</p>
-            </div>
-        );
-    }
-    if (error) {
-        return (
-            <div>
-                <p>Что то пошло не так...</p>
-            </div>
-        );
-    }
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const product = (await productsApi.getProductById(id)) as any;
+            if (!product) {
+                return <Navigate to="/404" replace />;
+            }
 
-    const product = data?.products.find(
-        (item: any) => item?.id?.toString() === id,
-    );
-    console.log(product);
+            setProduct(product.data);
+        };
+        fetchProduct();
+    }, [id]);
 
     const oldPrice =
         product?.price + Math.round((product?.discount / 100) * product?.price);
@@ -36,10 +29,6 @@ export const Product = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    if (!product) {
-        return <Navigate to="/404" replace />;
-    }
 
     return (
         <div className="product">

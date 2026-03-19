@@ -1,6 +1,5 @@
 import { MiniCard } from "@/entities/product";
 import { useProducts } from "@/entities/product/model/useProducts";
-import type { Product } from "@/shared/types";
 import arrow from "@shared/assets/images/arrow-slider.svg";
 import { useRef } from "react";
 import { Navigation } from "swiper/modules";
@@ -10,23 +9,14 @@ import "./PromoSlider.scss";
 export const PromoSlider = () => {
     const SwiperRef = useRef<SwiperRef>(null);
 
-    // const { data, isLoading, error }: any = useProducts();
-    // console.log(data);
+    const { data, isLoading, error }: any = useProducts({
+        tags: "акции дня",
+    });
+    console.log(data);
 
-    // if (isLoading) {
-    //     console.log("Загрузка...");
-    //     return <div>Загрузка...</div>;
-    // }
-    // if (error) {
-    //     console.error(error);
-    //     return <div>Ошибка загрузки</div>;
-    // }
-    // if (!data) return null;
-
-    // const list: Product[] = Array.isArray(data) ? data : data.products;
-    // const products = list.filter((item: Product) =>
-    //     item.tags.includes("акции дня"),
-    // );
+    if (isLoading) return <div>Загрузка...</div>;
+    if (error) return <div>Ошибка загрузки</div>;
+    if (!data) return null;
 
     return (
         <div className="promo-slider">
@@ -57,18 +47,20 @@ export const PromoSlider = () => {
                 speed={400}
                 navigation={false}
             >
-                {/* {products.map((product, index) => {
+                {data.data.products.map((product: any, index: any) => {
                     if (index % 2 !== 0) return null;
 
                     return (
                         <SwiperSlide key={product?.id ?? product?.id ?? index}>
-                            <MiniCard product={products[index]} />
-                            {products[index + 1] && (
-                                <MiniCard product={products[index + 1]} />
+                            <MiniCard product={data.data.products[index]} />
+                            {data.data.products[index + 1] && (
+                                <MiniCard
+                                    product={data.data.products[index + 1]}
+                                />
                             )}
                         </SwiperSlide>
                     );
-                })} */}
+                })}
             </Swiper>
         </div>
     );

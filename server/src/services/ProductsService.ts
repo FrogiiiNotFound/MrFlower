@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { ProductModel } from "../models/ProductModel";
 import type { FilterParams } from "../types/productFilters";
 import ApiError from "../utils/exeptions/ApiError";
@@ -30,7 +31,9 @@ export class ProductsService {
         }
 
         if (filters?.tags) {
-            query.tags = { $in: filters.tags.split(",").map((t) => new RegExp(t, "i")) };
+            query.tags = {
+                $in: filters.tags.split(",").map((t) => new RegExp(t, "i")),
+            };
         }
 
         const totalCount = await ProductModel.countDocuments(query);
@@ -48,6 +51,7 @@ export class ProductsService {
     static async getProductById(productId: string) {
         const product = await ProductModel.findOne({ _id: productId });
         if (!product) throw ApiError.NotFound("Товар не найден или был удален");
+        console.log(product);
 
         return product;
     }

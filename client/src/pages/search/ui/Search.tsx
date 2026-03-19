@@ -4,16 +4,19 @@ import {
     Pagination,
     PaginationContent,
     PaginationItem,
+    PaginationLink,
     PaginationNext,
-    PaginationPrevious
+    PaginationPrevious,
 } from "@/shared/components/ui/pagination";
 import type { Product } from "@/shared/types";
 import { useSearchParams } from "react-router-dom";
 import { Filters } from "./Filters";
 import "./search.scss";
 
+const LIMIT = 30;
+
 export const Search = () => {
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const category = searchParams.get("category");
     const priceFrom = searchParams.get("priceFrom");
@@ -36,7 +39,27 @@ export const Search = () => {
     if (!data) return null;
 
     const currentPage = Number(page) || 1;
-    const totalPages = Math.ceil(data.data.totalCount / data.data.limit);
+    const totalPages = Math.ceil(data.data.totalCount / LIMIT);
+
+    const goToPage = (p: number) => {
+        const next = new URLSearchParams(searchParams);
+        p <= 1 ? next.delete("page") : next.set("page", String(p));
+        setSearchParams(next);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    const getPages = () => {
+        const pages: number[] = [];
+        for (
+            let i = Math.max(1, currentPage - 2);
+            i <= Math.min(totalPages, currentPage + 2);
+            i++
+        ) {
+            pages.push(i);
+        }
+        if (!pages.includes(totalPages)) pages.push(totalPages);
+        return pages;
+    };
 
     return (
         <div className="search">
@@ -47,64 +70,66 @@ export const Search = () => {
                     <div className="search__main-content">
                         <div className="search__cards">
                             {data.data.products.length !== 0 ? (
-                                data.data.products.map((product: Product) => {
-                                    return (
-                                        <SmallCard
-                                            key={product.id}
-                                            product={product}
-                                        />
-                                    );
-                                })
+                                data.data.products.map((product: Product) => (
+                                    <SmallCard
+                                        key={product.id}
+                                        product={product}
+                                    />
+                                ))
                             ) : (
                                 <div className="search__not-found">
                                     Товаров не найдено
                                 </div>
                             )}
                         </div>
-                        <Pagination>
-                            <PaginationContent>
-                                <PaginationItem>
-                                    <PaginationPrevious
-                                        className={
-                                            currentPage <= 1
-                                                ? "search__pagination-btn--disabled"
-                                                : ""
-                                        }
-                                        href={
-                                            currentPage > 1
-                                                ? `?${new URLSearchParams({ ...Object.fromEntries(searchParams), page: String(currentPage - 1) })}`
-                                                : "#"
-                                        }
-                                    />
-                                </PaginationItem>
-
-                                {/* {getPages().map((page) => (
-                                    <PaginationItem key={page}>
-                                        <PaginationLink
-                                            href={`/search/${page}`}
-                                            isActive={page === currentPage}
-                                        >
-                                            {page}
-                                        </PaginationLink>
+                        {totalPages > 1 && (
+                            <Pagination>
+                                <PaginationContent>
+                                    <PaginationItem>
+                                        <PaginationPrevious
+                                            className={
+                                                currentPage <= 1
+                                                    ? "pointer-events-none opacity-50"
+                                                    : "cursor-pointer"
+                                            }
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                if (currentPage > 1)
+                                                    goToPage(currentPage - 1);
+                                            }}
+                                        />
                                     </PaginationItem>
-                                ))} */}
-
-                                <PaginationItem>
-                                    <PaginationNext
-                                        className={
-                                            currentPage >= totalPages
-                                                ? "search__pagination-btn--disabled"
-                                                : ""
-                                        }
-                                        href={
-                                            currentPage < totalPages
-                                                ? `?${new URLSearchParams({ ...Object.fromEntries(searchParams), page: String(currentPage + 1) })}`
-                                                : "#"
-                                        }
-                                    />
-                                </PaginationItem>
-                            </PaginationContent>
-                        </Pagination>
+                                    {getPages().map((p) => (
+                                        <PaginationItem key={p}>
+                                            <PaginationLink
+                                                isActive={p === currentPage}
+                                                className="cursor-pointer"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    goToPage(p);
+                                                }}
+                                            >
+                                                {p}
+                                            </PaginationLink>
+                                        </PaginationItem>
+                                    ))}
+                                    <PaginationItem>
+                                        <PaginationNext
+                                            className={
+                                                currentPage >= totalPages
+                                                    ? "pointer-events-none opacity-50"
+                                                    : "cursor-pointer"
+                                            }
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                if (currentPage < totalPages)
+                                                    goToPage(currentPage + 1);
+                                            }}
+                                        />
+                                    </PaginationItem>
+                                </PaginationContent>
+                            </Pagination>
+                        )}
                     </div>
                 </div>
             </div>

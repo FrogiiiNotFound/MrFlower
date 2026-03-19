@@ -18,8 +18,8 @@ export const Filters = () => {
 
     const [priceRange, setPriceRange] = useState<[number, number]>([priceFrom, priceTo]);
 
-    const [isFlowersOpen, setIsFlowersOpen] = useState(false);
-    const [isSpecialOpen, setIsSpecialOpen] = useState(false);
+    const [isFlowersOpen, setIsFlowersOpen] = useState(true);
+    const [isSpecialOpen, setIsSpecialOpen] = useState(true);
 
     const update = (key: string, value: string | null) => {
         const p = new URLSearchParams(searchParams);

@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import type { RegisterFormValue } from "../model/types";
 import { useRegister } from "../model/useRegisterStore";
 import "./registerForm.scss";
+import { useState } from "react";
 
 export const RegisterForm = () => {
     const { isRegisterOpen, toggleRegister } = useRegister();
@@ -19,6 +20,9 @@ export const RegisterForm = () => {
         formState: { errors },
     } = useForm<RegisterFormValue>();
     const { mutate, isError, error } = useRegisterUser();
+
+    const [policyChecked, setPolicyChecked] = useState(true);
+    const [adsChecked, setAdsChecked] = useState(false);
 
     if (!isRegisterOpen) return null;
 
@@ -35,7 +39,7 @@ export const RegisterForm = () => {
             },
         });
         console.log(response);
-        
+
         if (isError) {
             console.log(error);
         } else {
@@ -75,16 +79,16 @@ export const RegisterForm = () => {
                                 </div>
                             )}
                             <input
-                                type="text"
+                                type="email"
                                 className="register__input"
-                                placeholder="Номер телефона *"
-                                {...register("phone", {
-                                    required: "Телефон обязателен",
+                                placeholder="Электронная почта *"
+                                {...register("email", {
+                                    required: "Почта обязательна",
                                 })}
                             />
-                            {errors?.phone && (
+                            {errors?.email && (
                                 <div className="error-message">
-                                    {errors?.phone.message}
+                                    {errors?.email.message}
                                 </div>
                             )}
                             <input
@@ -101,24 +105,30 @@ export const RegisterForm = () => {
                                 </div>
                             )}
                             <input
-                                type="email"
+                                type="text"
                                 className="register__input"
-                                placeholder="Электронная почта"
-                                {...register("email")}
+                                placeholder="Номер телефона"
+                                {...register("phone")}
                             />
-                            {errors?.email && (
+                            {errors?.phone && (
                                 <div className="error-message">
-                                    {errors?.email.message}
+                                    {errors?.phone.message}
                                 </div>
                             )}
                         </div>
                         <div className="register__checkboxes">
                             <Checkbox
-                                onChange={() => {}}
+                                checked={policyChecked}
+                                onChange={() => {
+                                    setPolicyChecked(!policyChecked);
+                                }}
                                 text="Соглашение на обработку персональных данных *"
                             />
                             <Checkbox
-                                onChange={() => {}}
+                                checked={adsChecked}
+                                onChange={() => {
+                                    setAdsChecked(!adsChecked);
+                                }}
                                 text="Согласен получать рассылку об акциях и скидках"
                             />
                         </div>

@@ -8,7 +8,7 @@ export const useLoginUser = () => {
     return useMutation({
         mutationFn: userApi.loginUser,
         onSuccess: (data) => {
-            localStorage.setItem("token", data.accesstoken);
+            localStorage.setItem("token", data.accessToken);
             setAccessToken(data.accessToken);
             setIsAuth(true);
         },

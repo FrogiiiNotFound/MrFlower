@@ -5,10 +5,11 @@ import ApiError from "../utils/exeptions/ApiError";
 import { OrderModel } from "../models/OrderModel";
 import { OrderItemModel } from "../models/OrderItemModel";
 import { Types } from "mongoose";
+import type { ChangeUserData } from "../types/changeUserData";
 
 class UserService {
     async getUser(userId: string) {
-        const user = await UserModel.findOne({ user_id: userId });
+        const user = await UserModel.findOne({ _id: userId });
         if (!user) throw ApiError.NotFound("Пользователь не найден");
 
         return user;
@@ -68,6 +69,47 @@ class UserService {
 
         return order;
     }
+    async changeUserInfo(data: ChangeUserData, userId: string) {
+        const user = await UserModel.findById(userId);
+        if (!user) throw ApiError.NotFound("Пользователь не найден");
+
+        const filteredData = Object.fromEntries(
+            Object.entries(data).filter(([_, value]) => {
+                return value !== "" && value !== undefined && value !== null;
+            }),
+        );
+
+        const changedUser = UserModel.findOneAndUpdate(
+            { _id: userId },
+            { $set: filteredData },
+            { new: true, runValidators: true },
+        );
+
+        return changedUser;
+    }
+
+    async getUserFavourites(userId: string) {
+        const user = await UserModel.findOne(
+            { user_id: userId },
+            { favourites: 1, _id: 0 },
+        );
+        if (!user) throw ApiError.NotFound("Пользователь не найден");
+
+        return user.favourites;
+    }
+
+    async addFavourite(item: any, userId: string) {
+        const changedUser = await UserModel.findOneAndUpdate(
+            { user_id: userId },
+            { $addToSet: { favourite: item } },
+            { new: true },
+        );
+        if (!changedUser) throw ApiError.NotFound("Пользователь не найден");
+
+        const userData = new UserResponseDto(changedUser);
+
+        return userData;
+    }
 
     async changeNickname(nickname: string, userId: string) {
         const changedUser = UserModel.findOneAndUpdate(
@@ -97,6 +139,33 @@ class UserService {
         user.password = hashedPassword;
 
         await user.save();
+    }
+    async getAddresses(userId: string) {
+        const user = await UserModel.findById(userId);
+        if (!user) throw ApiError.NotFound("Пользователь не найден");
+
+        return user.addresses;
+    }
+    async addAddress(address: string, userId: string) {
+        const user = await UserModel.findById(userId);
+        if (!user) throw ApiError.NotFound("Пользователь не найден");
+
+        user.addresses.push(address);
+        await user.save();
+
+        return user.addresses;
+    }
+    async deleteAddress(userId: string, index: number) {
+        const user = await UserModel.findById(userId);
+        if (!user) throw ApiError.NotFound("Пользователь не найден");
+
+        if (index < 0 || index >= user.addresses.length) {
+            throw ApiError.BadRequest("Неправильный индекс");
+        }
+        user.addresses.splice(index, 1);
+        await user.save();
+
+        return user.addresses;
     }
 }
 export default new UserService();

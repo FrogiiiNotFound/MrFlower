@@ -31,7 +31,11 @@ export const userController = {
             next(e);
         }
     },
-    getUserOrder: async (req: Request<{orderId: string}>, res: Response, next: NextFunction) => {
+    getUserOrder: async (
+        req: Request<{ orderId: string }>,
+        res: Response,
+        next: NextFunction,
+    ) => {
         try {
             const { orderId } = req.params;
             const userId = req.user!.user_id;
@@ -43,6 +47,43 @@ export const userController = {
             next(e);
         }
     },
+    changeUserInfo: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const data = req.body;
+            const userId = req.user!.user_id;
+
+            const updatedUser = UsersService.changeUserInfo(data, userId);
+
+            return res.status(200).json(updatedUser);
+        } catch (e) {
+            next(e);
+        }
+    },
+    getUserFavourites: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const userId = req.user!.user_id;
+            const favourites = await UsersService.getUserFavourites(
+                userId,
+            );
+
+            return res.status(200).json(favourites);
+        } catch (e) {
+            next(e);
+        }
+    },
+    addFavourite: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const { item } = req.body;
+            const userId = req.user!.user_id;
+
+            const userData = UsersService.addFavourite(item, userId);
+
+            return res.status(200).json(userData);
+        } catch (e) {
+            next(e);
+        }
+    },
+
     changeNickname: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const { nickname } = req.body;
@@ -64,6 +105,48 @@ export const userController = {
             await UsersService.changePassword(userId, newPassword, oldPassword);
 
             return res.status(200).json({ message: "Пароль успешно изменен" });
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    getAddresses: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const userId = req.user!.user_id;
+
+            const addresses = await UsersService.getAddresses(userId);
+
+            return res.status(201).json(addresses);
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    addAddress: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const { address } = req.body;
+            const userId = req.user!.user_id;
+
+            const addresses = await UsersService.addAddress(address, userId);
+
+            return res.status(201).json(addresses);
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    deleteAddress: async (
+        req: Request<{ index: number }>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        try {
+            const { index } = req.params;
+            const userId = req.user!.user_id;
+
+            const addresses = await UsersService.deleteAddress(userId, index);
+
+            return res.status(200).json(addresses);
         } catch (e) {
             next(e);
         }

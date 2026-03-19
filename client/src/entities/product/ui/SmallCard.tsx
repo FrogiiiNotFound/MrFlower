@@ -33,7 +33,7 @@ export const SmallCard = ({ product }: { product: Product }) => {
     };
 
     return (
-        <Link to={`/product/${product.id}`} className="small-card-link">
+        <Link to={`/product/${product._id}`} className="small-card-link">
             <div className="small-card">
                 <div className="small-card__img">
                     <img src={product?.image} alt="card-img" />
@@ -55,7 +55,10 @@ export const SmallCard = ({ product }: { product: Product }) => {
                             </p>
                         </div>
                         <div
-                            onClick={() => addToCart(item)}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                addToCart(item);
+                            }}
                             className="small-card__btn"
                         >
                             <p className="small-card__btn-text">В корзину</p>
