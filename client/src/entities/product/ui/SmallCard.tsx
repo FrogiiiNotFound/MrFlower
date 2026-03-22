@@ -1,46 +1,35 @@
 import { useCartStore } from "@/entities/cart";
-import { useAddUserFavourites } from "@/entities/user/model/useAddUserFavourites";
+import { useAddFavourite } from "@/entities/user/model/useAddFavourite";
+import { useDeleteFavourite } from "@/entities/user/model/useDeleteFavourite";
 import type { Product } from "@/shared/types";
+import { lengthLimit } from "@/shared/utils/helpers/lengthLimit";
 import like from "@shared/assets/images/like.svg";
 import { Link } from "react-router-dom";
+import { ProductMapper } from "../model/mapper";
 import "./SmallCard.scss";
-import { useGetUserFavourites } from "@/entities/user/model/useGetUserFavourites";
+import { oldPrice } from "@/shared/utils/helpers/oldPrice";
 
-export const SmallCard = ({ product }: { product: Product }) => {
+export const SmallCard = ({
+    product,
+    favouriteIds,
+}: {
+    product: Product;
+    favouriteIds: Set<string>;
+}) => {
     const { addToCart } = useCartStore();
-    const { data } = useGetUserFavourites();
-    console.log(data);
+    const { mutate: removeUserFavourite } = useDeleteFavourite();
+    const { mutate: addUserFavourite } = useAddFavourite();
 
-    const { mutate: addUserFavourite } = useAddUserFavourites();
+    const item = ProductMapper.toCartItem(product);
 
-    const oldPrice =
-        product?.price + Math.round((product?.discount / 100) * product?.price);
+    const isLiked = favouriteIds.has(product._id);
 
-    const lengthLimit = (text: string, maxLength = 60) => {
-        if (!text || text.length <= maxLength) return text;
-
-        const truncated = text.slice(0, maxLength);
-        const lastSpaceIndex = truncated.lastIndexOf(" ");
-
-        return truncated.slice(0, lastSpaceIndex) + "...";
-    };
-
-    const item = {
-        id: product._id as string,
-        name: product.name,
-        description: product.description,
-        image: product.image,
-        price: product.price,
-        discount: product.discount,
-        oldPrice: oldPrice,
-        amount: 1,
-    };
-
-    const isLiked = data?.data?.some((fav: any) => fav.id === item.id);
-
-    const onLikeClick = (item: any) => {
-        addUserFavourite(item);
-        console.log(item);
+    const onLikeClick = (itemId: string) => {
+        if (isLiked) {
+            removeUserFavourite(itemId);
+        } else {
+            addUserFavourite(itemId);
+        }
     };
 
     return (
@@ -62,7 +51,7 @@ export const SmallCard = ({ product }: { product: Product }) => {
                                 {product?.price} ₽
                             </p>
                             <p className="small-card__old-price">
-                                {oldPrice} ₽
+                                {oldPrice(product)} ₽
                             </p>
                         </div>
                         <div
@@ -79,7 +68,7 @@ export const SmallCard = ({ product }: { product: Product }) => {
                 <div
                     onClick={(e) => {
                         e.preventDefault();
-                        onLikeClick(item);
+                        onLikeClick(product._id);
                     }}
                     className="small-card__like"
                 >

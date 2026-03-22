@@ -13,6 +13,7 @@ userRouter.patch("/user", userController.changeUserInfo);
 
 userRouter.get("/user/favourites", userController.getUserFavourites);
 userRouter.post("/user/favourites", userController.addFavourite);
+userRouter.delete("/user/favourites/:itemId", userController.deleteFavourite);
 
 userRouter.get("/user/addresses", userController.getAddresses);
 userRouter.post("/user/addresses", userController.addAddress);

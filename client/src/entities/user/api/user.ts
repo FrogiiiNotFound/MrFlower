@@ -42,16 +42,21 @@ export const userApi = {
 
         return addresses;
     },
-    addFavourite: async (item: any) => {
-        const favourites = await $api.post("/user/favourites", {
-            item,
-        });
-
-        return favourites;
-    },
     deleteAddress: async (index: number) => {
         const addresses = await $api.delete(`/user/addresses/${index}`);
 
         return addresses;
+    },
+    addFavourite: async (itemId: string) => {
+        const favourites = await $api.post("/user/favourites", {
+            itemId,
+        });
+
+        return favourites;
+    },
+    deleteFavourite: async (itemId: string) => {
+        const favourites = await $api.delete(`/user/favourites/${itemId}`);
+
+        return favourites;
     },
 };

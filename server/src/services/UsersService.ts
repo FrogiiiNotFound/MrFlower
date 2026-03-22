@@ -6,6 +6,7 @@ import { OrderModel } from "../models/OrderModel";
 import { OrderItemModel } from "../models/OrderItemModel";
 import { Types } from "mongoose";
 import type { ChangeUserData } from "../types/changeUserData";
+import { ProductModel } from "../models/ProductModel";
 
 class UserService {
     async getUser(userId: string) {
@@ -82,31 +83,44 @@ class UserService {
         const changedUser = UserModel.findOneAndUpdate(
             { _id: userId },
             { $set: filteredData },
-            { new: true, runValidators: true },
+            { returnDocument: "after" },
         );
 
         return changedUser;
     }
 
     async getUserFavourites(userId: string) {
-        const user = await UserModel.findOne(
-            { _id: userId },
-            { favourites: 1, _id: 0 },
-        );
+        const user = await UserModel.findById(userId).populate("favourites");
         if (!user) throw ApiError.NotFound("Пользователь не найден");
+        if (!user.favourites || user.favourites.length === 0) return [];
 
-        return user.favourites;
+        const favourites = await ProductModel.find({
+            _id: { $in: user.favourites },
+        });
+
+        return favourites;
     }
 
-    async addFavourite(item: any, userId: string) {
+    async addFavourite(itemId: string, userId: string) {
         const changedUser = await UserModel.findOneAndUpdate(
             { _id: userId },
-            { $addToSet: { favourites: item } },
+            { $addToSet: { favourites: itemId } },
             { returnDocument: "after" },
         );
         if (!changedUser) throw ApiError.NotFound("Пользователь не найден");
 
         return changedUser.favourites;
+    }
+    async deleteFavourite(userId: string, itemId: string) {
+        const user = await UserModel.findByIdAndUpdate(
+            userId,
+            { $pull: { favourites: itemId } },
+            { returnDocument: "after" },
+        );
+
+        if (!user) throw ApiError.NotFound("Пользователь не найден");
+
+        return user.favourites;
     }
 
     async changeNickname(nickname: string, userId: string) {

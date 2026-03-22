@@ -16,7 +16,7 @@ export const UserSchema = new mongoose.Schema({
         type: Array,
     },
     favourites: {
-        type: Array,
+        type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
     },
     password: {
         type: String,

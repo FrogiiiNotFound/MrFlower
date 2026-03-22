@@ -73,12 +73,28 @@ export const userController = {
     },
     addFavourite: async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const { item } = req.body;
+            const { itemId } = req.body;
             const userId = req.user!.user_id;
 
-            const userData = UsersService.addFavourite(item, userId);
+            const favourites = await UsersService.addFavourite(itemId, userId);
 
-            return res.status(200).json(userData);
+            return res.status(200).json(favourites);
+        } catch (e) {
+            next(e);
+        }
+    },
+    deleteFavourite: async (
+        req: Request<{ itemId: string }>,
+        res: Response,
+        next: NextFunction,
+    ) => {
+        try {
+            const { itemId } = req.params;
+            const userId = req.user!.user_id;
+
+            const favourites = await UsersService.deleteFavourite(userId, itemId);
+
+            return res.status(200).json(favourites);
         } catch (e) {
             next(e);
         }

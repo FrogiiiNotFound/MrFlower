@@ -1,18 +1,26 @@
 import { Card } from "@/entities/product";
 import { useProducts } from "@/entities/product/model/useProducts";
 import arrow from "@shared/assets/images/arrow-slider.svg";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide, type SwiperRef } from "swiper/react";
 import "./Slider.scss";
+import { useGetFavourites } from "@/entities/user/model/useGetFavourites";
 
 export const Slider = ({ filter }: { filter: string }) => {
+    const { data: favourites } = useGetFavourites();
     const swiperRef = useRef<SwiperRef>(null);
 
     const { data, isLoading, error }: any = useProducts({
         category: "all",
         tags: filter,
     });
+
+    const favouriteIds = useMemo<Set<string>>(() => {
+        return new Set(
+            favourites?.data?.map((fav: any) => String(fav._id)) || [],
+        );
+    }, [favourites]);
 
     if (isLoading) return <div>Загрузка...</div>;
     if (error) return <div>Ошибка загрузки</div>;
@@ -30,8 +38,8 @@ export const Slider = ({ filter }: { filter: string }) => {
                 speed={400}
             >
                 {data.data.products.map((product: any) => (
-                    <SwiperSlide key={product?._id ?? product?.id}>
-                        <Card product={product} />
+                    <SwiperSlide key={product?._id}>
+                        <Card product={product} favouriteIds={favouriteIds} />
                     </SwiperSlide>
                 ))}
             </Swiper>

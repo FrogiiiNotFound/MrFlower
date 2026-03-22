@@ -2,10 +2,16 @@ import { SmallCard } from "@/entities/product";
 import type { Product } from "@/shared/types";
 import "./Favourites.scss";
 import { Menu } from "@widgets/menu";
-import { useGetUserFavourites } from "@/entities/user/model/useGetUserFavourites";
+import { useGetFavourites } from "@/entities/user/model/useGetFavourites";
+import { useMemo } from "react";
 
 export const Favourites = () => {
-    const { data } = useGetUserFavourites();
+    const { data } = useGetFavourites();
+
+    const favouriteIds = useMemo<Set<string>>(
+        () => new Set(data?.data?.map((fav: any) => String(fav._id)) || []),
+        [data],
+    );
 
     return (
         <div className="favourites">
@@ -21,8 +27,9 @@ export const Favourites = () => {
                             ) : (
                                 data?.data.map((product: Product) => (
                                     <SmallCard
-                                        key={product.id}
+                                        key={product._id}
                                         product={product}
+                                        favouriteIds={favouriteIds}
                                     />
                                 ))
                             )}

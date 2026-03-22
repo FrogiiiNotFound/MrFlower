@@ -1,5 +1,6 @@
 import { SmallCard } from "@/entities/product";
 import { useProducts } from "@/entities/product/model/useProducts";
+import { useGetFavourites } from "@/entities/user/model/useGetFavourites";
 import {
     Pagination,
     PaginationContent,
@@ -12,6 +13,7 @@ import type { Product } from "@/shared/types";
 import { useSearchParams } from "react-router-dom";
 import { Filters } from "./Filters";
 import "./search.scss";
+import { useMemo } from "react";
 
 const LIMIT = 30;
 
@@ -33,13 +35,10 @@ export const Search = () => {
         tags,
         page,
     });
-
-    if (isLoading) return <div>Загрузка...</div>;
-    if (error) return <div>Ошибка загрузки</div>;
-    if (!data) return null;
+    const { data: favourites } = useGetFavourites();
 
     const currentPage = Number(page) || 1;
-    const totalPages = Math.ceil(data.data.totalCount / LIMIT);
+    const totalPages = Math.ceil(data?.data?.totalCount / LIMIT);
 
     const goToPage = (p: number) => {
         const next = new URLSearchParams(searchParams);
@@ -61,6 +60,16 @@ export const Search = () => {
         return pages;
     };
 
+    const favouriteIds = useMemo<Set<string>>(() => {
+        return new Set(
+            favourites?.data?.map((fav: any) => String(fav._id)) || [],
+        );
+    }, [favourites]);
+
+    if (isLoading) return <div>Загрузка...</div>;
+    if (error) return <div>Ошибка загрузки</div>;
+    if (!data) return null;
+
     return (
         <div className="search">
             <div className="search__container">
@@ -72,8 +81,9 @@ export const Search = () => {
                             {data.data.products.length !== 0 ? (
                                 data.data.products.map((product: Product) => (
                                     <SmallCard
-                                        key={product.id}
+                                        key={product._id}
                                         product={product}
+                                        favouriteIds={favouriteIds}
                                     />
                                 ))
                             ) : (
