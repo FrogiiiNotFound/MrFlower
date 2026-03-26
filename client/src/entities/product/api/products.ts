@@ -6,8 +6,6 @@ export const productsApi = {
             params: queryParams,
         });
 
-        console.log(data);
-
         return data;
     },
     getProductById: async (id: string) => {

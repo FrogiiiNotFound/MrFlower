@@ -7,9 +7,11 @@ const userRouter = Router();
 userRouter.use(authMiddleware);
 
 userRouter.get("/user", userController.getUser);
+userRouter.patch("/user", userController.changeUserInfo);
+
 userRouter.get("/user/orders", userController.getUserOrders);
 userRouter.get("/user/orders/:orderId", userController.getUserOrder);
-userRouter.patch("/user", userController.changeUserInfo);
+userRouter.post("/user/orders", userController.addOrder);
 
 userRouter.get("/user/favourites", userController.getUserFavourites);
 userRouter.post("/user/favourites", userController.addFavourite);

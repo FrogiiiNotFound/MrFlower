@@ -7,7 +7,6 @@
 
     &__content {
         display: flex;
-        align-items: center;
         justify-content: space-between;
     }
 
@@ -122,6 +121,44 @@
         font-weight: 400;
         font-size: 16px;
         color: #868686;
+    }
+
+    &__addresses {
+        margin-bottom: 20px;
+    }
+
+    &__addresses-title {
+        font-weight: 500;
+        font-size: 16px;
+        color: #363636;
+        margin-bottom: 10px;
+    }
+
+    &__address {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        padding: 6px 0;
+        font-size: 14px;
+        color: #363636;
+    }
+
+    &__addresses-empty {
+        font-size: 14px;
+        color: #868686;
+        margin-bottom: 8px;
+    }
+
+    &__addresses-add {
+        cursor: pointer;
+        color: #ff9e7b;
+        font-size: 14px;
+        margin-top: 8px;
+
+        &:hover {
+            color: #ff8052;
+        }
     }
 
     &__btn {

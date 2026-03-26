@@ -15,6 +15,7 @@ export const productsController = {
                 priceTo: req.query.priceTo,
                 composition: req.query.composition,
                 tags: req.query.tags,
+                q: req.query.q,
             };
             const page = Number(req.query.page) || 1;
             const limit = 30;

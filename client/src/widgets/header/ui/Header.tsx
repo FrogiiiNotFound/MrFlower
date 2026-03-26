@@ -4,11 +4,12 @@ import cartIcon from "../assets/shopping-cart.svg";
 import profileIcon from "../assets/user.svg";
 
 import "./header.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "@/entities/user";
 import { useLogin } from "@/widgets/login/model/useLoginStore";
 import { useRegister } from "@/widgets/register/model/useRegisterStore";
 import { useCartStore } from "@/entities/cart";
+import { useState } from "react";
 
 export const Header = () => {
     const { toggleLogin } = useLogin();
@@ -16,6 +17,13 @@ export const Header = () => {
     const { isAuth } = useUser();
     const { setCategory, setTags } = useFilters();
     const { cart } = useCartStore();
+    const navigate = useNavigate();
+    const [query, setQuery] = useState("");
+
+    const handleSearch = () => {
+        if (!query.trim()) return;
+        navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    };
 
     return (
         <header className="header">
@@ -73,8 +81,11 @@ export const Header = () => {
                             type="text"
                             className="header__search-input"
                             placeholder="Поиск"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                         />
-                        <div className="header__search-icon">
+                        <div className="header__search-icon" onClick={handleSearch}>
                             <img src={searchIcon} alt="search" />
                         </div>
                     </div>

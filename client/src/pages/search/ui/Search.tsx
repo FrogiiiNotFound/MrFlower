@@ -26,6 +26,7 @@ export const Search = () => {
     const composition = searchParams.get("composition");
     const tags = searchParams.get("tags");
     const page = searchParams.get("page");
+    const q = searchParams.get("q");
 
     const { data, isLoading, error }: any = useProducts({
         category,
@@ -34,6 +35,7 @@ export const Search = () => {
         composition,
         tags,
         page,
+        q,
     });
     const { data: favourites } = useGetFavourites();
 

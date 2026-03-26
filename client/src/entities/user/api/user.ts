@@ -59,4 +59,13 @@ export const userApi = {
 
         return favourites;
     },
+    addOrder: async (payload: {
+        address: string;
+        total_price: string;
+        delivery_date: string;
+        items: { product_id: string; quantity: number; price: number }[];
+    }) => {
+        const { data } = await $api.post("/user/orders", payload);
+        return data;
+    },
 };

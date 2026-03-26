@@ -36,6 +36,13 @@ export class ProductsService {
             };
         }
 
+        if (filters?.q) {
+            query.$or = [
+                { name: { $regex: filters.q, $options: "i" } },
+                { description: { $regex: filters.q, $options: "i" } },
+            ];
+        }
+
         const totalCount = await ProductModel.countDocuments(query);
 
         const products = await ProductModel.find(query)

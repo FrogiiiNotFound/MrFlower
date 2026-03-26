@@ -1,21 +1,27 @@
 import { useCartStore } from "@/entities/cart";
+import { useUser } from "@/entities/user";
 import { useAddFavourite } from "@/entities/user/model/useAddFavourite";
 import { useDeleteFavourite } from "@/entities/user/model/useDeleteFavourite";
+import { oldPrice } from "@/shared/utils/helpers/oldPrice";
+import { useLogin } from "@/widgets/login/model/useLoginStore";
 import like from "@shared/assets/images/like.svg";
 import minus from "@shared/assets/images/minus.svg";
 import plus from "@shared/assets/images/plus.svg";
 import star from "@shared/assets/images/star.svg";
 import { Link } from "react-router-dom";
+import { ProductMapper } from "../model/mapper";
 import "./Card.scss";
 import type { CardProps } from "./types";
-import { ProductMapper } from "../model/mapper";
-import { oldPrice } from "@/shared/utils/helpers/oldPrice";
+import { toast } from "sonner";
 
 export const Card: React.FC<CardProps> = ({ product, favouriteIds }) => {
+    const { toggleLogin } = useLogin();
+
     const { cart, decreaseAmount, increaseAmount, removeFromCart, addToCart } =
         useCartStore();
     const { mutate: removeUserFavourite } = useDeleteFavourite();
     const { mutate: addUserFavourite } = useAddFavourite();
+    const { accessToken } = useUser();
 
     const item = ProductMapper.toCartItem(product);
 
@@ -24,11 +30,16 @@ export const Card: React.FC<CardProps> = ({ product, favouriteIds }) => {
     const isLiked = favouriteIds.has(product._id);
 
     const onLikeClick = (itemId: string) => {
-        if (isLiked) {
-            removeUserFavourite(itemId);
-        } else {
-            addUserFavourite(itemId);
+        if (!accessToken) {
+            toggleLogin();
+            toast("Требуется вход или регистрация");
+            return;
         }
+        if (isLiked) {
+            return removeUserFavourite(itemId);
+        }
+
+        addUserFavourite(itemId);
     };
 
     return (
@@ -128,9 +139,10 @@ export const Card: React.FC<CardProps> = ({ product, favouriteIds }) => {
                         src={like}
                         alt="like"
                         style={{
-                            filter: isLiked
-                                ? "invert(74%) sepia(24%) saturate(631%) hue-rotate(326deg) brightness(105%) contrast(101%)"
-                                : "none",
+                            filter:
+                                isLiked
+                                    ? "invert(74%) sepia(24%) saturate(631%) hue-rotate(326deg) brightness(105%) contrast(101%)"
+                                    : "none",
                         }}
                     />
                 </div>

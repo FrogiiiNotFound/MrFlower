@@ -1,18 +1,25 @@
 import { MiniCard } from "@/entities/product";
 import { useProducts } from "@/entities/product/model/useProducts";
 import arrow from "@shared/assets/images/arrow-slider.svg";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide, type SwiperRef } from "swiper/react";
 import "./PromoSlider.scss";
+import { useGetFavourites } from "@/entities/user/model/useGetFavourites";
 
 export const PromoSlider = () => {
+    const { data: favourites } = useGetFavourites();
     const SwiperRef = useRef<SwiperRef>(null);
 
     const { data, isLoading, error }: any = useProducts({
         tags: "акции дня",
     });
-    console.log(data);
+
+    const favouriteIds = useMemo<Set<string>>(() => {
+        return new Set(
+            favourites?.data?.map((fav: any) => String(fav._id)) || [],
+        );
+    }, [favourites]);
 
     if (isLoading) return <div>Загрузка...</div>;
     if (error) return <div>Ошибка загрузки</div>;
@@ -42,20 +49,31 @@ export const PromoSlider = () => {
                 ref={SwiperRef}
                 modules={[Navigation]}
                 spaceBetween={20}
-                slidesPerView={1}
+                slidesPerView={2}
                 loop={true}
                 speed={400}
                 navigation={false}
+                breakpoints={{
+                    770: {
+                        slidesPerView: 3,
+                    },
+                    1250: {
+                        slidesPerView: 2,
+                    },
+                }}
             >
                 {data.data.products.map((product: any, index: any) => {
                     if (index % 2 !== 0) return null;
 
                     return (
-                        <SwiperSlide key={product?.id ?? product?.id ?? index}>
-                            <MiniCard product={data.data.products[index]} />
+                        <SwiperSlide
+                            className="promo-slider__slide"
+                            key={product?._id}
+                        >
                             {data.data.products[index + 1] && (
                                 <MiniCard
                                     product={data.data.products[index + 1]}
+                                    favouriteIds={favouriteIds}
                                 />
                             )}
                         </SwiperSlide>

@@ -8,8 +8,22 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'tailwindcss';
-@import './vars';
-@import './helpers';
-@import './reset';
-@import './repeat';
+@import "tailwindcss";
+@import "./vars";
+@import "./helpers";
+@import "./reset";
+@import "./repeat";
+
+[data-sonner-toast][data-styled="true"] {
+    justify-content: center;
+    width: fit-content !important;
+    white-space: nowrap;
+    left: 50% !important;
+    transform: var(--y) translateX(-50%) !important;
+
+    [data-content] {
+        text-align: center;
+        font-size: 14px;
+        align-items: center;
+    }
+}

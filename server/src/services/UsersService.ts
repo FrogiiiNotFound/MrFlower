@@ -17,34 +17,36 @@ class UserService {
     }
 
     async getUserOrders(userId: string, limit: number, offset: number) {
-        const user = await UserModel.findOne({ user_id: userId });
+        const user = await UserModel.findOne({ _id: userId });
         if (!user) throw ApiError.NotFound("Пользователь не найден");
 
-        const orders = await OrderModel.aggregate([
-            {
-                $match: { user_id: userId },
-            },
-            {
-                $lookup: {
-                    from: OrderItemModel.collection.name,
-                    localField: "_id",
-                    foreignField: "order_id",
-                    as: "items",
+        const [orders, totalCount] = await Promise.all([
+            OrderModel.aggregate([
+                { $match: { user_id: new Types.ObjectId(userId) } },
+                { $sort: { createdAt: -1 } },
+                { $skip: offset },
+                { $limit: limit },
+                {
+                    $lookup: {
+                        from: OrderItemModel.collection.name,
+                        localField: "_id",
+                        foreignField: "order_id",
+                        as: "items",
+                    },
                 },
-            },
-            {
-                $sort: { createdAt: -1 },
-            },
-            {
-                $skip: offset,
-            },
-            {
-                $limit: limit,
-            },
+                {
+                    $lookup: {
+                        from: ProductModel.collection.name,
+                        localField: "items.product_id",
+                        foreignField: "_id",
+                        as: "products",
+                    },
+                },
+            ]),
+            OrderModel.countDocuments({ user_id: new Types.ObjectId(userId) }),
         ]);
-        if (!orders) throw ApiError.NotFound("История заказов пуста");
 
-        return orders;
+        return { orders, totalCount };
     }
 
     async getUserOrder(orderId: string, userId: string) {
@@ -152,6 +154,27 @@ class UserService {
 
         await user.save();
     }
+    async addOrder(
+        userId: string,
+        address: string,
+        total_price: string,
+        delivery_date: string,
+        items: { product_id: string; quantity: number; price: number }[],
+    ) {
+        const order = await OrderModel.create({
+            user_id: userId,
+            address,
+            total_price,
+            delivery_date,
+        });
+
+        const orderItems = await OrderItemModel.insertMany(
+            items.map((item) => ({ ...item, order_id: order._id })),
+        );
+
+        return { order, items: orderItems };
+    }
+
     async getAddresses(userId: string) {
         const user = await UserModel.findById(userId);
         if (!user) throw ApiError.NotFound("Пользователь не найден");

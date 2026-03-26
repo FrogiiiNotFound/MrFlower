@@ -2,6 +2,9 @@
     padding: 20px 0px;
 
     &__search-list {
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -38,11 +41,27 @@
         justify-content: space-between;
         align-items: center;
     }
+
+    &__search-img {
+        & img {
+            width: 17px;
+        }
+    }
 }
 
 /* ============================================================================== */
 
 @media (max-width: 1250px) {
+    .home {
+        &__content {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        &__search-list {
+            margin-bottom: 40px;
+        }
+    }
 }
 
 @media (max-width: 768px) {

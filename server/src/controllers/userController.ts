@@ -16,17 +16,17 @@ export const userController = {
     getUserOrders: async (req: Request, res: Response, next: NextFunction) => {
         try {
             const userId = req.user!.user_id;
-            const page = Number(req.params.page) | 1;
-            const limit = 10;
+            const page = Number(req.query.page) || 1;
+            const limit = 3;
             const offset = (page - 1) * limit;
 
-            const orders = await UsersService.getUserOrders(
+            const { orders, totalCount } = await UsersService.getUserOrders(
                 userId,
                 limit,
                 offset,
             );
 
-            return res.status(200).json({ page, data: orders });
+            return res.status(200).json({ page, totalCount, data: orders });
         } catch (e) {
             next(e);
         }
@@ -95,6 +95,19 @@ export const userController = {
             const favourites = await UsersService.deleteFavourite(userId, itemId);
 
             return res.status(200).json(favourites);
+        } catch (e) {
+            next(e);
+        }
+    },
+
+    addOrder: async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const { address, total_price, delivery_date, items } = req.body;
+            const userId = req.user!.user_id;
+
+            const order = await UsersService.addOrder(userId, address, total_price, delivery_date, items);
+
+            return res.status(201).json(order);
         } catch (e) {
             next(e);
         }

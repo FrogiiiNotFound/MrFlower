@@ -4,17 +4,21 @@ import { Link, useLocation } from "react-router-dom";
 import { useUser } from "@/entities/user";
 import { toast } from "sonner";
 import { userApi } from "@/entities/user/api/user";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const Menu = () => {
     const location = useLocation();
     const { setIsAuth } = useUser();
+    const queryClient = useQueryClient();
 
     const logoutUser = () => {
         userApi
             .logout()
             .then(() => {
                 localStorage.removeItem("token");
+                localStorage.removeItem("REACT_QUERY_OFFLINE_CACHE");
                 setIsAuth(false);
+                queryClient.clear();
                 toast("Вы вышли из аккаунта");
             })
             .catch((err: any) => {

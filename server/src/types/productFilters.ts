@@ -5,6 +5,7 @@ export type FilterQuery = {
     priceTo: number;
     composition: string;
     tags: string;
+    q: string;
 };
 
 export type FilterParams = {
@@ -13,4 +14,5 @@ export type FilterParams = {
     priceTo: number;
     composition: string;
     tags: string;
+    q: string;
 };
