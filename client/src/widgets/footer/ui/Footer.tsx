@@ -10,7 +10,7 @@ export const Footer = () => {
       <div className="footer__container _container">
         <div className='footer__content'>
           <div className="footer__main-info">
-              <h2 className="footer__logo">MrFlower</h2>
+              <h2 className="footer__logo">Вместо слов</h2>
               <div className="footer__socials">
                 <div className="footer__social">
                   <img src={mail} alt="mail" />
@@ -97,16 +97,16 @@ export const Footer = () => {
               <h3 className="footer__info-title">Контакты</h3>
               <ul className="footer__links">
                 <li className="footer__link">
-                  <a href="https://t.me/frogiiinotfound">+7 (987) 175 29-73</a>
+                  <a href="tel:8 960 08 08 528">8 960 08 08 528</a>
                 </li>
                 <li className="footer__link">
-                  <a href="https://t.me/frogiiinotfound">Москва, улица Лорем Апсум, 15А</a>
+                  <p>г. Казань ул.Зур Урам 1К</p>
                 </li>
                 <li className="footer__link">
-                  <a href="https://t.me/frogiiinotfound">Телеграм</a>
+                  <a href="https://t.me/vmesto_slov_kzn">Телеграм</a>
                 </li>
                 <li className="footer__link">
-                  <a href="https://t.me/frogiiinotfound">Почта</a>
+                  <a href="mailTo:Vmesto.slov@yandex.ru">Vmesto.slov@yandex.ru</a>
                 </li>
                 <li className="footer__link">
                   <a href="https://t.me/frogiiinotfound">Создание сайтов - RumpStudio</a>

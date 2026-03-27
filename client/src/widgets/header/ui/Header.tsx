@@ -72,7 +72,7 @@ export const Header = () => {
                     </nav>
                 </div>
                 <Link to="/">
-                    <h2 className="header__logo">MrFlower</h2>
+                    <h2 className="header__logo">Вместо слов</h2>
                 </Link>
 
                 <div className="header__content">
