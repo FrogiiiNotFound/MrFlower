@@ -5,11 +5,13 @@ import { useUser } from "@/entities/user";
 import { toast } from "sonner";
 import { userApi } from "@/entities/user/api/user";
 import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
 export const Menu = () => {
     const location = useLocation();
     const { setIsAuth } = useUser();
     const queryClient = useQueryClient();
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const logoutUser = () => {
         userApi
@@ -27,8 +29,16 @@ export const Menu = () => {
     };
 
     return (
-        <div className="profile__menu">
-            <ul className="profile__list">
+        <>
+            <button className="profile__menu-toggle" onClick={() => setMenuOpen(true)}>
+                ☰ Меню
+            </button>
+            {menuOpen && (
+                <div className="profile__menu-overlay" onClick={() => setMenuOpen(false)} />
+            )}
+            <div className={`profile__menu ${menuOpen ? "profile__menu--open" : ""}`}>
+                <button className="profile__menu-close" onClick={() => setMenuOpen(false)}>✕</button>
+                <ul className="profile__list">
                 <Link to={"/settings"}>
                     <li
                         className={`profile__item ${location.pathname === "/settings" ? "active" : ""}`}
@@ -85,5 +95,6 @@ export const Menu = () => {
                 Выйти из аккаунта
             </div>
         </div>
+        </>
     );
 };

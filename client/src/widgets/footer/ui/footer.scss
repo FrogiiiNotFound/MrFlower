@@ -50,7 +50,7 @@
     }
 
     &__addition {
-      text-align: center;
+        text-align: center;
     }
 
     &__addition-text {
@@ -87,13 +87,17 @@
 }
 
 @media (max-width: 528px) {
-  .footer {
-    &__content {
-      flex-direction: column;
-    }
+    .footer {
+        &__content {
+            flex-direction: column;
+        }
 
-    &__columns {
-      gap: 20px;
+        &__columns {
+            gap: 20px;
+        }
+
+        &__link {
+            font-size: 14px;
+        }
     }
-  }
 }

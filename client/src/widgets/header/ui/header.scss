@@ -140,20 +140,39 @@
     .header {
         &__search-wrapper {
             min-width: inherit;
+            border: 0px solid #d4d4d4;
+            background: #f7f7f7;
+            position: relative;
         }
 
         &__search-input {
-            display: none;
+            position: absolute;
+            right: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            opacity: 0;
+            transition: width 0.3s ease, opacity 0.3s ease;
+            pointer-events: none;
+            background: #f7f7f7;
+            border: 1px solid #d4d4d4;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 16px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        &__search-wrapper--open &__search-input {
+            display: block;
+            width: 180px;
+            opacity: 1;
+            pointer-events: all;
         }
 
         &__content {
             justify-content: start;
             gap: 10px;
-        }
-
-        &__search-wrapper {
-            border: 0px solid #d4d4d4;
-            background: #f7f7f7;
         }
 
         &__container {

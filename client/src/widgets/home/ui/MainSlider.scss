@@ -114,15 +114,16 @@
         max-width: 100%;
 
         &__img {
-          height: 200px;
+            height: 200px;
+            width: 520px;
         }
 
         &__info {
-          bottom: 10px;
+            bottom: 10px;
         }
 
         &__info-title {
-          font-size: 22px;
+            font-size: 22px;
         }
 
         &__info-text {
@@ -130,14 +131,50 @@
         }
 
         &__prev {
-          top: 44%;
+            top: 44%;
         }
-        
+
         &__next {
-          top: 44%;
+            top: 44%;
         }
     }
 }
 
 @media (max-width: 528px) {
+    .main-slider {
+        height: 100px;
+
+        &__img {
+            height: 100px;
+            width: 520px;
+        }
+
+        &__info {
+            padding: 5px 10px;
+        }
+
+        &__info-title {
+            font-size: 10px;
+        }
+
+        &__info-text {
+            font-size: 7px;
+        }
+
+        &__prev {
+            padding: 5px 5px 5px 8px;
+        }
+
+        &__prev img {
+            width: 7px;
+        }
+
+        &__next {
+            padding: 5px 5px 5px 8px;
+        }
+
+        &__next img {
+            width: 7px;
+        }
+    }
 }

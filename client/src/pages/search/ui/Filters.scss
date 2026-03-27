@@ -208,4 +208,21 @@
     &__addition-filter-icon.active {
         transform: rotate(180deg);
     }
+
+    &__close {
+        display: none;
+        position: sticky;
+        top: 0;
+        float: right;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #363636;
+        margin-bottom: 16px;
+
+        @media (max-width: 758px) {
+            display: block;
+        }
+    }
 }

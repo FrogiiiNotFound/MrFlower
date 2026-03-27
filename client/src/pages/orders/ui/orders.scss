@@ -14,6 +14,7 @@
         padding: 22px 37px 17px 20px;
 
         display: flex;
+        justify-content: space-between;
         gap: 40px;
     }
 
@@ -85,6 +86,10 @@
         margin-bottom: 50px;
     }
 
+    &__order-info {
+        max-width: 360px;
+    }
+
     &__price-title {
         font-weight: 500;
         font-size: 16px;
@@ -141,5 +146,56 @@
     &__order-quantity {
         font-size: 16px;
         color: #868686;
+    }
+}
+
+/* ============================================================================== */
+
+@media (max-width: 1250px) {
+    .orders {
+        &__order {
+            flex-direction: column;
+        }
+
+        &__price {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@media (max-width: 528px) {
+    .orders {
+        &__order {
+            gap: 10px;
+        }
+
+        &__order-title {
+            font-size: 16px;
+            text-align: center;
+        }
+
+        &__order-price {
+            justify-content: center;
+        }
+
+        &__order-item {
+            flex-direction: column;
+        }
+
+        &__order-new-price {
+            font-size: 20px;
+        }
+
+        &__order-item {
+            margin-bottom: 15px;
+        }
+
+        &__title {
+            margin-bottom: 20px;
+        }
+
+        &__content {
+            gap: 40px;
+        }
     }
 }

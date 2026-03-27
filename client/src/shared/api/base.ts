@@ -1,5 +1,6 @@
 import { API_BASE_URL } from '@shared/utils/constants/api';
 import axios from 'axios';
+import { useUser } from '@/entities/user';
 
 export const $api = axios.create({
   baseURL: API_BASE_URL,
@@ -26,10 +27,15 @@ $api.interceptors.response.use(
       try {
         const { data } = await axios.get(`${API_BASE_URL}refresh`, { withCredentials: true });
         localStorage.setItem('token', data.accessToken);
+        const { setAccessToken, setIsAuth } = useUser.getState();
+        setAccessToken(data.accessToken);
+        setIsAuth(true);
         original.headers.Authorization = `Bearer ${data.accessToken}`;
         return $api(original);
       } catch {
         localStorage.removeItem('token');
+        const { setIsAuth } = useUser.getState();
+        setIsAuth(false);
       }
     }
     return Promise.reject(error);

@@ -13,6 +13,7 @@ import { ProductMapper } from "../model/mapper";
 import "./Card.scss";
 import type { CardProps } from "./types";
 import { toast } from "sonner";
+import { lengthLimit } from "@/shared/utils/helpers/lengthLimit";
 
 export const Card: React.FC<CardProps> = ({ product, favouriteIds }) => {
     const { toggleLogin } = useLogin();
@@ -42,6 +43,9 @@ export const Card: React.FC<CardProps> = ({ product, favouriteIds }) => {
         addUserFavourite(itemId);
     };
 
+    const limit = window.innerWidth < 530 ? 25 : 30;
+    const descLimit = window.innerWidth < 530 ? 50 : 70;
+
     return (
         <Link to={`/product/${product?._id}`} className="card-link">
             <div className="card">
@@ -50,7 +54,9 @@ export const Card: React.FC<CardProps> = ({ product, favouriteIds }) => {
                 </div>
                 <div className="card__content">
                     <div className="card__info">
-                        <h3 className="card__slide-title">{product?.name}</h3>
+                        <h3 className="card__slide-title">
+                            {lengthLimit(product?.name, limit)}
+                        </h3>
                         <div className="card__rating">
                             <div className="card__star">
                                 <img src={star} alt="star" />
@@ -64,7 +70,9 @@ export const Card: React.FC<CardProps> = ({ product, favouriteIds }) => {
                                 </div>
                             </div>
                         </div>
-                        <p className="card__desc">{product?.description}</p>
+                        <p className="card__desc">
+                            {lengthLimit(product?.description, descLimit)}
+                        </p>
                     </div>
                     <div className="card__pricing">
                         <div className="card__price">
@@ -139,10 +147,9 @@ export const Card: React.FC<CardProps> = ({ product, favouriteIds }) => {
                         src={like}
                         alt="like"
                         style={{
-                            filter:
-                                isLiked
-                                    ? "invert(74%) sepia(24%) saturate(631%) hue-rotate(326deg) brightness(105%) contrast(101%)"
-                                    : "none",
+                            filter: isLiked
+                                ? "invert(74%) sepia(24%) saturate(631%) hue-rotate(326deg) brightness(105%) contrast(101%)"
+                                : "none",
                         }}
                     />
                 </div>

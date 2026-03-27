@@ -4,6 +4,8 @@ import { useDeleteFavourite } from "@/entities/user/model/useDeleteFavourite";
 import type { Product } from "@/shared/types";
 import { lengthLimit } from "@/shared/utils/helpers/lengthLimit";
 import like from "@shared/assets/images/like.svg";
+import minus from "@shared/assets/images/minus.svg";
+import plus from "@shared/assets/images/plus.svg";
 import { Link } from "react-router-dom";
 import { ProductMapper } from "../model/mapper";
 import "./SmallCard.scss";
@@ -16,12 +18,12 @@ export const SmallCard = ({
     product: Product;
     favouriteIds: Set<string>;
 }) => {
-    const { addToCart } = useCartStore();
+    const { cart, addToCart, increaseAmount, decreaseAmount, removeFromCart } = useCartStore();
     const { mutate: removeUserFavourite } = useDeleteFavourite();
     const { mutate: addUserFavourite } = useAddFavourite();
 
     const item = ProductMapper.toCartItem(product);
-
+    const cartItem = cart.find((i) => i.id === product._id);
     const isLiked = favouriteIds.has(product._id);
 
     const onLikeClick = (itemId: string) => {
@@ -54,15 +56,44 @@ export const SmallCard = ({
                                 {oldPrice(product)} ₽
                             </p>
                         </div>
-                        <div
-                            onClick={(e) => {
-                                e.preventDefault();
-                                addToCart(item);
-                            }}
-                            className="small-card__btn"
-                        >
-                            <p className="small-card__btn-text">В корзину</p>
-                        </div>
+                        {cartItem ? (
+                            <div
+                                className="small-card__amount"
+                                onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+                            >
+                                <div
+                                    className="small-card__amount-decrease"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        cartItem.amount > 1 ? decreaseAmount(product._id) : removeFromCart(product._id);
+                                    }}
+                                >
+                                    <img src={minus} alt="minus" />
+                                </div>
+                                <p className="small-card__amount-value">{cartItem.amount}</p>
+                                <div
+                                    className="small-card__amount-increase"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        increaseAmount(product._id);
+                                    }}
+                                >
+                                    <img src={plus} alt="plus" />
+                                </div>
+                            </div>
+                        ) : (
+                            <div
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    addToCart(item);
+                                }}
+                                className="small-card__btn"
+                            >
+                                <p className="small-card__btn-text">В корзину</p>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div

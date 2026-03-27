@@ -75,7 +75,7 @@
     }
 
     &__button {
-        min-width: 427px;
+        min-width: 100%;
         background: #ff9e7b;
         padding: 12px 0px;
         text-align: center;
@@ -96,7 +96,8 @@
     &__settings {
         display: flex;
         justify-content: space-between;
-        width: 100%;
+
+        gap: 50px;
     }
 
     &__addresses-title {
@@ -188,5 +189,28 @@
 
     &__addresses-not-found {
         margin-bottom: 40px;
+    }
+}
+
+/* ============================================================================== */
+
+@media (max-width: 1250px) {
+    .user {
+        &__content {
+            gap: 20px !important;
+        }
+
+        &__settings {
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        &__addresses {
+            min-width: inherit;
+        }
+
+        &__button {
+            margin-right: 15px;
+        }
     }
 }

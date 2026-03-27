@@ -19,10 +19,19 @@ export const Header = () => {
     const { cart } = useCartStore();
     const navigate = useNavigate();
     const [query, setQuery] = useState("");
+    const [searchOpen, setSearchOpen] = useState(false);
 
     const handleSearch = () => {
         if (!query.trim()) return;
         navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+    };
+
+    const handleSearchIconClick = () => {
+        if (searchOpen && query.trim()) {
+            handleSearch();
+        } else {
+            setSearchOpen(!searchOpen);
+        }
     };
 
     return (
@@ -76,7 +85,7 @@ export const Header = () => {
                 </Link>
 
                 <div className="header__content">
-                    <div className="header__search-wrapper">
+                    <div className={`header__search-wrapper ${searchOpen ? "header__search-wrapper--open" : ""}`}>
                         <input
                             type="text"
                             className="header__search-input"
@@ -85,7 +94,7 @@ export const Header = () => {
                             onChange={(e) => setQuery(e.target.value)}
                             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                         />
-                        <div className="header__search-icon" onClick={handleSearch}>
+                        <div className="header__search-icon" onClick={handleSearchIconClick}>
                             <img src={searchIcon} alt="search" />
                         </div>
                     </div>

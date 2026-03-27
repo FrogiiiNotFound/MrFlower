@@ -72,7 +72,7 @@ export const MiniCard = ({
                     </div>
                 </div>
                 <div className="mini-card__slide-content">
-                    <h3 className="mini-card__title">{product?.name}</h3>
+                    <h3 className="mini-card__title">{lengthLimit(product?.name, 25)}</h3>
                     <div className="mini-card__rating">
                         <div className="mini-card__star">
                             <img src={star} alt="star" />

@@ -33,9 +33,17 @@ export const Slider = ({ filter }: { filter: string }) => {
                 ref={swiperRef}
                 modules={[Navigation]}
                 spaceBetween={27}
-                slidesPerView={4}
+                slidesPerView={2}
                 navigation={false}
                 speed={400}
+                breakpoints={{
+                    980: {
+                        slidesPerView: 3,
+                    },
+                    1305: {
+                        slidesPerView: 4,
+                    },
+                }}
             >
                 {data.data.products.map((product: any) => (
                     <SwiperSlide key={product?._id}>

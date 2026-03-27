@@ -13,12 +13,13 @@ import type { Product } from "@/shared/types";
 import { useSearchParams } from "react-router-dom";
 import { Filters } from "./Filters";
 import "./search.scss";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 const LIMIT = 30;
 
 export const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams();
+    const [filtersOpen, setFiltersOpen] = useState(false);
 
     const category = searchParams.get("category");
     const priceFrom = searchParams.get("priceFrom");
@@ -76,8 +77,19 @@ export const Search = () => {
         <div className="search">
             <div className="search__container">
                 <h2 className="search__title title">Фильтры</h2>
+                <button
+                    className="search__filters-toggle"
+                    onClick={() => setFiltersOpen(!filtersOpen)}
+                >
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="2" y1="5" x2="18" y2="5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <line x1="5" y1="10" x2="15" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <line x1="8" y1="15" x2="12" y2="15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                    {filtersOpen ? "Скрыть" : "Фильтры"}
+                </button>
                 <div className="search__content">
-                    <Filters />
+                    <Filters open={filtersOpen} onClose={() => setFiltersOpen(false)} />
                     <div className="search__main-content">
                         <div className="search__cards">
                             {data.data.products.length !== 0 ? (

@@ -6,3 +6,13 @@
     flex-wrap: wrap;
   }
 }
+
+/* ============================================================================== */
+
+@media (max-width: 1250px) {
+  .favourites {
+    &__cards {
+      justify-content: center;
+    }
+  }
+}

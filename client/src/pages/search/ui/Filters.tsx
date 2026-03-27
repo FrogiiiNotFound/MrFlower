@@ -8,7 +8,7 @@ import { tagsList } from "../constants/tags";
 import { flowersName } from "../constants/flowersName";
 import { useSearchParams } from "react-router-dom";
 
-export const Filters = () => {
+export const Filters = ({ open, onClose }: { open?: boolean; onClose?: () => void }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const category = searchParams.get("category") || "all";
     const priceFrom = Number(searchParams.get("priceFrom")) || 0;
@@ -63,7 +63,10 @@ export const Filters = () => {
     };
 
     return (
-        <div className="filters__filters">
+        <div className={`filters__filters ${open ? "filters__filters--open" : ""}`}>
+            {onClose && (
+                <button className="filters__close" onClick={onClose}>✕</button>
+            )}
             <div className="filters__filter">
                 <h3 className="filters__filter-title">Категории</h3>
                 <div className="filters__filter-buttons">

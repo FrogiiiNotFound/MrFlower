@@ -5,6 +5,10 @@ import plus from "@shared/assets/images/plus.svg";
 import type { CartItem as TCardItem } from "@/entities/cart/model/types";
 import { useCartStore } from "@/entities/cart/model/useCartStore";
 import "./CartItem.scss";
+import { lengthLimit } from "@/shared/utils/helpers/lengthLimit";
+
+const limit = window.innerWidth <= 528 ? 100 : 150;
+const titleLimit = window.innerWidth <= 528 ? 30 : 150;
 
 export const CartItem = ({ product }: { product: TCardItem }) => {
     const { removeFromCart, increaseAmount, decreaseAmount } = useCartStore();
@@ -15,8 +19,12 @@ export const CartItem = ({ product }: { product: TCardItem }) => {
             </div>
             <div className="purchase__content">
                 <div>
-                    <h3 className="purchase__title">{product.name}</h3>
-                    <p className="purchase__text">{product.description}</p>
+                    <h3 className="purchase__title">
+                        {lengthLimit(product.name, titleLimit)}
+                    </h3>
+                    <p className="purchase__text">
+                        {lengthLimit(product.description, limit)}
+                    </p>
                 </div>
                 <div className="purchase__bottom">
                     <div className="purchase__amount">
@@ -50,7 +58,10 @@ export const CartItem = ({ product }: { product: TCardItem }) => {
                     </div>
                 </div>
             </div>
-            <div className="purchase__remove" onClick={() => removeFromCart(product.id)}>
+            <div
+                className="purchase__remove"
+                onClick={() => removeFromCart(product.id)}
+            >
                 <img src={bin} alt="remove" />
             </div>
         </div>

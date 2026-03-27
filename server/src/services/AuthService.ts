@@ -50,13 +50,13 @@ class AuthService {
         if (!refreshToken) throw ApiError.UnAuthorized();
 
         const userToken = await TokenService.findToken(refreshToken);
-        const userData = TokenService.validateRefreshToken(
+        const userData = await TokenService.validateRefreshToken(
             refreshToken,
         ) as JwtPayload;
 
         if (!userToken || !userData) throw ApiError.UnAuthorized();
 
-        const user = await UserModel.findOne({ _id: userData.id });
+        const user = await UserModel.findOne({ _id: userData.user_id });
 
         const data = await this.updateUser(user);
 
